@@ -1,0 +1,24 @@
+info:
+  name: Respuesta glosa registro
+  type: http
+  seq: 6
+
+http:
+  method: GET
+  url: http://localhost:8091/auditoria/registros/glosas-registro-cuenta-medica/respuesta?idRegistro=1&descripcionTipoServicio=ConsultaRip
+  params:
+    - name: idRegistro
+      value: "1"
+      type: query
+    - name: descripcionTipoServicio
+      value: ConsultaRip
+      type: query
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

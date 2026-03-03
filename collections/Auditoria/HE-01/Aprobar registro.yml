@@ -1,0 +1,36 @@
+info:
+  name: Aprobar registro
+  type: http
+  seq: 16
+
+http:
+  method: PUT
+  url: http://localhost:8091/auditoria/registros/aprobar-registro?idRegistro=2&descripcionTipoServicio=ConsultaRip&idCuentaMedica=1
+  params:
+    - name: idRegistro
+      value: "2"
+      type: query
+    - name: descripcionTipoServicio
+      value: ConsultaRip
+      type: query
+    - name: idCuentaMedica
+      value: "1"
+      type: query
+  body:
+    type: text
+    data: "{\r
+
+      \    \"correo\":\"jorgeivan@unicauca.edu.co\",\r
+
+      \    \"password\":\"12345678\"\r
+
+      }"
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

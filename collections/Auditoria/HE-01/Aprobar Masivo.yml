@@ -1,0 +1,43 @@
+info:
+  name: Aprobar Masivo
+  type: http
+  seq: 18
+
+http:
+  method: PUT
+  url: http://localhost:8091/auditoria/registros/aprobar-registros-masivo?idCuentaMedica=1&esFiltrado=false
+  params:
+    - name: idCuentaMedica
+      value: "1"
+      type: query
+    - name: esFiltrado
+      value: "false"
+      type: query
+  body:
+    type: json
+    data: "{\r
+
+      \    \"numeroDocumento\": \"\",\r
+
+      \    \"numeroAutorizacion\": \"\",\r
+
+      \    \"descripcionConceptoRecaudo\": \"\",\r
+
+      \    \"fechaDesde\": \"\",\r
+
+      \    \"fechaHasta\": \"\",\r
+
+      \    \"descripcionTipoServicio\": \"\",\r
+
+      \    \"descripcionEstadoRegistro\": \"\"\r
+
+      }"
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

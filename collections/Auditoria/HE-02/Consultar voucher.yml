@@ -1,0 +1,21 @@
+info:
+  name: Consultar voucher
+  type: http
+  seq: 2
+
+http:
+  method: GET
+  url: http://localhost:8091/auditoria/cuentas-medicas/consultar-voucher?numeroVoucher=AS0000001
+  params:
+    - name: numeroVoucher
+      value: AS0000001
+      type: query
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

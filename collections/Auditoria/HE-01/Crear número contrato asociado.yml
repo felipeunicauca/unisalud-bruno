@@ -1,0 +1,27 @@
+info:
+  name: Crear número contrato asociado
+  type: http
+  seq: 20
+
+http:
+  method: POST
+  url: http://localhost:8091/auditoria/cuentas-medicas/asociar-contrato?idCuentaMedica=1&numeroContratoAsociado=12000.k/_-12
+  params:
+    - name: idCuentaMedica
+      value: "1"
+      type: query
+    - name: numeroContratoAsociado
+      value: 12000.k/_-12
+      type: query
+  body:
+    type: json
+    data: ""
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

@@ -1,0 +1,12 @@
+opencollection: 1.0.0
+info:
+  name: "Unisalud"
+  type: workspace
+
+collections:
+  - name: "Auditoria"
+    path: "collections/Auditoria"
+
+specs:
+
+docs: ''

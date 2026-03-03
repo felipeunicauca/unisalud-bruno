@@ -1,0 +1,30 @@
+info:
+  name: Alertas registros cuenta médica
+  type: http
+  seq: 12
+
+http:
+  method: GET
+  url: http://localhost:8091/auditoria/registros/alertas-registro-cuenta-medica?idCuentaMedica=1&idRegistro=1&descripcionTipoServicio=ConsultaRip&idTransaccion=1
+  params:
+    - name: idCuentaMedica
+      value: "1"
+      type: query
+    - name: idRegistro
+      value: "1"
+      type: query
+    - name: descripcionTipoServicio
+      value: ConsultaRip
+      type: query
+    - name: idTransaccion
+      value: "1"
+      type: query
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

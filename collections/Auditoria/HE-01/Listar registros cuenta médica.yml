@@ -1,0 +1,27 @@
+info:
+  name: Listar registros cuenta médica
+  type: http
+  seq: 5
+
+http:
+  method: GET
+  url: http://localhost:8091/auditoria/registros/registros-cuenta-medica?idCuentaMedica=1&pagina=0&registrosPorPagina=10
+  params:
+    - name: idCuentaMedica
+      value: "1"
+      type: query
+    - name: pagina
+      value: "0"
+      type: query
+    - name: registrosPorPagina
+      value: "10"
+      type: query
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

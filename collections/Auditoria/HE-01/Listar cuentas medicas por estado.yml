@@ -1,0 +1,33 @@
+info:
+  name: Listar cuentas medicas por estado
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: http://localhost:8091/auditoria/cuentas-medicas/listar-cuentas-medicas-por-estado?pagina=0&registrosPorPagina=10
+  params:
+    - name: pagina
+      value: "0"
+      type: query
+    - name: registrosPorPagina
+      value: "10"
+      type: query
+  body:
+    type: json
+    data: "[\r
+
+      \    \"Auditoria-ajustada por nota\",\r
+
+      \    \"Auditoria\"\r
+
+      ]\r\n"
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

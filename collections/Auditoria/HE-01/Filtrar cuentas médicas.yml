@@ -1,0 +1,72 @@
+info:
+  name: Filtrar cuentas médicas
+  type: http
+  seq: 2
+
+http:
+  method: GET
+  url: http://localhost:8091/auditoria/cuentas-medicas/filtrar-cuentas-medicas-auditoria?pagina=0&registrosPorPagina=10
+  params:
+    - name: nitPrestador
+      value: "817003166"
+      type: query
+      disabled: true
+    - name: razonSocial
+      value: Socied
+      type: query
+      disabled: true
+    - name: descripcionEstadoCuentaMedica
+      value: Auditoria
+      type: query
+      disabled: true
+    - name: descripcionEstadoAuditoria
+      value: En revisión
+      type: query
+      disabled: true
+    - name: fechaInicioCargue
+      value: 2025-10-01
+      type: query
+      disabled: true
+    - name: fechaFinCarga
+      value: 2025-10-03
+      type: query
+      disabled: true
+    - name: numeroFactura
+      value: 1SE1
+      type: query
+      disabled: true
+    - name: numeroRadicado
+      value: RAD000002
+      type: query
+      disabled: true
+    - name: numeroContrato
+      value: CNT-54200020-P1
+      type: query
+      disabled: true
+    - name: numeroContratoAsociado
+      value: 12000.k/_-
+      type: query
+      disabled: true
+    - name: pagina
+      value: "0"
+      type: query
+    - name: registrosPorPagina
+      value: "10"
+      type: query
+    - name: fechaInicioAuditoriaDesde
+      value: 2025-11-25
+      type: query
+      disabled: true
+    - name: fechaInicioAuditoriaHasta
+      value: 2025-11-29
+      type: query
+      disabled: true
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

@@ -1,0 +1,30 @@
+info:
+  name: Consultar archivos notas
+  type: http
+  seq: 4
+
+http:
+  method: GET
+  url: http://localhost:8091/archivo-cuenta/consultar/auditoria/nota?idCuenta=1&tipoNota=Nota crédito parcial&descripcionEstado=Auditoria-ajustada por nota&numeroNota=1NCP1
+  params:
+    - name: idCuenta
+      value: "1"
+      type: query
+    - name: tipoNota
+      value: Nota crédito parcial
+      type: query
+    - name: descripcionEstado
+      value: Auditoria-ajustada por nota
+      type: query
+    - name: numeroNota
+      value: 1NCP1
+      type: query
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

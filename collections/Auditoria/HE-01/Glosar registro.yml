@@ -1,0 +1,39 @@
+info:
+  name: Glosar registro
+  type: http
+  seq: 19
+
+http:
+  method: PUT
+  url: http://localhost:8091/auditoria/registros/glosar-registro?idRegistro=1&idCuentaMedica=1
+  params:
+    - name: idRegistro
+      value: "1"
+      type: query
+    - name: idCuentaMedica
+      value: "1"
+      type: query
+  body:
+    type: json
+    data: "{\r
+
+      \    \"descripcionTipoServicio\": \"ConsultaRip\",\r
+
+      \    \"idGlosasRegistro\": [10,11],\r
+
+      \    \"usuarioId\": 1,\r
+
+      \    \"observacion\": \"Esta consulta no cuadra\",\r
+
+      \    \"valorGlosado\": 100000\r
+
+      }"
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

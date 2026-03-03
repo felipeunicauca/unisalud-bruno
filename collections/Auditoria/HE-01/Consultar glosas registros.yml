@@ -1,0 +1,24 @@
+info:
+  name: Consultar glosas registros
+  type: http
+  seq: 13
+
+http:
+  method: GET
+  url: http://localhost:8091/auditoria/registros/glosas-registro-cuenta-medica?pagina=0&registrosPorPagina=10
+  params:
+    - name: pagina
+      value: "0"
+      type: query
+    - name: registrosPorPagina
+      value: "10"
+      type: query
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

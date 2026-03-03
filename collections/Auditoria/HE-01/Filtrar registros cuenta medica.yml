@@ -1,0 +1,48 @@
+info:
+  name: Filtrar registros cuenta medica
+  type: http
+  seq: 11
+
+http:
+  method: GET
+  url: http://localhost:8091/auditoria/registros/filtrar-registros-cuenta-medica?idCuentaMedica=1&descripcionEstadoRegistro=Pendiente
+  params:
+    - name: idCuentaMedica
+      value: "1"
+      type: query
+    - name: numeroDocumento
+      value: ""
+      type: query
+      disabled: true
+    - name: numeroAutorizacion
+      value: "123"
+      type: query
+      disabled: true
+    - name: descripcionConceptoRecaudo
+      value: "06"
+      type: query
+      disabled: true
+    - name: fechaDesde
+      value: 2025-09-01
+      type: query
+      disabled: true
+    - name: fechaHasta
+      value: 2025-09-02
+      type: query
+      disabled: true
+    - name: descripcionTipoServicio
+      value: ConsultaRip
+      type: query
+      disabled: true
+    - name: descripcionEstadoRegistro
+      value: Pendiente
+      type: query
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

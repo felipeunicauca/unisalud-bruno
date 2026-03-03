@@ -1,0 +1,26 @@
+info:
+  name: Asociar cuentas medicas
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: http://localhost:8091/auditoria/cuentas-medicas/asociar-cuentas-medicas
+  body:
+    type: json
+    data: "{\r
+
+      \    \"idUsuarioResponsable\": 1,\r
+
+      \    \"idsCuentasMedicas\":[1]\r
+
+      }"
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

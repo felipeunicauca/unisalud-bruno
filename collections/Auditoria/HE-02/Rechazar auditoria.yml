@@ -1,0 +1,28 @@
+info:
+  name: Rechazar auditoria
+  type: http
+  seq: 7
+
+http:
+  method: PUT
+  url: http://localhost:8091/auditoria/cuentas-medicas/rechazar-auditoria-proceso-revision-coordinacion
+  body:
+    type: json
+    data: "{\r
+
+      \   \"idCuentaMedica\": 1,\r
+
+      \   \"observacion\": \"Esta es una observacion al momento de terminar la auditoria\",\r
+
+      \   \"idUsuarioResponsable\": 1\r
+
+      }"
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
