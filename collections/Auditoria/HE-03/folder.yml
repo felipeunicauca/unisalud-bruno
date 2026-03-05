@@ -1,0 +1,7 @@
+info:
+  name: HE-03
+  type: folder
+  seq: 4
+
+request:
+  auth: inherit

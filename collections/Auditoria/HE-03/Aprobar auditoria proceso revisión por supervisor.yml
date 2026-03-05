@@ -7,16 +7,13 @@ http:
   method: PUT
   url: http://localhost:8091/auditoria/cuentas-medicas/aprobar-auditoria-proceso-revision-supervision
   body:
-    type: text
-    data: "{\r
-
-      \   \"idCuentaMedica\": 1,\r
-
-      \   \"observacion\": \"Esta es una observacion al momento de terminar la auditoria\",\r
-
-      \   \"idUsuarioResponsable\": 1\r
-
-      }"
+    type: json
+    data: |-
+      {
+         "idCuentaMedica": 1,
+         "observacion": "Esta es una observacion al momento de terminar la auditoria",
+         "idUsuarioResponsable": 1
+      }
   auth:
     type: bearer
     token: "{{token}}"

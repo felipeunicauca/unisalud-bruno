@@ -20,9 +20,9 @@ http:
 runtime:
   scripts:
     - type: after-response
-      code: "var res = res.getBody();\r
-
-        bru.setGlobalEnvVar('token', res.datos?.token);"
+      code: |-
+        const token = bru.getVar("token");
+        bru.setVar("token", res.body.datos.token);
 
 settings:
   encodeUrl: true
