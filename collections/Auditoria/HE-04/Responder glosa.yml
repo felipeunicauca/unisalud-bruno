@@ -1,0 +1,27 @@
+info:
+  name: Responder glosa
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: http://localhost:8091/auditoria/registros/respuesta-glosa
+  body:
+    type: json
+    data: |-
+      {
+        "idRespuestaGlosa": 1,
+        "idRegistroServicio": 1,
+        "tipoServicio": "ProcedimientoRip",
+        "observacion": "",
+        "valorAceptado": 2000
+      }
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

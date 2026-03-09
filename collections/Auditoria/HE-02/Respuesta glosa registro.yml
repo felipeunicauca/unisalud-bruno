@@ -5,13 +5,13 @@ info:
 
 http:
   method: GET
-  url: http://localhost:8091/auditoria/registros/glosas-registro-cuenta-medica/respuesta?idRegistro=1&descripcionTipoServicio=ConsultaRip
+  url: http://localhost:8091/auditoria/registros/glosas-registro-cuenta-medica/respuesta?idRegistro=1&descripcionTipoServicio=ProcedimientoRip
   params:
     - name: idRegistro
       value: "1"
       type: query
     - name: descripcionTipoServicio
-      value: ConsultaRip
+      value: ProcedimientoRip
       type: query
   auth:
     type: bearer

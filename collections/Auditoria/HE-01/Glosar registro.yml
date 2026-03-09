@@ -15,19 +15,14 @@ http:
       type: query
   body:
     type: json
-    data: "{\r
-
-      \    \"descripcionTipoServicio\": \"ConsultaRip\",\r
-
-      \    \"idGlosasRegistro\": [10,11],\r
-
-      \    \"usuarioId\": 1,\r
-
-      \    \"observacion\": \"Esta consulta no cuadra\",\r
-
-      \    \"valorGlosado\": 100000\r
-
-      }"
+    data: |-
+      {
+          "descripcionTipoServicio": "ProcedimientoRip",
+          "idGlosasRegistro": [10,11],
+          "usuarioId": 1,
+          "observacion": "Esta consulta no cuadra",
+          "valorGlosado": 100000
+      }
   auth:
     type: bearer
     token: "{{token}}"
