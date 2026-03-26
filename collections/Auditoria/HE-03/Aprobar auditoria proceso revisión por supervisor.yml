@@ -10,7 +10,7 @@ http:
     type: json
     data: |-
       {
-         "idCuentaMedica": 1,
+         "idCuentaMedica": 2,
          "observacion": "Esta es una observacion al momento de terminar la auditoria",
          "idUsuarioResponsable": 1
       }

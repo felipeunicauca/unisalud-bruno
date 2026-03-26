@@ -10,9 +10,9 @@ http:
     type: json
     data: |-
       {
-        "idRespuestaGlosa": 1,
-        "idRegistroServicio": 1,
-        "tipoServicio": "ProcedimientoRip",
+        "idRespuestaGlosa": 4,
+        "idRegistroServicio": 2,
+        "tipoServicio": "OtroServicioRip",
         "observacion": "",
         "valorAceptado": 2000
       }

@@ -1,0 +1,28 @@
+info:
+  name: Archivo respuesta glosa
+  type: http
+  seq: 4
+
+http:
+  method: POST
+  url: http://localhost:8091/auditoria/registros/respuesta-glosa/archivo?idCuentaMedica=2
+  params:
+    - name: idCuentaMedica
+      value: "2"
+      type: query
+  body:
+    type: multipart-form
+    data:
+      - name: archivo
+        type: file
+        value:
+          - C:\Users\vidal\Downloads\respuesta_glosa.xlsx
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
