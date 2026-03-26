@@ -14,7 +14,8 @@ http:
         "idRegistroServicio": 2,
         "tipoServicio": "OtroServicioRip",
         "observacion": "",
-        "valorAceptado": 2000
+        "valorAceptado": 2000,
+        "idCuentaMedica": 2
       }
   auth:
     type: bearer
