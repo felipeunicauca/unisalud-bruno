@@ -5,10 +5,10 @@ info:
 
 http:
   method: POST
-  url: http://localhost:8091/auditoria/registros/respuesta-glosa/archivo?idCuentaMedica=2
+  url: http://localhost:8091/auditoria/registros/respuesta-glosa/archivo?idCuentaMedica=1
   params:
     - name: idCuentaMedica
-      value: "2"
+      value: "1"
       type: query
   body:
     type: multipart-form

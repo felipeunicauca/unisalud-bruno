@@ -8,15 +8,12 @@ http:
   url: http://localhost:8091/auditoria/cuentas-medicas/terminar-auditoria
   body:
     type: json
-    data: "{\r
-
-      \   \"idCuentaMedica\": 1,\r
-
-      \   \"observacion\": \"Esta es una observacion al momento de terminar la auditoria\",\r
-
-      \   \"idUsuarioResponsable\": 1\r
-
-      }"
+    data: |-
+      {
+         "idCuentaMedica": 2,
+         "observacion": "Esta es una observacion al momento de terminar la auditoria",
+         "idUsuarioResponsable": 1
+      }
   auth:
     type: bearer
     token: "{{token}}"

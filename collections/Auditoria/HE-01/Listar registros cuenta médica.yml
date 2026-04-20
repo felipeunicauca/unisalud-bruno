@@ -5,10 +5,10 @@ info:
 
 http:
   method: GET
-  url: http://localhost:8091/auditoria/registros/registros-cuenta-medica?idCuentaMedica=1&pagina=0&registrosPorPagina=10
+  url: http://localhost:8091/auditoria/registros/registros-cuenta-medica?idCuentaMedica=2&pagina=0&registrosPorPagina=10
   params:
     - name: idCuentaMedica
-      value: "1"
+      value: "2"
       type: query
     - name: pagina
       value: "0"

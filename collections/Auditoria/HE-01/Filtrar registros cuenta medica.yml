@@ -5,37 +5,43 @@ info:
 
 http:
   method: GET
-  url: http://localhost:8091/auditoria/registros/filtrar-registros-cuenta-medica?idCuentaMedica=1&descripcionEstadoRegistro=Pendiente
+  url: http://localhost:8091/auditoria/registros/filtrar-registros-cuenta-medica?idCuentaMedica=1&descripcionEstadoRegistro=Glosado&pagina=0&registrosPorPagina=10
   params:
     - name: idCuentaMedica
       value: "1"
       type: query
     - name: numeroDocumento
-      value: ""
+      value: "1061808461"
       type: query
       disabled: true
     - name: numeroAutorizacion
-      value: "123"
+      value: ""
       type: query
       disabled: true
     - name: descripcionConceptoRecaudo
-      value: "06"
+      value: ""
       type: query
       disabled: true
     - name: fechaDesde
-      value: 2025-09-01
+      value: 2025-02-04
       type: query
       disabled: true
     - name: fechaHasta
-      value: 2025-09-02
+      value: 2025-02-12
       type: query
       disabled: true
     - name: descripcionTipoServicio
-      value: ConsultaRip
+      value: MEDICAMENTO
       type: query
       disabled: true
     - name: descripcionEstadoRegistro
-      value: Pendiente
+      value: Glosado
+      type: query
+    - name: pagina
+      value: "0"
+      type: query
+    - name: registrosPorPagina
+      value: "10"
       type: query
   auth:
     type: bearer

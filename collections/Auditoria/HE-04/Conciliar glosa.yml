@@ -1,0 +1,26 @@
+info:
+  name: Conciliar glosa
+  type: http
+  seq: 6
+
+http:
+  method: POST
+  url: http://localhost:8091/auditoria/registros/conciliar-glosa
+  body:
+    type: json
+    data: |-
+      {
+        "idRegistroServicio":1,
+        "tipoServicio":"ConsultaRip",
+        "valorConciliado":4000,
+        "justificacion":"Conciliacion"
+      }
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

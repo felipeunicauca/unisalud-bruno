@@ -5,23 +5,23 @@ info:
 
 http:
   method: PUT
-  url: http://localhost:8091/auditoria/registros/glosar-registro?idRegistro=1&idCuentaMedica=1
+  url: http://localhost:8091/auditoria/registros/glosar-registro?idRegistro=38&idCuentaMedica=2
   params:
     - name: idRegistro
-      value: "1"
+      value: "38"
       type: query
     - name: idCuentaMedica
-      value: "1"
+      value: "2"
       type: query
   body:
     type: json
     data: |-
       {
-          "descripcionTipoServicio": "ConsultaRip",
-          "idGlosasRegistro": [10,11],
+          "descripcionTipoServicio": "ProcedimientoRip",
+          "idGlosasRegistro": [11,10],
           "usuarioId": 1,
           "observacion": "Esta consulta no cuadra",
-          "valorGlosado": 69000
+          "valorGlosado": 0
       }
   auth:
     type: bearer

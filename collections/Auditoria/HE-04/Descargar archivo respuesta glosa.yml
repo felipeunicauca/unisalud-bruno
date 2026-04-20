@@ -5,10 +5,10 @@ info:
 
 http:
   method: GET
-  url: http://localhost:8091/auditoria/cuentas-medicas/descargar/archivo-respuesta-glosa?idCuenta=2
+  url: http://localhost:8091/auditoria/cuentas-medicas/descargar/archivo-respuesta-glosa?idCuenta=1
   params:
     - name: idCuenta
-      value: "2"
+      value: "1"
       type: query
   auth:
     type: bearer

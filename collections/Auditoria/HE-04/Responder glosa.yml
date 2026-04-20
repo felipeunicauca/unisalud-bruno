@@ -11,11 +11,11 @@ http:
     data: |-
       {
         "idRespuestaGlosa": 4,
-        "idRegistroServicio": 2,
-        "tipoServicio": "OtroServicioRip",
+        "idRegistroServicio": 1,
+        "tipoServicio": "ConsultaRip",
         "observacion": "",
-        "valorAceptado": 2000,
-        "idCuentaMedica": 2
+        "valorAceptado": 36000,
+        "idCuentaMedica": 1
       }
   auth:
     type: bearer

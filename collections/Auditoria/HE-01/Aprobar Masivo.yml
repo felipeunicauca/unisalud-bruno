@@ -5,10 +5,10 @@ info:
 
 http:
   method: PUT
-  url: http://localhost:8091/auditoria/registros/aprobar-registros-masivo?idCuentaMedica=1&esFiltrado=false
+  url: http://localhost:8091/auditoria/registros/aprobar-registros-masivo?idCuentaMedica=2&esFiltrado=false
   params:
     - name: idCuentaMedica
-      value: "1"
+      value: "2"
       type: query
     - name: esFiltrado
       value: "false"
