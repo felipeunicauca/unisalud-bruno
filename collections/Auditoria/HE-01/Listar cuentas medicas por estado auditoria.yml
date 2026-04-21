@@ -15,11 +15,11 @@ http:
       type: query
   body:
     type: json
-    data: "[\r
-
-      \    \"Devuelta por coordinación\"\r
-
-      ]"
+    data: |-
+      [
+          "Glosada parcial",
+          "En revisión"
+      ]
   auth:
     type: bearer
     token: "{{token}}"

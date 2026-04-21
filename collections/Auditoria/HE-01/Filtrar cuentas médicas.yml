@@ -15,14 +15,6 @@ http:
       value: Socied
       type: query
       disabled: true
-    - name: descripcionEstadoCuentaMedica
-      value: Auditoria
-      type: query
-      disabled: true
-    - name: descripcionEstadoAuditoria
-      value: En revisión
-      type: query
-      disabled: true
     - name: fechaInicioCargue
       value: 2025-10-01
       type: query
@@ -61,6 +53,13 @@ http:
       value: 2025-11-29
       type: query
       disabled: true
+  body:
+    type: json
+    data: |-
+      [
+          "Glosada parcial",
+          "En revisión"
+      ]
   auth:
     type: bearer
     token: "{{token}}"

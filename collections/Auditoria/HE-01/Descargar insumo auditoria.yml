@@ -5,13 +5,13 @@ info:
 
 http:
   method: GET
-  url: http://localhost:8091/auditoria/cuentas-medicas/descargar/archivo-auditoria?idCuenta=1&descripcionEstadoCuenta=Auditoria
+  url: http://localhost:8091/auditoria/cuentas-medicas/descargar/archivo-auditoria?idCuenta=1&descripcionEstadoCuenta=Auditoria-ajustada por nota
   params:
     - name: idCuenta
       value: "1"
       type: query
     - name: descripcionEstadoCuenta
-      value: Auditoria
+      value: Auditoria-ajustada por nota
       type: query
   auth:
     type: bearer
