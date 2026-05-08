@@ -31,3 +31,42 @@ settings:
   timeout: 0
   followRedirects: true
   maxRedirects: 5
+
+docs: |+
+  ### Conciliar Cuenta Médica
+  Permite conciliar una cuenta médica existente en el sistema.
+
+  **Método:** POST  
+  **Path:** /auditoria/cuentas-medicas/conciliar-cuenta-medica  
+  **Headers:**  
+  - Content-Type: multipart/form-data  
+  - Authorization: Bearer <token>  
+
+  **Body (Multipart Form):**
+  - `archivo` (file, requerido): Archivo adjunto con la información de conciliación.  
+  - `request` (JSON, requerido): Datos de la conciliación.  
+
+  **Ejemplo de `request`:**
+  ```json
+  {
+    "idCuentaMedica": 2,
+    "observacion": "Obse",
+    "idUsuarioResponsable": 123
+  }
+  ```
+  **Ejemplo de Response:**
+  ```json
+  {
+    "estado": "OK",
+    "mensaje": "Cuenta médica conciliada exitosamente",
+    "datos": true
+  }
+  ```
+  **Errores comunes:**
+  - 401 Unauthorized → Token inválido o ausente.
+  - 404 Not Found → Usuario no existe.
+  - 404 Not Found -> Cuenta médica no existe.
+  - 400 Bad Request -> Falta el idCuentaMedica 
+  - 400 Bar Request -> falta idUsuario
+  - 400 Bad Request -> Observación máximo caracteres permitidos
+

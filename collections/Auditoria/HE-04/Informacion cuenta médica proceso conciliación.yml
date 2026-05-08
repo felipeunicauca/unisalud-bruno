@@ -19,3 +19,36 @@ settings:
   timeout: 0
   followRedirects: true
   maxRedirects: 5
+
+docs: |+
+  ### Conciliar Cuenta Médica
+  Permite obtener la información de cuenta médica con la información necesaria para el proceso de concilación.
+
+  **Método:** GET  
+  **Path:** /auditoria/cuentas-medicas/informacion-cuenta-medica-proceso-conciliacion  
+  **Headers:**  
+  - Authorization: Bearer <token>  
+
+  **Params :**
+  - `idCuentaMedica` (number, requerido): Id de la cuenta médica 
+
+
+
+  **Ejemplo de Response:**
+  ```json
+  {
+    "estado": "OK",
+    "mensaje": "Información de la cuenta médica para el proceso de conciliación obtenida exitosamente",
+    "datos": {
+      "valorTotalGlosa": 456.00,
+      "valorTotalConsolidado": 242866.00,
+      "tieneRespuestaGlosaNoAceptada": true,
+      "tieneRespuestaGlosaAceptadaParcial": false
+    }
+  }
+  ```
+  **Errores comunes:**
+  - 401 Unauthorized → Token inválido o ausente.
+  - 404 Not Found -> Cuenta médica no existe.
+
+
