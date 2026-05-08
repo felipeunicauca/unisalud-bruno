@@ -10,9 +10,9 @@ http:
     type: json
     data: |-
       {
-         "idCuentaMedica": 2,
-         "observacion": "Esta es una observacion al momento de terminar la auditoria",
-         "idUsuarioResponsable": 1
+         "idCuentaMedica": 1,
+         "observacion": "Esta es una observacion al momento de terminar la auditoria en proceso de supervisión",
+         "idUsuarioResponsable": 2
       }
   auth:
     type: bearer

@@ -1,0 +1,33 @@
+info:
+  name: Conciliar cuenta médica
+  type: http
+  seq: 8
+
+http:
+  method: POST
+  url: http://localhost:8091/auditoria/cuentas-medicas/conciliar-cuenta-medica
+  body:
+    type: multipart-form
+    data:
+      - name: archivo
+        type: file
+        value: []
+        contentType: multipart/form-data
+      - name: request
+        type: text
+        value: |-
+          {
+          "idCuentaMedica":2,
+          "observacion":"Observación conciliación 2",
+          "idUsuarioResponsable":1
+          }
+        contentType: application/json
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

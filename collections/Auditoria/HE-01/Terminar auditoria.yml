@@ -1,7 +1,7 @@
 info:
   name: Terminar auditoria
   type: http
-  seq: 17
+  seq: 16
 
 http:
   method: PUT
@@ -10,7 +10,7 @@ http:
     type: json
     data: |-
       {
-         "idCuentaMedica": 2,
+         "idCuentaMedica": 1,
          "observacion": "Esta es una observacion al momento de terminar la auditoria",
          "idUsuarioResponsable": 1
       }

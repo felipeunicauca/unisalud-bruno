@@ -10,11 +10,11 @@ http:
     type: json
     data: |-
       {
-        "idRespuestaGlosa": 4,
-        "idRegistroServicio": 1,
+        "idRespuestaGlosa": 6,
+        "idRegistroServicio": 2,
         "tipoServicio": "ConsultaRip",
-        "observacion": "",
-        "valorAceptado": 36000,
+        "observacion": "Todo mal",
+        "valorAceptado": 100,
         "idCuentaMedica": 1
       }
   auth:

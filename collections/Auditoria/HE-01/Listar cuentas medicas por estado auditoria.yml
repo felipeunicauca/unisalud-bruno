@@ -1,7 +1,7 @@
 info:
   name: Listar cuentas medicas por estado auditoria
   type: http
-  seq: 21
+  seq: 20
 
 http:
   method: POST

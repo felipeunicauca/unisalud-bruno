@@ -12,7 +12,7 @@ http:
       {
         "idRegistroServicio":1,
         "tipoServicio":"ConsultaRip",
-        "valorConciliado":4000,
+        "valorConciliado":9000,
         "justificacion":"Conciliacion"
       }
   auth:

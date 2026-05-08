@@ -8,13 +8,11 @@ http:
   url: http://localhost:8091/usuarios/auth/login
   body:
     type: json
-    data: "{\r
-
-      \    \"correo\":\"jorgeivan@unicauca.edu.co\",\r
-
-      \    \"password\":\"12345678\"\r
-
-      }"
+    data: |-
+      {
+          "correo":"vsandres@unicauca.edu.co",
+          "password":"12345678"
+      }
   auth: inherit
 
 runtime:

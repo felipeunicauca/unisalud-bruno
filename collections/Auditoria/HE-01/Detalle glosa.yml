@@ -1,7 +1,7 @@
 info:
   name: Detalle glosa
   type: http
-  seq: 15
+  seq: 14
 
 http:
   method: GET

@@ -1,7 +1,7 @@
 info:
   name: Filtrar registros cuenta medica
   type: http
-  seq: 11
+  seq: 10
 
 http:
   method: GET
@@ -31,7 +31,7 @@ http:
       type: query
       disabled: true
     - name: descripcionTipoServicio
-      value: MEDICAMENTO
+      value: ConsultaRip
       type: query
       disabled: true
     - name: descripcionEstadoRegistro
@@ -43,6 +43,9 @@ http:
     - name: registrosPorPagina
       value: "10"
       type: query
+  body:
+    type: json
+    data: ""
   auth:
     type: bearer
     token: "{{token}}"
