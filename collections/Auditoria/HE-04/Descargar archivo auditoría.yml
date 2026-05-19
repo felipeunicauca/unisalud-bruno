@@ -1,0 +1,68 @@
+info:
+  name: Descargar archivo auditoría
+  type: http
+  seq: 10
+
+http:
+  method: GET
+  url: http://localhost:8091/auditoria/cuentas-medicas/descargar-archivo-auditoria?idArchivo=92
+  params:
+    - name: idArchivo
+      value: "92"
+      type: query
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: "### Conciliar Cuenta Médica
+
+  Permite descargar los archivos cargados en el proceso de auditoría cuenta médica
+
+
+  **Método:** GET \ 
+
+  **Path:** /auditoria/cuentas-medicas//descargar-archivo-auditoria
+
+  **Headers:** \ 
+
+  - Authorization: Bearer <token> \ 
+
+
+  **PARAM :**
+
+  - `idArchivo` (number, requerido): id del archivo solicitado
+
+
+  **Ejemplo de `idArchivo`:**
+
+  ```json
+
+
+  idArchivo: 1
+
+
+  ```
+
+  **Ejemplo de Response:**
+
+
+
+  **Errores comunes:**
+
+  - 401 Unauthorized → Token inválido o ausente.
+
+  - 404 Not Found -> No se encontró el archivo de auditoría con el ID proporcionado.
+
+  - 400 Bad Request (código propio: C_0002) -> el recurso NO existe
+
+  - 400 Bad Request (el recurso NO se puede leer: C_0002)
+
+  - 400 Bad Request (error al convertir la ruta a archivo: C_0002)
+
+  \ "

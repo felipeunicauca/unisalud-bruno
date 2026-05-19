@@ -5,7 +5,7 @@ info:
 
 http:
   method: GET
-  url: http://localhost:8091/auditoria/registros/filtrar-registros-cuenta-medica?idCuentaMedica=1&descripcionEstadoRegistro=Glosado&pagina=0&registrosPorPagina=10
+  url: http://localhost:8091/auditoria/registros/filtrar-registros-cuenta-medica?idCuentaMedica=1&descripcionEstadoRegistro=Glosado&pagina=0&registrosPorPagina=50
   params:
     - name: idCuentaMedica
       value: "1"
@@ -41,7 +41,7 @@ http:
       value: "0"
       type: query
     - name: registrosPorPagina
-      value: "10"
+      value: "50"
       type: query
   body:
     type: json

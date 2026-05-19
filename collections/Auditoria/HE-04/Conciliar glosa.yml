@@ -10,7 +10,7 @@ http:
     type: json
     data: |-
       {
-        "idRegistroServicio":1,
+        "idRegistroServicio":2,
         "tipoServicio":"ConsultaRip",
         "valorConciliado":9000,
         "justificacion":"Conciliacion"

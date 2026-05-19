@@ -1,26 +1,27 @@
 info:
-  name: Conciliar cuenta médica
+  name: Terminar proceso juridico
   type: http
-  seq: 8
+  seq: 9
 
 http:
   method: POST
-  url: http://localhost:8091/auditoria/cuentas-medicas/conciliar-cuenta-medica
+  url: http://localhost:8091/auditoria/cuentas-medicas/terminar-proceso-juridico
   body:
     type: multipart-form
     data:
       - name: archivo
         type: file
         value:
-          - C:\Users\vidal\Downloads\Andres_Felipe_Vidal_CV_ES.pdf
+          - C:\Users\vidal\Downloads\archivo-auditoria_A117324102 (2).xlsx
         contentType: multipart/form-data
       - name: request
         type: text
         value: |-
           {
           "idCuentaMedica":1,
+          "idUsuarioResponsable":1,
           "observacion":"Observación conciliación 2",
-          "idUsuarioResponsable":1
+          "valorConciliado": 100000000
           }
         contentType: application/json
   auth:
@@ -33,33 +34,34 @@ settings:
   followRedirects: true
   maxRedirects: 5
 
-docs: |
-  ### Descargar archivo auditoría
-  Permite conciliar una cuenta médica existente en el sistema.
+docs: |+
+  ### Terminar proceso jurídico
+  Permite terminar el proceso jurídico
 
   **Método:** POST  
-  **Path:** /auditoria/cuentas-medicas/conciliar-cuenta-medica  
+  **Path:** /auditoria/cuentas-medicas/terminar-proceso-juridico  
   **Headers:**  
   - Content-Type: multipart/form-data  
   - Authorization: Bearer <token>  
 
   **Body (Multipart Form):**
   - `archivo` (file, requerido): Archivo adjunto con la información de conciliación.  
-  - `request` (JSON, requerido): Datos de la conciliación.  
+  - `request` (JSON, requerido): Datos para la terminación del proceso jurídico.  
 
   **Ejemplo de `request`:**
   ```json
   {
-    "idCuentaMedica": 2,
-    "observacion": "Obse",
-    "idUsuarioResponsable": 123
+    "idCuentaMedica":1,
+    "idUsuarioResponsable":1,
+    "observacion":"Observación conciliación 2",
+    "valorConciliado": 0
   }
   ```
   **Ejemplo de Response:**
   ```json
   {
     "estado": "OK",
-    "mensaje": "Cuenta médica conciliada exitosamente",
+    "mensaje": "Proceso jurídico terminado exitosamente",
     "datos": true
   }
   ```
@@ -70,6 +72,7 @@ docs: |
   - 400 Bad Request -> Falta el idCuentaMedica 
   - 400 Bad Request -> falta idUsuario
   - 400 Bad Request -> Observación máximo caracteres permitidos
-  ciliación no puede ser mayor al 10% valor glosado"
+  - 400 Bad Request (código propio: "AU_007" ) -> "El valor de conciliación no puede ser mayor al 10% valor glosado"
   - 400 Bad Request ->"El tamaño del anexo no debe exceder los 2 MB. Tamaño actual"
   - 400 Bad Request->"La extensión del anexo no es válida. Solo se permiten archivos PDF"
+

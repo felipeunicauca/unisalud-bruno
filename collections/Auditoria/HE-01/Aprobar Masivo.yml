@@ -15,23 +15,16 @@ http:
       type: query
   body:
     type: json
-    data: "{\r
-
-      \    \"numeroDocumento\": \"\",\r
-
-      \    \"numeroAutorizacion\": \"\",\r
-
-      \    \"descripcionConceptoRecaudo\": \"\",\r
-
-      \    \"fechaDesde\": \"\",\r
-
-      \    \"fechaHasta\": \"\",\r
-
-      \    \"descripcionTipoServicio\": \"\",\r
-
-      \    \"descripcionEstadoRegistro\": \"\"\r
-
-      }"
+    data: |-
+      {
+          "numeroDocumento": null,
+          "numeroAutorizacion": null,
+          "descripcionConceptoRecaudo": null,
+          "fechaDesde": null,
+          "fechaHasta": null,
+          "descripcionTipoServicio": "ProcedimientoRip",
+          "descripcionEstadoRegistro": null
+      }
   auth:
     type: bearer
     token: "{{token}}"

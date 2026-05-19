@@ -5,10 +5,10 @@ info:
 
 http:
   method: GET
-  url: http://localhost:8091/auditoria/registros/glosas-registro-cuenta-medica/detalle?idRegistro=1&descripcionTipoServicio=ConsultaRip&transaccionId=1&idCuentaMedica=1
+  url: http://localhost:8091/auditoria/registros/glosas-registro-cuenta-medica/detalle?idRegistro=2&descripcionTipoServicio=ConsultaRip&transaccionId=1&idCuentaMedica=1
   params:
     - name: idRegistro
-      value: "1"
+      value: "2"
       type: query
     - name: descripcionTipoServicio
       value: ConsultaRip

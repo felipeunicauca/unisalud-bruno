@@ -5,13 +5,13 @@ info:
 
 http:
   method: PUT
-  url: http://localhost:8091/auditoria/registros/aprobar-registro?idRegistro=2&descripcionTipoServicio=ConsultaRip&idCuentaMedica=1
+  url: http://localhost:8091/auditoria/registros/aprobar-registro?idRegistro=1&descripcionTipoServicio=ProcedimientoRip&idCuentaMedica=1
   params:
     - name: idRegistro
-      value: "2"
+      value: "1"
       type: query
     - name: descripcionTipoServicio
-      value: ConsultaRip
+      value: ProcedimientoRip
       type: query
     - name: idCuentaMedica
       value: "1"
