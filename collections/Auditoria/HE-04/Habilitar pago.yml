@@ -1,0 +1,61 @@
+info:
+  name: Habilitar pago
+  type: http
+  seq: 11
+
+http:
+  method: POST
+  url: http://localhost:8091/auditoria/cuentas-medicas/habilitar-pago
+  body:
+    type: json
+    data: |-
+      {
+         "idCuentaMedica": 1,
+         "observacion": "Pago habilitado",
+         "idUsuarioResponsable": 3
+      }
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  ### Habilitar pago
+  Permite habilitar pago
+
+  **Método:** POST  
+  **Path:** /auditoria/cuentas-medicas/habilitar-pago 
+  **Headers:**  
+  - Authorization: Bearer <token>  
+
+  **Body :**
+  - `body` (json, requerido): json cambio de estado
+
+  **Ejemplo de `request`:**
+  ```json
+  {
+     "idCuentaMedica": 1,
+     "observacion": "Pago habilitado",
+     "idUsuarioResponsable": 3
+  }
+  ```
+  **Ejemplo de Response:**
+  ```json
+  {
+    "estado": "OK",
+    "mensaje": "Pago de cuenta médica habilitado exitosamente",
+    "datos": true
+  }
+  ```
+  **Errores comunes:**
+  - 401 Unauthorized → Token inválido o ausente.
+  - 404 Not Found → Usuario no existe.
+  - 400 Bad Request -> Falta el idCuentaMedica 
+  - 400 Bad Request -> falta idUsuario
+  - 400 Bad Request -> Observación máximo caracteres permitidos
+  - 400 Bad Request -> La auditoría de la cuenta médica con id: "idCuentaMedica" no se encuentra en un estado válido para detener pago.

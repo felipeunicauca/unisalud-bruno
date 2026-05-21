@@ -12,7 +12,7 @@ http:
       - name: archivo
         type: file
         value:
-          - C:\Users\vidal\Downloads\archivo-auditoria_A117324102 (2).xlsx
+          - C:\Users\vidal\Downloads\voucher_asociacion_AS00000001_13052026.pdf
         contentType: multipart/form-data
       - name: request
         type: text
@@ -21,7 +21,7 @@ http:
           "idCuentaMedica":1,
           "idUsuarioResponsable":1,
           "observacion":"Observación conciliación 2",
-          "valorConciliado": 100000000
+          "valorConciliado": 200
           }
         contentType: application/json
   auth:
