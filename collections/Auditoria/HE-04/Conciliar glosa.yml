@@ -10,9 +10,9 @@ http:
     type: json
     data: |-
       {
-        "idRegistroServicio":2,
+        "idRegistroServicio":1,
         "tipoServicio":"ConsultaRip",
-        "valorConciliado":9000,
+        "valorConciliado":1000,
         "justificacion":"Conciliacion"
       }
   auth:

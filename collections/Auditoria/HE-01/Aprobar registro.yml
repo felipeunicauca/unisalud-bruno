@@ -1,7 +1,7 @@
 info:
   name: Aprobar registro
   type: http
-  seq: 15
+  seq: 16
 
 http:
   method: PUT

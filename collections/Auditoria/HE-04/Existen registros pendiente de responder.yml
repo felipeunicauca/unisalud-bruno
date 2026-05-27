@@ -1,0 +1,50 @@
+info:
+  name: Existen registros pendiente de responder
+  type: http
+  seq: 13
+
+http:
+  method: GET
+  url: http://localhost:8091/auditoria/cuentas-medicas/existen-glosas-sin-respuesta?idCuentaMedica=4
+  params:
+    - name: idCuentaMedica
+      value: "4"
+      type: query
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |
+  ### existen-glosas-sin-respuesta
+  Validar si existen glosas no respondidad.
+  False = No existen glosas sin responder
+  True = Existe Glosas sin responder
+
+  **Método:** GET  
+  **Path:** /auditoria/cuentas-medicas/existen-glosas-sin-respuesta
+  **Headers:**  
+  - Authorization: Bearer <token>  
+
+  **Param :**
+  - `idCuentaMedica` (númerico, requerido): id cuenta médica
+
+  **Ejemplo de `param`:**
+  ```json
+    idCuentaMedica=1
+  ```
+  **Ejemplo de Response:**
+  ```json
+  {
+     "estado": "OK",
+    "mensaje": "Verificación de glosas sin responder realizada exitosamente",
+    "datos": false
+  }
+  ```
+  **Errores comunes:**
+  - 401 Unauthorized → Token inválido o ausente.

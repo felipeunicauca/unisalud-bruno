@@ -1,7 +1,7 @@
 info:
   name: Glosar registro
   type: http
-  seq: 19
+  seq: 20
 
 http:
   method: PUT
@@ -17,7 +17,7 @@ http:
     type: json
     data: |-
       {
-          "descripcionTipoServicio": "ConsultaRip",
+          "descripcionTipoServicio": "OtroServicioRip",
           "idGlosasRegistro": [11,10],
           "usuarioId": 2,
           "observacion": "Esta consulta no cuadra",

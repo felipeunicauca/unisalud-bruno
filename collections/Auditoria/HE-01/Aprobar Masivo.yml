@@ -1,7 +1,7 @@
 info:
   name: Aprobar Masivo
   type: http
-  seq: 17
+  seq: 18
 
 http:
   method: PUT

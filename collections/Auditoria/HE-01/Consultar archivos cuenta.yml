@@ -1,7 +1,7 @@
 info:
   name: Consultar archivos cuenta
   type: http
-  seq: 5
+  seq: 6
 
 http:
   method: GET
