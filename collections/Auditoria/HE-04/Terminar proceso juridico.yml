@@ -72,7 +72,7 @@ docs: |+
   - 400 Bad Request -> Falta el idCuentaMedica 
   - 400 Bad Request -> falta idUsuario
   - 400 Bad Request -> Observación máximo caracteres permitidos
-  - 400 Bad Request (código propio: "AU_007" ) -> "El valor de conciliación no puede ser mayor al 10% valor glosado"
+  - 400 Bad Request (código propio: "AU_007" ) -> "El valor de conciliación no puede ser mayor al 10% valor de la cuenta médica"
   - 400 Bad Request ->"El tamaño del anexo no debe exceder los 2 MB. Tamaño actual"
   - 400 Bad Request->"La extensión del anexo no es válida. Solo se permiten archivos PDF"
 

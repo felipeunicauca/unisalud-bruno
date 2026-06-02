@@ -18,7 +18,8 @@ http:
     data: |-
       [
           "Glosada parcial",
-          "En revisión"
+          "En revisión",
+        "Conciliada con valor"
       ]
   auth:
     type: bearer

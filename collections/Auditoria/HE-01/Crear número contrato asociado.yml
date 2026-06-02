@@ -5,13 +5,13 @@ info:
 
 http:
   method: POST
-  url: http://localhost:8091/auditoria/cuentas-medicas/asociar-contrato?idCuentaMedica=1&numeroContratoAsociado=12000.k/_-12
+  url: http://localhost:8091/auditoria/cuentas-medicas/asociar-contrato?idCuentaMedica=3&numeroContratoAsociado=1234
   params:
     - name: idCuentaMedica
-      value: "1"
+      value: "3"
       type: query
     - name: numeroContratoAsociado
-      value: 12000.k/_-12
+      value: "1234"
       type: query
   body:
     type: json
