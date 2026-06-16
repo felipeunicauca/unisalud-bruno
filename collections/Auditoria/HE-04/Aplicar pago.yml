@@ -1,0 +1,71 @@
+info:
+  name: Aplicar pago
+  type: http
+  seq: 14
+
+http:
+  method: POST
+  url: http://localhost:8091/auditoria/cuentas-medicas/aplicar-pago
+  body:
+    type: multipart-form
+    data:
+      - name: archivo
+        type: text
+        value: ""
+        contentType: multipart/form-data
+      - name: request
+        type: text
+        value: '{"idCuentasMedicas":[1],"idUsuarioResponsable":1,"observacion":"Pago registrado correctamente para las cuentas médicas seleccionadas.","fechaPago":"2026-06-11","valorPago":150000.50}'
+        contentType: application/json
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |+
+  ### Aplicar pago
+  Permite aplicar pago a las cuentas médicas seleccionadas
+
+  **Método:** POST  
+  **Path:** /auditoria/cuentas-medicas/aplicar-pago  
+  **Headers:**  
+  - Content-Type: multipart/form-data  
+  - Authorization: Bearer <token>  
+
+  **Body (Multipart Form):**
+  - `archivo` (file, requerido): Archivo adjunto con la información del pago.  
+  - `request` (JSON, requerido): Datos para para aplicar el pago.  
+
+  **Ejemplo de `request`:**
+  ```json
+  {
+    "idCuentaMedica":1,
+    "idUsuarioResponsable":1,
+    "observacion":"Observación conciliación 2",
+    "valorConciliado": 0
+  }
+  ```
+  **Ejemplo de Response:**
+  ```json
+  {
+    "estado": "OK",
+    "mensaje": "Proceso jurídico terminado exitosamente",
+    "datos": true
+  }
+  ```
+  **Errores comunes:**
+  - 401 Unauthorized → Token inválido o ausente.
+  - 404 Not Found → Usuario no existe.
+  - 404 Not Found -> Cuenta médica no existe.
+  - 400 Bad Request -> Falta el idCuentaMedica 
+  - 400 Bad Request -> falta idUsuario
+  - 400 Bad Request -> Observación máximo caracteres permitidos
+  - 400 Bad Request (código propio: "AU_007" ) -> "El valor de conciliación no puede ser mayor al 10% valor de la cuenta médica"
+  - 400 Bad Request ->"El tamaño del anexo no debe exceder los 2 MB. Tamaño actual"
+  - 400 Bad Request->"La extensión del anexo no es válida. Solo se permiten archivos PDF"
+

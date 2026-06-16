@@ -16,14 +16,11 @@ http:
         contentType: multipart/form-data
       - name: request
         type: text
-        value: |-
-          {
-          "idCuentaMedica":1,
-          "idUsuarioResponsable":1,
-          "observacion":"Observación conciliación 2",
-          "valorConciliado": 200
-          }
+        value: '{"idCuentaMedica":1,"idUsuarioResponsable":1,"observacion":"Observación conciliación 2", "valorConciliado": 7732666.8}'
         contentType: application/json
+      - name: ""
+        type: text
+        value: ""
   auth:
     type: bearer
     token: "{{token}}"
@@ -51,17 +48,17 @@ docs: |+
   **Ejemplo de `request`:**
   ```json
   {
-    "idCuentaMedica":1,
+    "idCuentasMedicas":[1],
     "idUsuarioResponsable":1,
-    "observacion":"Observación conciliación 2",
-    "valorConciliado": 0
+    "observacion":"Pago registrado correctamente para las cuentas médicas seleccionadas.",
+    "fechaPago":"2026-06-11","valorPago":150000.50
   }
   ```
   **Ejemplo de Response:**
   ```json
   {
     "estado": "OK",
-    "mensaje": "Proceso jurídico terminado exitosamente",
+    "mensaje": "Pago aplicado a cuenta médica exitosamente",
     "datos": true
   }
   ```
@@ -72,7 +69,10 @@ docs: |+
   - 400 Bad Request -> Falta el idCuentaMedica 
   - 400 Bad Request -> falta idUsuario
   - 400 Bad Request -> Observación máximo caracteres permitidos
-  - 400 Bad Request (código propio: "AU_007" ) -> "El valor de conciliación no puede ser mayor al 10% valor de la cuenta médica"
+  - 400 Bad Request (código propio: "AU_008" ) -> "La cantidad de cuentas médicas seleccionadas no puede ser 0 o mayor a 100"
+  - 400 Bad Request (código propio: "AU_009" ) -> "El NIT y número asociado de la cuentas seleccionadas debe ser el mismo"
+  - 400 Bad Request (código propio: "AU_010" ) -> "Las cuentas seleccionadas no se encuentran en un estado valido para tramite de pago"
+  - 400 Bad Request (código propio: "AU_011" ) -> "LLa fecha de pago no puede ser anterior 10 días a partir de la fecha actual ni posterior fecha actual"
   - 400 Bad Request ->"El tamaño del anexo no debe exceder los 2 MB. Tamaño actual"
   - 400 Bad Request->"La extensión del anexo no es válida. Solo se permiten archivos PDF"
 

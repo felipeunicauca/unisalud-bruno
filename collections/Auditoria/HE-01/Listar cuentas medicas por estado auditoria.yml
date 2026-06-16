@@ -19,7 +19,8 @@ http:
       [
           "Glosada parcial",
           "En revisión",
-        "Conciliada con valor"
+        "Conciliada con valor",
+        "Finalizada pagada"
       ]
   auth:
     type: bearer
