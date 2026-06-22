@@ -16,7 +16,7 @@ http:
         contentType: multipart/form-data
       - name: request
         type: text
-        value: '{"idCuentaMedica":1,"idUsuarioResponsable":1,"observacion":"Observación conciliación 2", "valorConciliado": 7732666.8}'
+        value: '{"idCuentaMedica":1,"idUsuarioResponsable":1,"observacion":"Observación conciliación 2", "valorConciliado":0}'
         contentType: application/json
       - name: ""
         type: text

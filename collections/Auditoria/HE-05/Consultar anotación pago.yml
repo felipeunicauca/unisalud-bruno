@@ -1,0 +1,73 @@
+info:
+  name: Consultar anotación pago
+  type: http
+  seq: 8
+
+http:
+  method: GET
+  url: http://localhost:8091/auditoria/cuentas-medicas/anotacion-pago?idCuentaMedica=1
+  params:
+    - name: idCuentaMedica
+      value: "1"
+      type: query
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |+
+  ### Consultar anotacion de pago
+  Retorna la información de la aplicación de pago
+
+  **Método:** GET  
+  **Path:** /auditoria/cuentas-medicas/anotacion-pago
+  **Headers:**  
+  - Authorization: Bearer <token>  
+
+  **Param :**
+  - `idCuentaMedica` (númerico, requerido): id cuenta médica
+
+  **Ejemplo de `param`:**
+  ```json
+    idCuentaMedica=1
+  ```
+  **Ejemplo de Response:**
+  ```json
+  {
+    "estado": "OK",
+    "mensaje": "Anotación de pago obtenida exitosamente",
+    "datos": {
+      "fechaPago": "11/06/2026",
+      "fechaAplicacionPago": "15/06/2026",
+      "valorPago": 150000.50,
+      "observacion": "Nueva obs",
+      "nombreCompletoUsuarioResponsable": "Jorge Iván Solano",
+      "identificacionUsuarioResponsable": "1005871444",
+      "correoUsuarioResponsable": "vsandres@unicauca.edu.co",
+      "origenPagoAuditoria": "Gestión Financiera",
+      "archivoPagoCuentaMedica": {
+        "id": 22,
+        "nombre": "Certificado-10302609 (1).pdf",
+        "fechaCarga": "2026-06-15T16:54:42.701165",
+        "tipoArchivo": "PAGO"
+      },
+      "archivoAuditoriaCuentaMedica": {
+        "id": 22,
+        "nombre": "Certificado-10302609 (1).pdf",
+        "fechaCarga": "2026-06-15T16:54:42.701165",
+        "tipoArchivo": "PAGO"
+      }
+    }
+  }
+  ```
+  **Errores comunes:**
+  - 401 Unauthorized → Token inválido o ausente.
+  - 401 Unauthorized → Token inválido o ausente.
+  - 404 Not Found -> Cuenta médica no existe.
+  - 500 Illegal State -> La cuenta médica con id 1 no se encuentra en un estado válido para consultar anotación de pago
+
