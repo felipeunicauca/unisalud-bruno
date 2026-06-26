@@ -5,10 +5,10 @@ info:
 
 http:
   method: GET
-  url: http://localhost:8091/auditoria/cuentas-medicas/anotacion-pago?idCuentaMedica=1
+  url: http://localhost:8091/auditoria/cuentas-medicas/anotacion-pago?idCuentaMedica=2
   params:
     - name: idCuentaMedica
-      value: "1"
+      value: "2"
       type: query
   auth:
     type: bearer

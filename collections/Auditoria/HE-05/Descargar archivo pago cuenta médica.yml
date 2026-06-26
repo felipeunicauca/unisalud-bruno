@@ -1,14 +1,14 @@
 info:
-  name: Descargar archivo auditoría
+  name: Descargar archivo pago cuenta médica
   type: http
-  seq: 10
+  seq: 2
 
 http:
   method: GET
-  url: http://localhost:8091/auditoria/cuentas-medicas/descargar-archivo-auditoria?idArchivo=92
+  url: http://localhost:8091/auditoria/cuentas-medicas/archivo-anotacion-pago?idArchivo=1
   params:
     - name: idArchivo
-      value: "92"
+      value: "1"
       type: query
   auth:
     type: bearer
@@ -20,14 +20,14 @@ settings:
   followRedirects: true
   maxRedirects: 5
 
-docs: "### descargar archivo auditoría
+docs: "### Descargar archivo anoticación pago
 
-  Permite descargar los archivos cargados en el proceso de auditoría cuenta médica
+  Permite descargar los archivos cargados en el proceso de pago de auditoría
 
 
   **Método:** GET \ 
 
-  **Path:** /auditoria/cuentas-medicas//descargar-archivo-auditoria
+  **Path:** /auditoria/cuentas-medicas/descargar-anotacion-pago
 
   **Headers:** \ 
 
@@ -59,10 +59,5 @@ docs: "### descargar archivo auditoría
 
   - 404 Not Found -> No se encontró el archivo de auditoría con el ID proporcionado.
 
-  - 400 Bad Request (código propio: C_0002) -> el recurso NO existe
-
-  - 400 Bad Request (el recurso NO se puede leer: C_0002)
-
-  - 400 Bad Request (error al convertir la ruta a archivo: C_0002)
 
   \ "
