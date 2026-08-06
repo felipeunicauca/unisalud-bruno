@@ -1,0 +1,125 @@
+info:
+  name: EPS Anteriores
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: http://localhost:8091/afiliacion/parametrizacion/eps-anteriores?pagina=0&registrosPorPagina=10
+  params:
+    - name: pagina
+      value: "0"
+      type: query
+    - name: registrosPorPagina
+      value: "10"
+      type: query
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |+
+  ### Listado de EPS parametrizadas
+  Retorna el listado de EPS parametrizadas
+
+  **Método:** GET  
+  **Path:** afiliacion/parametrizacion/eps-anteriores
+  **Headers:**  
+  - Authorization: Bearer <token>  
+
+  **Param :**
+  - `pagina` (númerico, requerido): página
+  - `registrosPorPagina` (númerico, requerido): Registro total por página
+
+  **Ejemplo de `param`:**
+  ```json
+    pagina = 0
+  registrosPorPagin = 10
+  ```
+  **Ejemplo de Response:**
+  ```json
+  {
+    "estado": "OK",
+    "mensaje": "Eps Anteriores obtenidas correctamente",
+    "datos": [
+      {
+        "nombre": "Salud Total contributivo",
+        "codigo": "EPS002",
+        "estado": "Activo",
+        "fechaActualizacion": "2026/08/06",
+        "cantidadAfiliacionesAsociadas": 0
+      },
+      {
+        "nombre": "Cafesalud contributivo",
+        "codigo": "EPS003",
+        "estado": "Activo",
+        "fechaActualizacion": "2026/08/06",
+        "cantidadAfiliacionesAsociadas": 1
+      },
+      {
+        "nombre": "Sanitas contributivo",
+        "codigo": "EPS005",
+        "estado": "Activo",
+        "fechaActualizacion": "2026/08/06",
+        "cantidadAfiliacionesAsociadas": 0
+      },
+      {
+        "nombre": "Iss contributivo",
+        "codigo": "EPS006",
+        "estado": "Activo",
+        "fechaActualizacion": "2026/08/06",
+        "cantidadAfiliacionesAsociadas": 0
+      },
+      {
+        "nombre": "Unimec",
+        "codigo": "EPS007",
+        "estado": "Activo",
+        "fechaActualizacion": "2026/08/06",
+        "cantidadAfiliacionesAsociadas": 0
+      },
+      {
+        "nombre": "Compensar contributivo",
+        "codigo": "EPS008",
+        "estado": "Activo",
+        "fechaActualizacion": "2026/08/06",
+        "cantidadAfiliacionesAsociadas": 0
+      },
+      {
+        "nombre": "Comfenalco Antioquia",
+        "codigo": "EPS009",
+        "estado": "Activo",
+        "fechaActualizacion": "2026/08/06",
+        "cantidadAfiliacionesAsociadas": 0
+      },
+      {
+        "nombre": "Sura - Compañía Suramericana de Servicios de Salud S.A.",
+        "codigo": "EPS010",
+        "estado": "Activo",
+        "fechaActualizacion": "2026/08/06",
+        "cantidadAfiliacionesAsociadas": 0
+      },
+      {
+        "nombre": "Colseguros E.P.S. en liquidación",
+        "codigo": "EPS011",
+        "estado": "Activo",
+        "fechaActualizacion": "2026/08/06",
+        "cantidadAfiliacionesAsociadas": 0
+      },
+      {
+        "nombre": "Comfenalco Valle contributivo",
+        "codigo": "EPS012",
+        "estado": "Activo",
+        "fechaActualizacion": "2026/08/06",
+        "cantidadAfiliacionesAsociadas": 0
+      }
+    ]
+  }
+  ```
+  **Errores comunes:**
+  - 401 Unauthorized → Token inválido o ausente.
+

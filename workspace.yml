@@ -6,6 +6,10 @@ info:
 collections:
   - name: "Auditoria"
     path: "collections/Auditoria"
+  - name: "Parametrizacion"
+    path: "collections/Parametrizacion"
+  - name: "Untitled Collection"
+    path: "collections/Untitled Collection"
 
 specs:
 

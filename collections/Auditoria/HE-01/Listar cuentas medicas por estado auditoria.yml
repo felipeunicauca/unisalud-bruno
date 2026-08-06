@@ -19,8 +19,10 @@ http:
       [
           "Glosada parcial",
           "En revisión",
-        "Conciliada con valor",
-        "En trámite de pago"
+          "Conciliada con valor",
+          "En trámite de pago",
+          "Conciliada en trámite de pago"
+        
       ]
   auth:
     type: bearer

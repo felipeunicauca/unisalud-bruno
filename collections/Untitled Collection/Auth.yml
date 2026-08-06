@@ -1,0 +1,29 @@
+info:
+  name: Auth
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: https://dockerw1.unicauca.edu.co:8082/api/Auth/LoginSISPRO
+  body:
+    type: json
+    data: |-
+      {
+        "persona": {
+          "identificacion": {
+            "tipo": "CC",
+            "numero": "796056XX"
+          }
+        },
+        "clave": "XXXXX",
+        "nit": "5305201XX",
+        "tipoUsuario": "RE"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

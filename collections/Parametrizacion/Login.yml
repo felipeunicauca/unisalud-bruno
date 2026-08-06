@@ -1,0 +1,29 @@
+info:
+  name: Login
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: http://localhost:8091/usuarios/auth/login
+  body:
+    type: json
+    data: |-
+      {
+          "correo":"jorgeivan@unicauca.edu.co",
+          "password":"12345678"
+      }
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        const token = bru.getVar("token");
+        bru.setVar("token", res.body.datos.token);
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
