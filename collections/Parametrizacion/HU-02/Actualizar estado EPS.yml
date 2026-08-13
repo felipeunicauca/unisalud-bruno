@@ -24,108 +24,33 @@ settings:
   maxRedirects: 5
 
 docs: |+
-  ### Listado filtrado de EPS parametrizadas
-  Retorna el listado filtrado de EPS parametrizadas
+  ### Actialización estado EPS parametrizadas
+  Actualizar el estado de la EPS parametrizada
 
-  **Método:** GET  
-  **Path:** afiliacion/parametrizacion/eps-anteriores-filtro
+  **Método:** PUT  
+  **Path:** parametrizacion/afiliacion/eps-anterior/estado
   **Headers:**  
   - Authorization: Bearer <token>  
 
   **Param :**
-  - `pagina` (númerico, requerido): página
-  - `registrosPorPagina` (númerico, requerido): Registro total por página
-  - `codigo` (string, opcional) Código de la EPS
-  - `nombre` (string, opcional): Nombre de la EPS
-  - `estadoParametro` ("ACTIVO" O "INACTIVO", opcional): Estado del parámetro
+  - `idParametro` (numérico, obligatorio): Nombre de la EPS
+  - `estadoParametro` ("ACTIVO" O "INACTIVO", opcional): Nuevo estado del parámetro
 
   **Ejemplo de `param`:**
   ```json
-  pagina = 0
-  registrosPorPagin = 10
-  codigo=002
-  nombre="eps x"
+  idParametro=1
   estadoParametro="ACTIVO"
   ```
   **Ejemplo de Response:**
   ```json
   {
     "estado": "OK",
-    "mensaje": "Eps Anteriores obtenidas correctamente",
-    "datos": {
-      "content": [
-        {
-          "nombre": "Salud Total contributivo",
-          "codigo": "EPS002",
-          "estado": "INACTIVO",
-          "fechaActualizacion": "2026-08-12T18:06:45.8554",
-          "cantidadAfiliacionesAsociadas": 0
-        }
-      ],
-      "pageable": {
-        "pageNumber": 0,
-        "pageSize": 100,
-        "sort": {
-          "empty": true,
-          "unsorted": true,
-          "sorted": false
-        },
-        "offset": 0,
-        "unpaged": false,
-        "paged": true
-      },
-      "last": true,
-      "totalElements": 1,
-      "totalPages": 1,
-      "size": 100,
-      "number": 0,
-      "sort": {
-        "empty": true,
-        "unsorted": true,
-        "sorted": false
-      },
-      "numberOfElements": 1,
-      "first": true,
-      "empty": false
-    }
-  }
-  ```
-  Respuesta vacía
-
-  ```json
-  {
-    "estado": "OK",
-    "mensaje": "Eps Anteriores obtenidas correctamente",
-    "datos": {
-      "content": [],
-      "pageable": {
-        "pageNumber": 0,
-        "pageSize": 100,
-        "sort": {
-          "empty": true,
-          "sorted": false,
-          "unsorted": true
-        },
-        "offset": 0,
-        "paged": true,
-        "unpaged": false
-      },
-      "last": true,
-      "totalPages": 0,
-      "totalElements": 0,
-      "size": 100,
-      "number": 0,
-      "sort": {
-        "empty": true,
-        "sorted": false,
-        "unsorted": true
-      },
-      "first": true,
-      "numberOfElements": 0,
-      "empty": true
-    }
+    "mensaje": "Estado de la Eps anterior actualizado correctamente",
+    "datos": true
   }
   ```
   **Errores comunes:**
   - 401 Unauthorized → Token inválido o ausente.
+  - 404 not found -> EPS Anterior con id <idParametro> no encontrado"
+  - IllegalArgumentException -> "El estado de la EPS Anterior ya es <nuevo estado>
 
