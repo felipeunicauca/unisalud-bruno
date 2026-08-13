@@ -5,7 +5,7 @@ info:
 
 http:
   method: GET
-  url: http://localhost:8091/afiliacion/parametrizacion/eps-anteriores-filtro?pagina=0&registrosPorPagina=100&codigo=002&nombre=W&estadoParametro=INACTIVO
+  url: http://localhost:8091/afiliacion/parametrizacion/eps-anteriores-filtro?pagina=0&registrosPorPagina=100&codigo=002&nombre=&estadoParametro=INACTIVO
   params:
     - name: pagina
       value: "0"
@@ -17,7 +17,7 @@ http:
       value: "002"
       type: query
     - name: nombre
-      value: W
+      value: ""
       type: query
     - name: estadoParametro
       value: INACTIVO
@@ -61,15 +61,42 @@ docs: |+
   {
     "estado": "OK",
     "mensaje": "Eps Anteriores obtenidas correctamente",
-    "datos": [
-      {
-        "nombre": "Salud Total contributivo",
-        "codigo": "EPS002",
-        "estado": "INACTIVO",
-        "fechaActualizacion": "2026-08-12T18:06:45.8554",
-        "cantidadAfiliacionesAsociadas": 0
-      }
-    ]
+    "datos": {
+      "content": [
+        {
+          "nombre": "Salud Total contributivo",
+          "codigo": "EPS002",
+          "estado": "INACTIVO",
+          "fechaActualizacion": "2026-08-12T18:06:45.8554",
+          "cantidadAfiliacionesAsociadas": 0
+        }
+      ],
+      "pageable": {
+        "pageNumber": 0,
+        "pageSize": 100,
+        "sort": {
+          "empty": true,
+          "unsorted": true,
+          "sorted": false
+        },
+        "offset": 0,
+        "unpaged": false,
+        "paged": true
+      },
+      "last": true,
+      "totalElements": 1,
+      "totalPages": 1,
+      "size": 100,
+      "number": 0,
+      "sort": {
+        "empty": true,
+        "unsorted": true,
+        "sorted": false
+      },
+      "numberOfElements": 1,
+      "first": true,
+      "empty": false
+    }
   }
   ```
   Respuesta vacía
@@ -78,7 +105,34 @@ docs: |+
   {
     "estado": "OK",
     "mensaje": "Eps Anteriores obtenidas correctamente",
-    "datos": []
+    "datos": {
+      "content": [],
+      "pageable": {
+        "pageNumber": 0,
+        "pageSize": 100,
+        "sort": {
+          "empty": true,
+          "sorted": false,
+          "unsorted": true
+        },
+        "offset": 0,
+        "paged": true,
+        "unpaged": false
+      },
+      "last": true,
+      "totalPages": 0,
+      "totalElements": 0,
+      "size": 100,
+      "number": 0,
+      "sort": {
+        "empty": true,
+        "sorted": false,
+        "unsorted": true
+      },
+      "first": true,
+      "numberOfElements": 0,
+      "empty": true
+    }
   }
   ```
   **Errores comunes:**

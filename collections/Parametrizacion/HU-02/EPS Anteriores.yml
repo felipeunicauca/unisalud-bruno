@@ -5,13 +5,13 @@ info:
 
 http:
   method: GET
-  url: http://localhost:8091/afiliacion/parametrizacion/eps-anteriores?pagina=0&registrosPorPagina=100
+  url: http://localhost:8091/afiliacion/parametrizacion/eps-anteriores?pagina=10&registrosPorPagina=10
   params:
     - name: pagina
-      value: "0"
+      value: "10"
       type: query
     - name: registrosPorPagina
-      value: "100"
+      value: "10"
       type: query
   auth:
     type: bearer
@@ -46,78 +46,140 @@ docs: |+
   {
     "estado": "OK",
     "mensaje": "Eps Anteriores obtenidas correctamente",
-    "datos": [
-      {
-        "nombre": "Salud Total contributivo",
-        "codigo": "EPS002",
-        "estado": "Activo",
-        "fechaActualizacion": "2026/08/06",
-        "cantidadAfiliacionesAsociadas": 0
+    "datos": {
+      "content": [
+        {
+          "nombre": "Salud Total contributivo",
+          "codigo": "EPS002",
+          "estado": "INACTIVO",
+          "fechaActualizacion": "2026-08-12T18:06:45.8554",
+          "cantidadAfiliacionesAsociadas": 0
+        },
+        {
+          "nombre": "Cafesalud contributivo",
+          "codigo": "EPS003",
+          "estado": "ACTIVO",
+          "fechaActualizacion": "2026-08-12T18:06:45.8554",
+          "cantidadAfiliacionesAsociadas": 0
+        },
+        {
+          "nombre": "Sanitas contributivo",
+          "codigo": "EPS005",
+          "estado": "ACTIVO",
+          "fechaActualizacion": "2026-08-12T18:06:45.8554",
+          "cantidadAfiliacionesAsociadas": 0
+        },
+        {
+          "nombre": "Iss contributivo",
+          "codigo": "EPS006",
+          "estado": "ACTIVO",
+          "fechaActualizacion": "2026-08-12T18:06:45.8554",
+          "cantidadAfiliacionesAsociadas": 0
+        },
+        {
+          "nombre": "Unimec",
+          "codigo": "EPS007",
+          "estado": "ACTIVO",
+          "fechaActualizacion": "2026-08-12T18:06:45.8554",
+          "cantidadAfiliacionesAsociadas": 0
+        },
+        {
+          "nombre": "Compensar contributivo",
+          "codigo": "EPS008",
+          "estado": "ACTIVO",
+          "fechaActualizacion": "2026-08-12T18:06:45.8554",
+          "cantidadAfiliacionesAsociadas": 0
+        },
+        {
+          "nombre": "Comfenalco Antioquia",
+          "codigo": "EPS009",
+          "estado": "ACTIVO",
+          "fechaActualizacion": "2026-08-12T18:06:45.8554",
+          "cantidadAfiliacionesAsociadas": 0
+        },
+        {
+          "nombre": "Sura - Compañía Suramericana de Servicios de Salud S.A.",
+          "codigo": "EPS010",
+          "estado": "ACTIVO",
+          "fechaActualizacion": "2026-08-12T18:06:45.8554",
+          "cantidadAfiliacionesAsociadas": 0
+        },
+        {
+          "nombre": "Colseguros E.P.S. en liquidación",
+          "codigo": "EPS011",
+          "estado": "ACTIVO",
+          "fechaActualizacion": "2026-08-12T18:06:45.8554",
+          "cantidadAfiliacionesAsociadas": 0
+        },
+        {
+          "nombre": "Comfenalco Valle contributivo",
+          "codigo": "EPS012",
+          "estado": "ACTIVO",
+          "fechaActualizacion": "2026-08-12T18:06:45.8554",
+          "cantidadAfiliacionesAsociadas": 0
+        }
+      ],
+      "pageable": {
+        "pageNumber": 0,
+        "pageSize": 10,
+        "sort": {
+          "empty": true,
+          "sorted": false,
+          "unsorted": true
+        },
+        "offset": 0,
+        "paged": true,
+        "unpaged": false
       },
-      {
-        "nombre": "Cafesalud contributivo",
-        "codigo": "EPS003",
-        "estado": "Activo",
-        "fechaActualizacion": "2026/08/06",
-        "cantidadAfiliacionesAsociadas": 1
+      "last": false,
+      "totalPages": 13,
+      "totalElements": 123,
+      "size": 10,
+      "number": 0,
+      "sort": {
+        "empty": true,
+        "sorted": false,
+        "unsorted": true
       },
-      {
-        "nombre": "Sanitas contributivo",
-        "codigo": "EPS005",
-        "estado": "Activo",
-        "fechaActualizacion": "2026/08/06",
-        "cantidadAfiliacionesAsociadas": 0
+      "first": true,
+      "numberOfElements": 10,
+      "empty": false
+    }
+  }
+
+  Resultado vacío
+
+  {
+    "estado": "OK",
+    "mensaje": "Eps Anteriores obtenidas correctamente",
+    "datos": {
+      "content": [],
+      "pageable": {
+        "pageNumber": 100,
+        "pageSize": 10,
+        "sort": {
+          "empty": true,
+          "sorted": false,
+          "unsorted": true
+        },
+        "offset": 1000,
+        "paged": true,
+        "unpaged": false
       },
-      {
-        "nombre": "Iss contributivo",
-        "codigo": "EPS006",
-        "estado": "Activo",
-        "fechaActualizacion": "2026/08/06",
-        "cantidadAfiliacionesAsociadas": 0
+      "last": true,
+      "totalPages": 13,
+      "totalElements": 123,
+      "size": 10,
+      "number": 100,
+      "sort": {
+        "empty": true,
+        "sorted": false,
+        "unsorted": true
       },
-      {
-        "nombre": "Unimec",
-        "codigo": "EPS007",
-        "estado": "Activo",
-        "fechaActualizacion": "2026/08/06",
-        "cantidadAfiliacionesAsociadas": 0
-      },
-      {
-        "nombre": "Compensar contributivo",
-        "codigo": "EPS008",
-        "estado": "Activo",
-        "fechaActualizacion": "2026/08/06",
-        "cantidadAfiliacionesAsociadas": 0
-      },
-      {
-        "nombre": "Comfenalco Antioquia",
-        "codigo": "EPS009",
-        "estado": "Activo",
-        "fechaActualizacion": "2026/08/06",
-        "cantidadAfiliacionesAsociadas": 0
-      },
-      {
-        "nombre": "Sura - Compañía Suramericana de Servicios de Salud S.A.",
-        "codigo": "EPS010",
-        "estado": "Activo",
-        "fechaActualizacion": "2026/08/06",
-        "cantidadAfiliacionesAsociadas": 0
-      },
-      {
-        "nombre": "Colseguros E.P.S. en liquidación",
-        "codigo": "EPS011",
-        "estado": "Activo",
-        "fechaActualizacion": "2026/08/06",
-        "cantidadAfiliacionesAsociadas": 0
-      },
-      {
-        "nombre": "Comfenalco Valle contributivo",
-        "codigo": "EPS012",
-        "estado": "Activo",
-        "fechaActualizacion": "2026/08/06",
-        "cantidadAfiliacionesAsociadas": 0
-      }
-    ]
+      "first": false,
+      "numberOfElements": 0,
+      "empty": true
+    }
   }
   ```
   **Errores comunes:**
