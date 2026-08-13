@@ -37,7 +37,7 @@ docs: |+
   Retorna el listado filtrado de EPS parametrizadas
 
   **Método:** GET  
-  **Path:** afiliacion/parametrizacion/eps-anteriores-filtro
+  **Path:** parametrizacion/afiliacion/eps-anteriores-filtro
   **Headers:**  
   - Authorization: Bearer <token>  
 

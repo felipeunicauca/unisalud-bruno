@@ -28,7 +28,7 @@ docs: |+
   Retorna el listado de EPS parametrizadas
 
   **Método:** GET  
-  **Path:** afiliacion/parametrizacion/eps-anteriores
+  **Path:** parametrizacion/afiliacion/eps-anterioress
   **Headers:**  
   - Authorization: Bearer <token>  
 
