@@ -5,7 +5,7 @@ info:
 
 http:
   method: GET
-  url: http://localhost:8091/parametrizacion/afiliacion/eps-anteriores-filtro?pagina=0&registrosPorPagina=100&codigo=&nombre=&estadoParametro=
+  url: http://localhost:8091/parametrizacion/afiliacion/eps-anteriores-filtro?pagina=0&registrosPorPagina=100&codigo=NU0001&nombre=&estadoParametro=
   params:
     - name: pagina
       value: "0"
@@ -14,7 +14,7 @@ http:
       value: "100"
       type: query
     - name: codigo
-      value: ""
+      value: NU0001
       type: query
     - name: nombre
       value: ""
