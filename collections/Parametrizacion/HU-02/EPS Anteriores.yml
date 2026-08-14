@@ -5,13 +5,13 @@ info:
 
 http:
   method: GET
-  url: http://localhost:8091/parametrizacion/afiliacion/eps-anteriores?pagina=0&registrosPorPagina=10
+  url: http://localhost:8091/parametrizacion/afiliacion/eps-anteriores?pagina=0&registrosPorPagina=100
   params:
     - name: pagina
       value: "0"
       type: query
     - name: registrosPorPagina
-      value: "10"
+      value: "100"
       type: query
   auth:
     type: bearer

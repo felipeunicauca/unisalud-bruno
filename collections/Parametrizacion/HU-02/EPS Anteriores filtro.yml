@@ -5,7 +5,7 @@ info:
 
 http:
   method: GET
-  url: http://localhost:8091/parametrizacion/afiliacion/eps-anteriores-filtro?pagina=0&registrosPorPagina=100&codigo=&nombre=&estadoParametro=INACTIVO
+  url: http://localhost:8091/parametrizacion/afiliacion/eps-anteriores-filtro?pagina=0&registrosPorPagina=100&codigo=&nombre=&estadoParametro=
   params:
     - name: pagina
       value: "0"
@@ -20,7 +20,7 @@ http:
       value: ""
       type: query
     - name: estadoParametro
-      value: INACTIVO
+      value: ""
       type: query
   auth:
     type: bearer

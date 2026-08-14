@@ -33,7 +33,7 @@ docs: |+
   - Authorization: Bearer <token>  
 
   **Param :**
-  - `idParametro` (numérico, obligatorio): Nombre de la EPS
+  - `idParametro` (numérico, obligatorio): Identificador EPS (id)
   - `estadoParametro` ("ACTIVO" O "INACTIVO", opcional): Nuevo estado del parámetro
 
   **Ejemplo de `param`:**
