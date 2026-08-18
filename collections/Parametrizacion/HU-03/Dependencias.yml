@@ -1,0 +1,258 @@
+info:
+  name: Dependencias
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: http://localhost:8091/parametrizacion/afiliacion/dependencia?pagina=1&registrosPorPagina=10
+  params:
+    - name: pagina
+      value: "1"
+      type: query
+    - name: registrosPorPagina
+      value: "10"
+      type: query
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |+
+  ### Listado de dependencias parametrizadas
+  Retorna el listado de dependencias parametrizadas
+
+  **Método:** GET  
+  **Path:** parametrizacion/afiliacion/dependencia
+  **Headers:**  
+  - Authorization: Bearer <token>  
+
+  **Param :**
+  - `pagina` (númerico, requerido): página
+  - `registrosPorPagina` (númerico, requerido): Registro total por página
+
+  **Ejemplo de `param`:**
+  ```json
+    pagina = 0
+  registrosPorPagin = 10
+  ```
+  **Ejemplo de Response:**
+  ```json
+  {
+    "estado": "OK",
+    "mensaje": "Dependencias obtenidas correctamente",
+    "datos": {
+      "content": [
+        {
+          "id": 1,
+          "nombre": "Area Adquisicion e Inventarios",
+          "estado": "ACTIVO",
+          "fechaActualizacion": "18/08/2026",
+          "cantidadAfiliacionesAsociadas": 0
+        },
+        {
+          "id": 2,
+          "nombre": "Area de Gestion Documental",
+          "estado": "ACTIVO",
+          "fechaActualizacion": "18/08/2026",
+          "cantidadAfiliacionesAsociadas": 0
+        },
+        {
+          "id": 3,
+          "nombre": "Area de Mantenimiento",
+          "estado": "ACTIVO",
+          "fechaActualizacion": "18/08/2026",
+          "cantidadAfiliacionesAsociadas": 0
+        },
+        {
+          "id": 4,
+          "nombre": "Area Mercadeo y Produccion",
+          "estado": "ACTIVO",
+          "fechaActualizacion": "18/08/2026",
+          "cantidadAfiliacionesAsociadas": 0
+        },
+        {
+          "id": 5,
+          "nombre": "Area Seguridad Control Movilidad",
+          "estado": "ACTIVO",
+          "fechaActualizacion": "18/08/2026",
+          "cantidadAfiliacionesAsociadas": 0
+        },
+        {
+          "id": 6,
+          "nombre": "Area Seguridad y Salud en el Trabajo",
+          "estado": "ACTIVO",
+          "fechaActualizacion": "18/08/2026",
+          "cantidadAfiliacionesAsociadas": 0
+        },
+        {
+          "id": 7,
+          "nombre": "Centro de Calidad y Acreditacion",
+          "estado": "ACTIVO",
+          "fechaActualizacion": "18/08/2026",
+          "cantidadAfiliacionesAsociadas": 0
+        },
+        {
+          "id": 8,
+          "nombre": "Centro de Conciliacion",
+          "estado": "ACTIVO",
+          "fechaActualizacion": "18/08/2026",
+          "cantidadAfiliacionesAsociadas": 0
+        },
+        {
+          "id": 9,
+          "nombre": "Centro de Consultoria Juridica",
+          "estado": "ACTIVO",
+          "fechaActualizacion": "18/08/2026",
+          "cantidadAfiliacionesAsociadas": 0
+        },
+        {
+          "id": 10,
+          "nombre": "Centro de Educacion Continua Abierta y Virtual",
+          "estado": "ACTIVO",
+          "fechaActualizacion": "18/08/2026",
+          "cantidadAfiliacionesAsociadas": 0
+        }
+      ],
+      "pageable": {
+        "pageNumber": 0,
+        "pageSize": 10,
+        "sort": {
+          "empty": true,
+          "unsorted": true,
+          "sorted": false
+        },
+        "offset": 0,
+        "unpaged": false,
+        "paged": true
+      },
+      "totalElements": 106,
+      "totalPages": 11,
+      "last": false,
+      "size": 10,
+      "number": 0,
+      "sort": {
+        "empty": true,
+        "unsorted": true,
+        "sorted": false
+      },
+      "first": true,
+      "numberOfElements": 10,
+      "empty": false
+    }
+  }
+
+  Resultado vacío
+
+  {
+    "estado": "OK",
+    "mensaje": "Dependencias obtenidas correctamente",
+    "datos": {
+      "content": [
+        {
+          "id": 31,
+          "nombre": "Departamento Ciencias Agropecuarias",
+          "estado": "ACTIVO",
+          "fechaActualizacion": "18/08/2026",
+          "cantidadAfiliacionesAsociadas": 0
+        },
+        {
+          "id": 32,
+          "nombre": "Departamento Ciencias Contables",
+          "estado": "ACTIVO",
+          "fechaActualizacion": "18/08/2026",
+          "cantidadAfiliacionesAsociadas": 0
+        },
+        {
+          "id": 33,
+          "nombre": "Departamento Ciencias del Turismo",
+          "estado": "ACTIVO",
+          "fechaActualizacion": "18/08/2026",
+          "cantidadAfiliacionesAsociadas": 0
+        },
+        {
+          "id": 34,
+          "nombre": "Departamento Ciencias Economicas",
+          "estado": "ACTIVO",
+          "fechaActualizacion": "18/08/2026",
+          "cantidadAfiliacionesAsociadas": 0
+        },
+        {
+          "id": 35,
+          "nombre": "Departamento Ciencias Politicas",
+          "estado": "ACTIVO",
+          "fechaActualizacion": "18/08/2026",
+          "cantidadAfiliacionesAsociadas": 0
+        },
+        {
+          "id": 36,
+          "nombre": "Departamento Ciencias Quirurgicas",
+          "estado": "ACTIVO",
+          "fechaActualizacion": "18/08/2026",
+          "cantidadAfiliacionesAsociadas": 0
+        },
+        {
+          "id": 37,
+          "nombre": "Departamento Comunicacion Social",
+          "estado": "ACTIVO",
+          "fechaActualizacion": "18/08/2026",
+          "cantidadAfiliacionesAsociadas": 0
+        },
+        {
+          "id": 38,
+          "nombre": "Departamento Construccion",
+          "estado": "ACTIVO",
+          "fechaActualizacion": "18/08/2026",
+          "cantidadAfiliacionesAsociadas": 0
+        },
+        {
+          "id": 39,
+          "nombre": "Departamento de Diseño",
+          "estado": "ACTIVO",
+          "fechaActualizacion": "18/08/2026",
+          "cantidadAfiliacionesAsociadas": 0
+        },
+        {
+          "id": 40,
+          "nombre": "Departamento de Educacion y Pedagogia",
+          "estado": "ACTIVO",
+          "fechaActualizacion": "18/08/2026",
+          "cantidadAfiliacionesAsociadas": 0
+        }
+      ],
+      "pageable": {
+        "pageNumber": 3,
+        "pageSize": 10,
+        "sort": {
+          "empty": true,
+          "unsorted": true,
+          "sorted": false
+        },
+        "offset": 30,
+        "unpaged": false,
+        "paged": true
+      },
+      "totalElements": 106,
+      "totalPages": 11,
+      "last": false,
+      "size": 10,
+      "number": 3,
+      "sort": {
+        "empty": true,
+        "unsorted": true,
+        "sorted": false
+      },
+      "first": false,
+      "numberOfElements": 10,
+      "empty": false
+    }
+  }
+  ```
+  **Errores comunes:**
+  - 401 Unauthorized → Token inválido o ausente.
+
