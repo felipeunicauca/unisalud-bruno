@@ -1,0 +1,177 @@
+info:
+  name: Dependencias filtro
+  type: http
+  seq: 2
+
+http:
+  method: GET
+  url: http://localhost:8091/parametrizacion/afiliacion/dependencia-filtro?pagina=0&registrosPorPagina=10&nombre=W&estadoParametro=INACTIVO
+  params:
+    - name: pagina
+      value: "0"
+      type: query
+    - name: registrosPorPagina
+      value: "10"
+      type: query
+    - name: nombre
+      value: W
+      type: query
+    - name: estadoParametro
+      value: INACTIVO
+      type: query
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |+
+  ### Filtro de dependencias parametrizadas
+  Retorna el listado filtrado de dependencias parametrizadas
+
+  **Método:** GET  
+  **Path:** parametrizacion/afiliacion/dependencia-filtro
+  **Headers:**  
+  - Authorization: Bearer <token>  
+
+  **Param :**
+  - `pagina` (númerico, requerido): página
+  - `registrosPorPagina` (númerico, requerido): Registro total por página
+  - `nombre` (string, opcional): nombre de la dependencia
+  - `estadoParametro` ("ACTIVO" O "INACTIVO", opcional): Estado del parámetro
+
+  **Ejemplo de `param`:**
+  ```json
+    pagina = 0
+    registrosPorPagin = 10
+    nombre = "Dependencia x"
+    estadoParametro = ACTIVO
+
+  ```
+  **Ejemplo de Response:**
+  ```json
+  {
+    "estado": "OK",
+    "mensaje": "Dependencias obtenidas correctamente",
+    "datos": {
+      "content": [
+        {
+          "id": 7,
+          "nombre": "Centro de Calidad y Acreditacion",
+          "estado": "ACTIVO",
+          "fechaActualizacion": "19/08/2026",
+          "cantidadAfiliacionesAsociadas": 0
+        },
+        {
+          "id": 8,
+          "nombre": "Centro de Conciliacion",
+          "estado": "ACTIVO",
+          "fechaActualizacion": "19/08/2026",
+          "cantidadAfiliacionesAsociadas": 0
+        },
+        {
+          "id": 9,
+          "nombre": "Centro de Consultoria Juridica",
+          "estado": "ACTIVO",
+          "fechaActualizacion": "19/08/2026",
+          "cantidadAfiliacionesAsociadas": 0
+        },
+        {
+          "id": 11,
+          "nombre": "Centro de Gestion Comunicacion",
+          "estado": "ACTIVO",
+          "fechaActualizacion": "19/08/2026",
+          "cantidadAfiliacionesAsociadas": 0
+        },
+        {
+          "id": 12,
+          "nombre": "Centro de Posgrados",
+          "estado": "ACTIVO",
+          "fechaActualizacion": "19/08/2026",
+          "cantidadAfiliacionesAsociadas": 0
+        },
+        {
+          "id": 13,
+          "nombre": "Centro de Regionalizacion",
+          "estado": "ACTIVO",
+          "fechaActualizacion": "19/08/2026",
+          "cantidadAfiliacionesAsociadas": 0
+        },
+        {
+          "id": 14,
+          "nombre": "Centro Docente e Investigacion en Salud",
+          "estado": "ACTIVO",
+          "fechaActualizacion": "19/08/2026",
+          "cantidadAfiliacionesAsociadas": 0
+        }
+      ],
+      "pageable": {
+        "pageNumber": 0,
+        "pageSize": 10,
+        "sort": {
+          "empty": true,
+          "unsorted": true,
+          "sorted": false
+        },
+        "offset": 0,
+        "paged": true,
+        "unpaged": false
+      },
+      "last": true,
+      "totalElements": 7,
+      "totalPages": 1,
+      "size": 10,
+      "number": 0,
+      "sort": {
+        "empty": true,
+        "unsorted": true,
+        "sorted": false
+      },
+      "first": true,
+      "numberOfElements": 7,
+      "empty": false
+    }
+  }
+
+  ** Resultado vacío **
+
+  {
+    "estado": "OK",
+    "mensaje": "Dependencias obtenidas correctamente",
+    "datos": {
+      "content": [],
+      "pageable": {
+        "pageNumber": 0,
+        "pageSize": 10,
+        "sort": {
+          "empty": true,
+          "unsorted": true,
+          "sorted": false
+        },
+        "offset": 0,
+        "paged": true,
+        "unpaged": false
+      },
+      "last": true,
+      "totalElements": 0,
+      "totalPages": 0,
+      "size": 10,
+      "number": 0,
+      "sort": {
+        "empty": true,
+        "unsorted": true,
+        "sorted": false
+      },
+      "first": true,
+      "numberOfElements": 0,
+      "empty": true
+    }
+  }
+  ```
+  **Errores comunes:**
+  - 401 Unauthorized → Token inválido o ausente.
+
