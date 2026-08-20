@@ -1,14 +1,14 @@
 info:
-  name: Eliminar EPS
+  name: Eliminar Dependencia
   type: http
-  seq: 3
+  seq: 4
 
 http:
   method: DELETE
-  url: http://localhost:8091/parametrizacion/afiliacion/eps-anterior?idParametro=4
+  url: http://localhost:8091/parametrizacion/afiliacion/dependencia?idParametro=2
   params:
     - name: idParametro
-      value: "4"
+      value: "2"
       type: query
   auth:
     type: bearer
@@ -21,30 +21,30 @@ settings:
   maxRedirects: 5
 
 docs: |
-  ### Eliminación  EPS parametrizadas
-  Eliminar EPS parametrizada
+  ### Eliminación Dependencia parametrizadas
+  Eliminar dependencia parametrizada
 
   **Método:** DELETE  
-  **Path:** parametrizacion/afiliacion/eps-anterior
+  **Path:** parametrizacion/afiliacion/dependencia
   **Headers:**  
   - Authorization: Bearer <token>  
 
   **Param :**
-  - `idParametro` (numérico, obligatorio): Identificador EPS (id)
+  - `idParametro` (numérico, obligatorio): Identificador Dependencia (id)
 
   **Ejemplo de `param`:**
   ```json
-  idParametro=1
+    idParametro=1
   ```
   **Ejemplo de Response:**
   ```json
   {
     "estado": "OK",
-    "mensaje": "Eps anterior eliminada correctamente",
+    "mensaje": "Dependencia eliminada correctamente",
     "datos": true
   }
   ```
   **Errores comunes:**
   - 401 Unauthorized → Token inválido o ausente.
-  - 404 not found -> "EPS Anterior con id <idParametro> no encontrado"
+  - 404 not found -> "Dependencia con id <idParametro> no encontrado"
   - 400 BAD REQUEST (Código propio: P_001)-> "El parámetro tiene afiliaciones asociadas y no se puede eliminar",
