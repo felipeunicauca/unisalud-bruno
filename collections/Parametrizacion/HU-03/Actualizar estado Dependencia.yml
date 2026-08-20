@@ -1,11 +1,11 @@
 info:
-  name: Actualizar estado EPS
+  name: Actualizar estado Dependencia
   type: http
   seq: 3
 
 http:
   method: PUT
-  url: http://localhost:8091/parametrizacion/afiliacion/eps-anterior/estado?idParametro=1&estadoParametro=ACTIVO
+  url: http://localhost:8091/parametrizacion/afiliacion/dependencia/estado?idParametro=1&estadoParametro=ACTIVO
   params:
     - name: idParametro
       value: "1"
@@ -24,16 +24,16 @@ settings:
   maxRedirects: 5
 
 docs: |+
-  ### Actialización estado EPS parametrizadas
-  Actualizar el estado de la EPS parametrizada
+  ### Actialización estado Dependencia
+  Actualizar el estado de la dependencia parametrizada
 
   **Método:** PUT  
-  **Path:** parametrizacion/afiliacion/eps-anterior/estado
+  **Path:** parametrizacion/afiliacion/dependencia/estado
   **Headers:**  
   - Authorization: Bearer <token>  
 
   **Param :**
-  - `idParametro` (numérico, obligatorio): Identificador EPS (id)
+  - `idParametro` (numérico, obligatorio): Identificador Dependencia (id)
   - `estadoParametro` ("ACTIVO" O "INACTIVO", opcional): Nuevo estado del parámetro
 
   **Ejemplo de `param`:**
@@ -45,12 +45,12 @@ docs: |+
   ```json
   {
     "estado": "OK",
-    "mensaje": "Estado de la Eps anterior actualizado correctamente",
+    "mensaje": "Estado de la Dependencia actualizado correctamente",
     "datos": true
   }
   ```
   **Errores comunes:**
   - 401 Unauthorized → Token inválido o ausente.
-  - 404 not found -> "EPS Anterior con id <idParametro> no encontrado"
-  - IllegalArgumentException -> "El estado de la EPS Anterior ya es <nuevo estado>"
+  - 404 not found -> "Dependencia con id <idParametro> no encontrado"
+  - IllegalArgumentException -> "El estado de la Dependencia ya es <nuevo estado>"
 
