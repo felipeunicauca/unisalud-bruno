@@ -1,0 +1,134 @@
+info:
+  name: Sedes filtro
+  type: http
+  seq: 2
+
+http:
+  method: GET
+  url: http://localhost:8091/parametrizacion/afiliacion/sede-filtro?pagina=0&registrosPorPagina=10&nombre=Nueva&estadoParametro=
+  params:
+    - name: pagina
+      value: "0"
+      type: query
+    - name: registrosPorPagina
+      value: "10"
+      type: query
+    - name: nombre
+      value: Nueva
+      type: query
+    - name: estadoParametro
+      value: ""
+      type: query
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |+
+  ### Filtro de sedes parametrizadas
+  Retorna el listado filtrado de sedes parametrizadas
+
+  **Método:** GET  
+  **Path:** parametrizacion/afiliacion/sede-filtro
+  **Headers:**  
+  - Authorization: Bearer <token>  
+
+  **Param :**
+  - `pagina` (númerico, requerido): página
+  - `registrosPorPagina` (númerico, requerido): Registro total por página
+  - `nombre` (string, opcional): nombre de la sede
+  - `estadoParametro` ("ACTIVO" O "INACTIVO", opcional): Estado del parámetro
+
+  **Ejemplo de `param`:**
+  ```json
+    pagina = 0
+    registrosPorPagin = 10
+    nombre = "Sede x"
+    estadoParametro = ACTIVO
+
+  ```
+  **Ejemplo de Response:**
+  ```json
+  {
+    "estado": "OK",
+    "mensaje": "Sedes obtenidas correctamente",
+    "datos": {
+      "content": [
+        {
+          "id": 5,
+          "nombre": "Centro Docente e Investigacion en Salud",
+          "estado": "ACTIVO",
+          "fechaActualizacion": "24/08/2026",
+          "cantidadAfiliacionesAsociadas": 1
+        }
+      ],
+      "pageable": {
+        "pageNumber": 0,
+        "pageSize": 10,
+        "sort": {
+          "empty": true,
+          "sorted": false,
+          "unsorted": true
+        },
+        "offset": 0,
+        "unpaged": false,
+        "paged": true
+      },
+      "last": true,
+      "totalElements": 1,
+      "totalPages": 1,
+      "size": 10,
+      "number": 0,
+      "sort": {
+        "empty": true,
+        "sorted": false,
+        "unsorted": true
+      },
+      "first": true,
+      "numberOfElements": 1,
+      "empty": false
+    }
+  }
+  ** Resultado vacío **
+
+  {
+    "estado": "OK",
+    "mensaje": "Sedes obtenidas correctamente",
+    "datos": {
+      "content": [],
+      "pageable": {
+        "pageNumber": 1,
+        "pageSize": 10,
+        "sort": {
+          "empty": true,
+          "sorted": false,
+          "unsorted": true
+        },
+        "offset": 10,
+        "unpaged": false,
+        "paged": true
+      },
+      "last": true,
+      "totalElements": 1,
+      "totalPages": 1,
+      "size": 10,
+      "number": 1,
+      "sort": {
+        "empty": true,
+        "sorted": false,
+        "unsorted": true
+      },
+      "first": false,
+      "numberOfElements": 0,
+      "empty": true
+    }
+  }
+  ```
+  **Errores comunes:**
+  - 401 Unauthorized → Token inválido o ausente.
+

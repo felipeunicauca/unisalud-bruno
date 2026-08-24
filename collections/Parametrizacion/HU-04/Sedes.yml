@@ -5,10 +5,10 @@ info:
 
 http:
   method: GET
-  url: http://localhost:8091/parametrizacion/afiliacion/sede?pagina=4&registrosPorPagina=10
+  url: http://localhost:8091/parametrizacion/afiliacion/sede?pagina=0&registrosPorPagina=10
   params:
     - name: pagina
-      value: "4"
+      value: "0"
       type: query
     - name: registrosPorPagina
       value: "10"

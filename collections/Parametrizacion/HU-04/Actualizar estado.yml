@@ -1,0 +1,56 @@
+info:
+  name: Actualizar estado
+  type: http
+  seq: 3
+
+http:
+  method: PUT
+  url: http://localhost:8091/parametrizacion/afiliacion/sede/estado?idParametro=37&estadoParametro=INACTIVO
+  params:
+    - name: idParametro
+      value: "37"
+      type: query
+    - name: estadoParametro
+      value: INACTIVO
+      type: query
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |+
+  ### Actialización estado Sede
+  Actualizar el estado de la Sede parametrizada
+
+  **Método:** PUT  
+  **Path:** parametrizacion/afiliacion/sede/estado
+  **Headers:**  
+  - Authorization: Bearer <token>  
+
+  **Param :**
+  - `idParametro` (numérico, obligatorio): Identificador sede (id)
+  - `estadoParametro` ("ACTIVO" O "INACTIVO", opcional): Nuevo estado del parámetro
+
+  **Ejemplo de `param`:**
+  ```json
+  idParametro=1
+  estadoParametro="ACTIVO"
+  ```
+  **Ejemplo de Response:**
+  ```json
+  {
+    "estado": "OK",
+    "mensaje": "Estado de la Sede actualizado correctamente",
+    "datos": true
+  }
+  ```
+  **Errores comunes:**
+  - 401 Unauthorized → Token inválido o ausente.
+  - 404 not found -> "Sede con id <idParametro> no encontrado"
+  - IllegalArgumentException -> "El estado de la Sede ya es <nuevo estado>"
+

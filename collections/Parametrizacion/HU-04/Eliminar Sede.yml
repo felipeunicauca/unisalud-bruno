@@ -1,0 +1,50 @@
+info:
+  name: Eliminar Sede
+  type: http
+  seq: 4
+
+http:
+  method: DELETE
+  url: http://localhost:8091/parametrizacion/afiliacion/sede?idParametro=5
+  params:
+    - name: idParametro
+      value: "5"
+      type: query
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |
+  ### Eliminación Sede parametrizadas
+  Eliminar Sede parametrizada
+
+  **Método:** DELETE  
+  **Path:** parametrizacion/afiliacion/sede
+  **Headers:**  
+  - Authorization: Bearer <token>  
+
+  **Param :**
+  - `idParametro` (numérico, obligatorio): Identificador Sede (id)
+
+  **Ejemplo de `param`:**
+  ```json
+    idParametro=1
+  ```
+  **Ejemplo de Response:**
+  ```json
+  {
+    "estado": "OK",
+    "mensaje": "Sede eliminada correctamente",
+    "datos": true
+  }
+  ```
+  **Errores comunes:**
+  - 401 Unauthorized → Token inválido o ausente.
+  - 404 not found -> "Sede con id <idParametro> no encontrado"
+  - 400 BAD REQUEST (Código propio: P_001)-> "El parámetro tiene afiliaciones asociadas y no se puede eliminar",
