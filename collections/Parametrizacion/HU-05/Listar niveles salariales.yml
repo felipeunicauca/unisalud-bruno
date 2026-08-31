@@ -1,0 +1,91 @@
+info:
+  name: Listar niveles salariales
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: http://localhost:8091/parametrizacion/afiliacion/nivel-salarial
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |+
+  ### Listado de Niveles Salariales
+  Retorna el listado de Niveles Salariales 
+
+  **Método:** GET  
+  **Path:** parametrizacion/afiliacion/nivel-salarial
+  **Headers:**  
+  - Authorization: Bearer <token>  
+
+  **Ejemplo de Response:**
+  ```json
+  {
+    "estado": "OK",
+    "mensaje": "Niveles salariales obtenidos correctamente",
+    "datos": [
+      {
+        "id": 1,
+        "descripcion": "menor de 2 SMLV",
+        "nivel": "Nivel 1",
+        "rangoInicial": 1.0E-11,
+        "rangoFinal": 1.9999999,
+        "fechaActualizacion": "31/08/2026",
+        "rango": "Menor de 2.00 SMLV",
+        "rango_inicial": 0.00,
+        "rango_final": 1.99
+      },
+      {
+        "id": 2,
+        "descripcion": "2 a 3 y medio SMLV",
+        "nivel": "Nivel 2A",
+        "rangoInicial": 2.0,
+        "rangoFinal": 3.56,
+        "fechaActualizacion": "31/08/2026",
+        "rango": "Desde 2.00 hasta 3.56 SMLV",
+        "rango_inicial": 2.00,
+        "rango_final": 3.56
+      },
+      {
+        "id": 3,
+        "descripcion": "mayor a 3 y medio hasta 5 SMLV",
+        "nivel": "Nivel 2B",
+        "rangoInicial": 3.5000001,
+        "rangoFinal": 5.0,
+        "fechaActualizacion": "31/08/2026",
+        "rango": "Mayor a 3.50 hasta 5.00 SMLV",
+        "rango_inicial": 3.50,
+        "rango_final": 5.00
+      },
+      {
+        "id": 4,
+        "descripcion": "Mayor a 5 SMLV",
+        "nivel": "Nivel 3",
+        "rangoInicial": 5.0000001,
+        "rangoFinal": 999999.0,
+        "fechaActualizacion": "31/08/2026",
+        "rango": "Mayor a 5.00 SMLV",
+        "rango_inicial": 5.00,
+        "rango_final": 999999.00
+      }
+    ]
+  }
+
+  **Resultado vacío**
+
+  {
+    "estado": "OK",
+    "mensaje": "Niveles salariales obtenidos correctamente",
+    "datos": []
+  }
+  ```
+  **Errores comunes:**
+  - 401 Unauthorized → Token inválido o ausente.
+
