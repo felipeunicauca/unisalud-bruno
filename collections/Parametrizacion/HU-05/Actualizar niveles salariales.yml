@@ -1,0 +1,130 @@
+info:
+  name: Actualizar niveles salariales
+  type: http
+  seq: 2
+
+http:
+  method: PUT
+  url: http://localhost:8091/parametrizacion/afiliacion/nivel-salarial
+  body:
+    type: json
+    data: |-
+      [
+
+        {
+          "id":2,
+          "nombre":"Segundo Nivel",
+          "rangoInicial": 2.0,
+          "rangoFinal": 3.50
+        },
+        {
+          "id":1,
+          "nombre":"Segundo Nivel",
+          "rangoInicial":0.000001,
+          "rangoFinal": 6.9999999
+        },
+        {
+          "id":3,
+          "nombre":"Tercer nivel",
+          "rangoInicial": 3.5000001,
+          "rangoFinal": 5.0
+        },
+        {
+          "id":4,
+          "nombre":"Cuarto nivel",
+          "rangoInicial":5.0000001,
+          "rangoFinal":999999.0
+        }
+      ]
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |+
+  ### Actualización niveles salariales
+  Actualizar los niveles salariales
+
+  **Método:** PUT  
+  **Path:** parametrizacion/afiliacion/nivel-salarial
+  **Headers:**  
+  - Authorization: Bearer <token>  
+
+  **Body :**
+  ```json
+  [
+
+    {
+        "id": <number>,
+        "nombre":<string>,
+        "rangoInicial": <number>,
+        "rangoFinal": <number>
+    },
+  ]
+  ```
+
+  **Ejemplo de `body`:**
+  ```json
+  [
+
+    {
+      "id":2,
+      "nombre":"Segundo Nivel",
+      "rangoInicial": 2.0,
+      "rangoFinal": 3.50
+    },
+    {
+      "id":1,
+      "nombre":"Segundo Nivel",
+      "rangoInicial":0.000001,
+      "rangoFinal": 6.9999999
+    },
+    {
+      "id":3,
+      "nombre":"Tercer nivel",
+      "rangoInicial": 3.5000001,
+      "rangoFinal": 5.0
+    },
+    {
+      "id":4,
+      "nombre":"Cuarto nivel",
+      "rangoInicial":5.0000001,
+      "rangoFinal":999999.0
+    }
+  ]
+  ```
+
+  **Ejemplo de Response:**
+  ```json
+  {
+    "estado": "OK",
+    "mensaje": "Nivel salarial actualizado correctamente",
+    "datos": true
+  }
+
+  ** Respuesta con error **
+  {
+    "codigo": "P_006",
+    "codigoHttp": 400,
+    "estado": "BAD_REQUEST",
+    "mensaje": "Los rangos de los niveles no son continuos",
+    "marcaTiempo": "2026-09-04",
+    "url": "http://localhost:8091/parametrizacion/afiliacion/nivel-salarial",
+    "metodo": "PUT"
+  }
+  ```
+  **Errores comunes:**
+  - 401 Unauthorized → Token inválido o ausente.
+  - 400 BAD_REQUEST (Código propio: P_004) -> "El primer nivel debe iniciar en 0"
+  - 400 BAD_REQUEST (Código propio:P_005) -> "El último nivel debe quedar sin límite superior"
+  - 400 BAD_REQUEST (Código propio:P_006) -> "Los rangos de los niveles no son continuos"
+  - 400 BAD_REQUEST (Código propio:P_007) -> "Los rangos de los niveles se solapan"
+  - 400 BAD_REQUEST (Código propio:P_008) -> "Los niveles no son coherentes"
+  - 400 BAD_REQUEST (Código propio:P_003) -> "El nombre del parámetro ya existe en la base de datos"
+
+
