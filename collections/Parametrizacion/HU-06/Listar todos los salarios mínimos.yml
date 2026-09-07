@@ -1,0 +1,68 @@
+info:
+  name: Listar todos los salarios mínimos
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: http://localhost:8091/parametrizacion/afiliacion/salario-minimo-vigente
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |+
+  ### Listado de Salarios Minimos Vigentes
+  Retorna el listado de Salarios Minimos Vigentes
+
+  **Método:** GET  
+  **Path:** parametrizacion/afiliacion/salario-minimo-vigente
+  **Headers:**  
+  - Authorization: Bearer <token>  
+
+  **Ejemplo de Response:**
+  ```json
+  {
+    "estado": "OK",
+    "mensaje": "Salarios mínimos vigentes obtenidos correctamente",
+    "datos": [
+      {
+        "id": 2,
+        "valorMensual": 8000000.00,
+        "anio": 2024,
+        "decreto": "Decreto 456",
+        "fechaActualizacion": "2026-09-04T16:50:30.422"
+      },
+      {
+        "id": 3,
+        "valorMensual": 9000000.00,
+        "anio": 2023,
+        "decreto": "Decreto 000",
+        "fechaActualizacion": "2026-09-04T16:50:27.422"
+      },
+      {
+        "id": 1,
+        "valorMensual": 1750905.00,
+        "anio": 2024,
+        "decreto": "Decreto 1234",
+        "fechaActualizacion": "2026-09-04T16:32:30.422508"
+      }
+    ]
+  }
+
+  **Resultado vacío**
+
+  {
+    "estado": "OK",
+    "mensaje": ""Salarios mínimos vigentes obtenidos correctamente",
+    "datos": []
+  }
+  ```
+  **Errores comunes:**
+  - 401 Unauthorized → Token inválido o ausente.
+

@@ -10,7 +10,6 @@ http:
     type: json
     data: |-
       [
-
         {
           "id":2,
           "nombre":"Segundo Nivel",
@@ -21,7 +20,7 @@ http:
           "id":1,
           "nombre":"Segundo Nivel",
           "rangoInicial":0.000001,
-          "rangoFinal": 6.9999999
+          "rangoFinal": 1.9999999
         },
         {
           "id":3,
