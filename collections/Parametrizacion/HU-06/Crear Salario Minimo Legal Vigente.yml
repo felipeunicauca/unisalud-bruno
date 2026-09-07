@@ -1,0 +1,70 @@
+info:
+  name: Crear Salario Minimo Legal Vigente
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: http://localhost:8091/parametrizacion/afiliacion/salario-minimo-vigente
+  body:
+    type: json
+    data: |-
+      {
+        "valorMensual":4000000,
+        "anio": 2027,
+        "decreto":"Nuevo decreto 2026"
+      }
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  ### Crer parámetro Salario Minimo Legal Vigente
+  Crear parámetro Salario Minimo Legal Vigente
+
+  **Método:** POST
+  **Path:** parametrizacion/afiliacion/salario-minimo-vigente
+  **Headers:**  
+  - Authorization: Bearer <token>  
+
+  **Body :**
+  ```json
+  {
+    "valorMensual":<number>,
+    "anio": <number>,
+    "decreto":<string>
+  }
+
+  ```
+
+  **Ejemplo de `param`:**
+  ```json
+  {
+    "valorMensual":4000000,
+    "anio": 2027,
+    "decreto":"Nuevo decreto 2026"
+  }
+  ```
+  **Ejemplo de Response:**
+  ```json
+  {
+    "estado": "CREATED",
+    "mensaje": "Salario mínimo vigente creado correctamente",
+    "datos": true
+  }
+  ```
+  **Errores comunes:**
+  - 401 Unauthorized → Token inválido o ausente.
+  - 400 BAD_REQUEST (Código propio: P_010) -> "Ya existe un registro con el mismo año y decreto"
+  - 400 BAD_REQUEST (Código: E-40) -> "Formato inválido. Verifique la información ingresada"
+  - 400 BAD_REQUEST (Código: E-40) -> "Ingrese un valor numérico válido"
+  - 400 BAD_REQUEST (Código: E-40) -> "Ingrese un año entre 2026 y 2027"
+  - 400 BAD_REQUEST (Código: E-40) -> "El año debe tener como máximo 4 dígitos y no puede tener decimales"
+  - 400 BAD_REQUEST (Código: E-40) -> "El decreto debe tener entre 1 y 50 caracteres"
+  - 400 BAD_REQUEST (Código: E-40) -> "Este campo es obligatorio"
