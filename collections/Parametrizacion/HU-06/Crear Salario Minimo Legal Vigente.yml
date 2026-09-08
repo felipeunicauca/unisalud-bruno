@@ -12,7 +12,7 @@ http:
       {
         "valorMensual":4000000,
         "anio": 2027,
-        "decreto":"Nuevo decreto 2026"
+        "decreto":"Nuevo decreto 2027"
       }
   auth:
     type: bearer
