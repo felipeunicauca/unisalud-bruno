@@ -10,30 +10,34 @@ http:
     type: json
     data: |-
       [
-        {
-          "id":2,
-          "nombre":"Segundo Nivel",
-          "rangoInicial": 2.0,
-          "rangoFinal": 3.50
-        },
-        {
-          "id":1,
-          "nombre":"Segundo Nivel",
-          "rangoInicial":0.000001,
-          "rangoFinal": 1.9999999
-        },
-        {
-          "id":3,
-          "nombre":"Tercer nivel",
-          "rangoInicial": 3.5000001,
-          "rangoFinal": 5.0
-        },
-        {
-          "id":4,
-          "nombre":"Cuarto nivel",
-          "rangoInicial":5.0000001,
-          "rangoFinal":999999.0
-        }
+         {
+            "id": 1,
+            "nombre": "menor de 2 SMLV",
+            "nivel": "Nivel 1",
+            "rangoInicial": 1.0E-11,
+            "rangoFinal": 1.9999999
+          },
+          {
+            "id": 2,
+            "nombre": "2 a 3 y medio SMLV",
+            "nivel": "Nivel 2A",
+            "rangoInicial": 2.0,
+            "rangoFinal": 3.5
+          },
+          {
+            "id": 3,
+            "nombre": "mayor a 3 y medio hasta 5 SMLV",
+            "nivel": "Nivel 2B",
+            "rangoInicial": 3.5000001,
+            "rangoFinal": 6.0
+          },
+          {
+            "id": 4,
+            "nombre": "Mayor a 5 SMLV",
+            "nivel": "Nivel 3",
+            "rangoInicial": 6.0000001,
+            "rangoFinal": 999999
+          }
       ]
   auth:
     type: bearer
@@ -60,6 +64,7 @@ docs: |+
 
     {
         "id": <number>,
+        "nivel": <strring>,
         "nombre":<string>,
         "rangoInicial": <number>,
         "rangoFinal": <number>
@@ -70,31 +75,34 @@ docs: |+
   **Ejemplo de `body`:**
   ```json
   [
-
-    {
-      "id":2,
-      "nombre":"Segundo Nivel",
-      "rangoInicial": 2.0,
-      "rangoFinal": 3.50
-    },
-    {
-      "id":1,
-      "nombre":"Segundo Nivel",
-      "rangoInicial":0.000001,
-      "rangoFinal": 6.9999999
-    },
-    {
-      "id":3,
-      "nombre":"Tercer nivel",
-      "rangoInicial": 3.5000001,
-      "rangoFinal": 5.0
-    },
-    {
-      "id":4,
-      "nombre":"Cuarto nivel",
-      "rangoInicial":5.0000001,
-      "rangoFinal":999999.0
-    }
+     {
+        "id": 1,
+        "nombre": "menor de 2 SMLV",
+        "nivel": "Nivel 1",
+        "rangoInicial": 1.0E-11,
+        "rangoFinal": 1.9999999
+      },
+      {
+        "id": 2,
+        "nombre": "2 a 3 y medio SMLV",
+        "nivel": "Nivel 2A",
+        "rangoInicial": 2.0,
+        "rangoFinal": 3.5
+      },
+      {
+        "id": 3,
+        "nombre": "mayor a 3 y medio hasta 5 SMLV",
+        "nivel": "Nivel 2B",
+        "rangoInicial": 3.5000001,
+        "rangoFinal": 6.0
+      },
+      {
+        "id": 4,
+        "nombre": "Mayor a 5 SMLV",
+        "nivel": "Nivel 3",
+        "rangoInicial": 6.0000001,
+        "rangoFinal": 999999
+      }
   ]
   ```
 
