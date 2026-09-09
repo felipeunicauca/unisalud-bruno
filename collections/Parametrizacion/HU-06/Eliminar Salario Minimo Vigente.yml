@@ -1,0 +1,49 @@
+info:
+  name: Eliminar Salario Minimo Vigente
+  type: http
+  seq: 4
+
+http:
+  method: DELETE
+  url: http://localhost:8091/parametrizacion/afiliacion/salario-minimo-vigente?idParametro=5
+  params:
+    - name: idParametro
+      value: "5"
+      type: query
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |
+  ### Eliminación parámetro SMLV
+  Eliminar parámetro SMLV
+
+  **Método:** DELETE  
+  **Path:** parametrizacion/afiliacion/salario-minimo-vigente
+  **Headers:**  
+  - Authorization: Bearer <token>  
+
+  **Param :**
+  - `idParametro` (numérico, obligatorio): Identificador del SMLV (id)
+
+  **Ejemplo de `param`:**
+  ```json
+    idParametro=1
+  ```
+  **Ejemplo de Response:**
+  ```json
+  {
+    "estado": "OK",
+    "mensaje": "Salario mínimo vigente eliminado correctamente",
+    "datos": true
+  }
+  ```
+  **Errores comunes:**
+  - 401 Unauthorized → Token inválido o ausente.
+  - 404 not found -> "Salario Mínimo Legal Vigente con id <idParametro> no encontrado"
