@@ -1,7 +1,7 @@
 info:
-  name: HU-06
+  name: HU-04
   type: folder
-  seq: 6
+  seq: 2
 
 request:
   auth: inherit

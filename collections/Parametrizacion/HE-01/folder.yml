@@ -1,0 +1,7 @@
+info:
+  name: HE-01
+  type: folder
+  seq: 2
+
+request:
+  auth: inherit
