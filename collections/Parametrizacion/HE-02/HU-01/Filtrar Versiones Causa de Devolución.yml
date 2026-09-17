@@ -1,0 +1,120 @@
+info:
+  name: Filtrar Versiones Causa de Devolución
+  type: http
+  seq: 4
+
+http:
+  method: GET
+  url: http://localhost:8091/parametrizacion/afiliacion/causa-devolucion/versionamiento-filtro?pagina=0&registrosPorPagina=10&fechaCarga=2026-09-17
+  params:
+    - name: pagina
+      value: "0"
+      type: query
+    - name: registrosPorPagina
+      value: "10"
+      type: query
+    - name: fechaCarga
+      value: 2026-09-17
+      type: query
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |+
+  ### Filtrar versiones archivos Causas de Devolución
+  Retorna el listado filtrado de versiones archivos Causas de Devolución
+
+  **Método:** GET  
+  **Path:** parametrizacion/afiliacion/causa-devolucion/versionamiento-filtro
+  **Params**
+  - pagina:<Integer>
+  - registrosPorPagina:<Integer>
+  - fechaCarga:<Date> format: yyyy-mm-dd
+
+  **Headers:**  
+  - Authorization: Bearer <token>  
+
+  **Ejemplo de Response:**
+  ```json
+  {
+    "estado": "OK",
+    "mensaje": "Versionamiento de la tabla de alertas filtrado por fecha de carga obtenido exitosamente",
+    "datos": {
+      "content": [
+        {
+          "id": 1,
+          "fechaCarga": "16-09-2026"
+        }
+      ],
+      "pageable": {
+        "pageNumber": 0,
+        "pageSize": 10,
+        "sort": {
+          "empty": true,
+          "sorted": false,
+          "unsorted": true
+        },
+        "offset": 0,
+        "paged": true,
+        "unpaged": false
+      },
+      "last": true,
+      "totalElements": 1,
+      "totalPages": 1,
+      "size": 10,
+      "number": 0,
+      "sort": {
+        "empty": true,
+        "sorted": false,
+        "unsorted": true
+      },
+      "first": true,
+      "numberOfElements": 1,
+      "empty": false
+    }
+  }
+
+  **Resultado vacío**
+
+  {
+    "estado": "OK",
+    "mensaje": "Versionamiento de la tabla de alertas filtrado por fecha de carga obtenido exitosamente",
+    "datos": {
+      "content": [],
+      "pageable": {
+        "pageNumber": 0,
+        "pageSize": 10,
+        "sort": {
+          "empty": true,
+          "sorted": false,
+          "unsorted": true
+        },
+        "offset": 0,
+        "paged": true,
+        "unpaged": false
+      },
+      "last": true,
+      "totalElements": 0,
+      "totalPages": 0,
+      "size": 10,
+      "number": 0,
+      "sort": {
+        "empty": true,
+        "sorted": false,
+        "unsorted": true
+      },
+      "first": true,
+      "numberOfElements": 0,
+      "empty": true
+    }
+  }
+  ```
+  **Errores comunes:**
+  - 401 Unauthorized → Token inválido o ausente.
+

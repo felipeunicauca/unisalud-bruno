@@ -1,0 +1,32 @@
+info:
+  name: Descargar plantilla
+  type: http
+  seq: 4
+
+http:
+  method: GET
+  url: http://localhost:8091/parametrizacion/afiliacion/causa-devolucion/plantilla
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |+
+  ### Descargar plantilla Causa de Devolución
+  Descarga la plantilla de Causas de Devolución
+  **Método:** GET  
+  **Path:** parametrizacion/afiliacion/causa-devolucion/causa-devolucion/plantilla
+  **Headers:**  
+  - Authorization: Bearer <token>  
+
+  **Resultado**
+  Plantilla en formato .xslx
+
+  **Errores comunes:**
+  - 401 Unauthorized → Token inválido o ausente.
+
