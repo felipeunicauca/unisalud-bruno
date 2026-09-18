@@ -1,0 +1,53 @@
+info:
+  name: Cargar causale de devolución
+  type: http
+  seq: 4
+
+http:
+  method: POST
+  url: http://localhost:8091/parametrizacion/cuenta-medica/causa-devolucion/cargue
+  body:
+    type: multipart-form
+    data:
+      - name: archivo
+        type: file
+        value:
+          - C:\Users\vidal\Downloads\plantilla_causales_devolucion.xlsx
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  ### Cargar Causales de Devolución
+
+  Cargar Causales de Devolución mediante archivo .xslx
+
+  **Método:** POST
+  **Path:** parametrizacion/cuenta-medica/causa-devolucion/cargue
+  **Headers:**  
+  - Authorization: Bearer <token>  
+
+  **Body Multipart Form:**
+
+  - archivo:<.xslx>
+
+
+  **Ejemplo de Response:**
+  ```json
+  {
+    "estado": "CREATED",
+    "mensaje": "Causales de devolución cargadas exitosamente",
+    "datos": true
+  }
+  ```
+  **Errores comunes:**
+  - 401 Unauthorized → Token inválido o ausente.
+  - 400 BAD_REQUEST (Código: C_429) -> "El archivo debe estar en formato Excel (.xlsx)"
+  - 400 BAD_REQUEST (Código: C_429) -> "El archivo excede el tamaño máximo permitido de 250 KB"
+  - 400 BAD_REQUEST (Código: C_429) -> "La estructura del archivo no corresponde a la esperada, sus columnas debería ser (Código, Descripción, Bloquea paso a auditoría (Sí/No) )"

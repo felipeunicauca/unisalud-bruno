@@ -5,7 +5,7 @@ info:
 
 http:
   method: GET
-  url: http://localhost:8091/parametrizacion/afiliacion/causa-devolucion/versionamiento-filtro?pagina=0&registrosPorPagina=10&fechaCarga=2026-09-17
+  url: http://localhost:8091/parametrizacion/cuenta-medica/causa-devolucion/versionamiento-filtro?pagina=0&registrosPorPagina=10&fechaCarga=2026-09-17
   params:
     - name: pagina
       value: "0"
@@ -31,7 +31,7 @@ docs: |+
   Retorna el listado filtrado de versiones archivos Causas de Devolución
 
   **Método:** GET  
-  **Path:** parametrizacion/afiliacion/causa-devolucion/versionamiento-filtro
+  **Path:** parametrizacion/cuenta-medica/causa-devolucion/versionamiento-filtro
   **Params**
   - pagina:<Integer>
   - registrosPorPagina:<Integer>

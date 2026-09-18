@@ -5,7 +5,7 @@ info:
 
 http:
   method: GET
-  url: http://localhost:8091/parametrizacion/afiliacion/causa-devolucion/versionamiento?pagina=0&registrosPorPagina=10
+  url: http://localhost:8091/parametrizacion/cuenta-medica/causa-devolucion/versionamiento?pagina=0&registrosPorPagina=10
   params:
     - name: pagina
       value: "0"
@@ -28,7 +28,7 @@ docs: |+
   Retorna el listado versiones archivos Causas de Devolución
 
   **Método:** GET  
-  **Path:** parametrizacion/afiliacion/causa-devolucion/versionamiento
+  **Path:** parametrizacion/cuenta-medica/causa-devolucion/versionamiento
   **Headers:**  
   - Authorization: Bearer <token>  
 

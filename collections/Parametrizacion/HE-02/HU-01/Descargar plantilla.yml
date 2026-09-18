@@ -5,7 +5,7 @@ info:
 
 http:
   method: GET
-  url: http://localhost:8091/parametrizacion/afiliacion/causa-devolucion/plantilla
+  url: http://localhost:8091/parametrizacion/cuenta-medica/causa-devolucion/plantilla
   auth:
     type: bearer
     token: "{{token}}"
@@ -20,7 +20,7 @@ docs: |+
   ### Descargar plantilla Causa de Devolución
   Descarga la plantilla de Causas de Devolución
   **Método:** GET  
-  **Path:** parametrizacion/afiliacion/causa-devolucion/causa-devolucion/plantilla
+  **Path:** parametrizacion/cuenta-medica/causa-devolucion/causa-devolucion/plantilla
   **Headers:**  
   - Authorization: Bearer <token>  
 
