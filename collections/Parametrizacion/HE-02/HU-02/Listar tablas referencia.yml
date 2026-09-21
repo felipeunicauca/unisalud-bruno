@@ -30,7 +30,11 @@ docs: |+
   **Método:** GET  
   **Path:** parametrizacion/cuenta-medica/tablas-referencia/versionamiento
   **Headers:**  
-  - Authorization: Bearer <token>  
+  - Authorization: Bearer <token>
+
+  **Params**
+  - pagina: Integer
+  - registrosPorPagina: Integer
 
   **Ejemplo de Response:**
   ```json
