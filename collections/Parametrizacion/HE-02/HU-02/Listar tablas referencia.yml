@@ -1,0 +1,120 @@
+info:
+  name: Listar tablas referencia
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: http://localhost:8091/parametrizacion/cuenta-medica/tablas-referencia/versionamiento?pagina=0&registrosPorPagina=10
+  params:
+    - name: pagina
+      value: "0"
+      type: query
+    - name: registrosPorPagina
+      value: "10"
+      type: query
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |+
+  ### Listado versiones archivos Tablas de Referencia
+  Retorna el listado versiones archivos Tablas de Referencia
+
+  **Método:** GET  
+  **Path:** parametrizacion/cuenta-medica/tablas-referencia/versionamiento
+  **Headers:**  
+  - Authorization: Bearer <token>  
+
+  **Ejemplo de Response:**
+  ```json
+  {
+    "estado": "OK",
+    "mensaje": "Histórico de cargas de tablas de referencia obtenido exitosamente",
+    "datos": {
+      "content": [
+        {
+          "id": 3,
+          "tipoTabla": "Catálogo CUMs",
+          "descripcion": "Descripcion catálogo CUMs",
+          "fechaCarga": "21-09-2026"
+        },
+        {
+          "id": 2,
+          "tipoTabla": "CUPS RIPS",
+          "descripcion": "Descripcion cups rips",
+          "fechaCarga": "21-09-2026"
+        }
+      ],
+      "pageable": {
+        "pageNumber": 0,
+        "pageSize": 10,
+        "sort": {
+          "empty": true,
+          "sorted": false,
+          "unsorted": true
+        },
+        "offset": 0,
+        "paged": true,
+        "unpaged": false
+      },
+      "last": true,
+      "totalElements": 2,
+      "totalPages": 1,
+      "first": true,
+      "size": 10,
+      "number": 0,
+      "sort": {
+        "empty": true,
+        "sorted": false,
+        "unsorted": true
+      },
+      "numberOfElements": 2,
+      "empty": false
+    }
+  }
+
+  **Resultado vacío**
+
+  {
+    "estado": "OK",
+    "mensaje": "Histórico de cargas de tablas de referencia obtenido exitosamente",
+    "datos": {
+      "content": [],
+      "pageable": {
+        "pageNumber": 0,
+        "pageSize": 10,
+        "sort": {
+          "empty": true,
+          "sorted": false,
+          "unsorted": true
+        },
+        "offset": 0,
+        "paged": true,
+        "unpaged": false
+      },
+      "last": true,
+      "totalElements": 0,
+      "totalPages": 0,
+      "first": true,
+      "size": 10,
+      "number": 0,
+      "sort": {
+        "empty": true,
+        "sorted": false,
+        "unsorted": true
+      },
+      "numberOfElements": 0,
+      "empty": true
+    }
+  }
+  ```
+  **Errores comunes:**
+  - 401 Unauthorized → Token inválido o ausente.
+
