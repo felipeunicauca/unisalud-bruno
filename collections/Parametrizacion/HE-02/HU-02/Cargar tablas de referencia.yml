@@ -12,10 +12,10 @@ http:
       - name: archivo
         type: file
         value:
-          - C:\Users\vidal\Downloads\TablaReferencia_CatalogoCUMs__1.xlsx
+          - C:\Users\vidal\Downloads\TablaReferencia_conceptoRecaudo__1.xlsx
       - name: tabla
         type: text
-        value: CATALOGO_CUMS
+        value: CONCEPTO_RECAUDO
   auth:
     type: bearer
     token: "{{token}}"
