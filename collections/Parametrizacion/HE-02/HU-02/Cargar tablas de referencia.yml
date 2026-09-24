@@ -1,0 +1,57 @@
+info:
+  name: Cargar tablas de referencia
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: http://localhost:8091/parametrizacion/cuenta-medica/tablas-referencia/cargue
+  body:
+    type: multipart-form
+    data:
+      - name: archivo
+        type: file
+        value:
+          - C:\Users\vidal\Downloads\TablaReferencia_CatalogoCUMs__1.xlsx
+      - name: tabla
+        type: text
+        value: CATALOGO_CUMS
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  ### Cargar tablas de referencia RIPS
+
+  Cargar tablas de referencia RIPS mediante archivo .xslx
+
+  **Método:** POST
+  **Path:** parametrizacion/cuenta-medica/tablas-referencia/cargue
+  **Headers:**  
+  - Authorization: Bearer <token>  
+
+  **Body Multipart Form:**
+
+  - archivo:<.xslx>
+  - tabla: <String> (Consultar catálogo parametrización para obtener el código de la tabla)
+
+
+  **Ejemplo de Response:**
+  ```json
+  {
+    "estado": "CREATED",
+    "mensaje": "Tabla de referencia 'Catálogo CUMs' cargada exitosamente",
+    "datos": true
+  }
+  ```
+  **Errores comunes:**
+  - 401 Unauthorized → Token inválido o ausente.
+  - 400 BAD_REQUEST (Código: C_429) -> "El archivo debe estar en formato Excel (.xlsx)"
+  - 400 BAD_REQUEST (Código: C_429) -> "El archivo excede el tamaño máximo permitido de 30 MB"
+  - 400 BAD_REQUEST (Código: C_429) -> "La estructura del archivo no corresponde a la esperada"
