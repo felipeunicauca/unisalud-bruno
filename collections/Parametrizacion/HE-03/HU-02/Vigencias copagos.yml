@@ -1,0 +1,57 @@
+info:
+  name: Vigencias copagos
+  type: http
+  seq: 6
+
+http:
+  method: GET
+  url: http://localhost:8091/parametrizacion/autorizacion/cuota-moderadora/vigencias
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |+
+  ### Listado vigencias futuras
+  Listar vigencias
+
+  **Método:** GET  
+  **Path:** parametrizacion/autorizacion/cuota-moderadora/vigencias
+  **Headers:**  
+  - Authorization: Bearer <token>
+
+
+  **Ejemplo de Response:**
+  ```json
+  {
+    "estado": "OK",
+    "mensaje": "Vigencias obtenidas correctamente",
+    "datos": [
+      {
+        "anio": 2026,
+        "version": 1
+      },
+      {
+        "anio": 2025,
+        "version": 1
+      }
+    ]
+  }
+
+  **Resultado vacío**
+
+  {
+    "estado": "OK",
+    "mensaje": "Vigencias obtenidas correctamente",
+    "datos": []
+  }
+  ```
+  **Errores comunes:**
+  - 401 Unauthorized → Token inválido o ausente.
+
+

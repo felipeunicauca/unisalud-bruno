@@ -5,13 +5,13 @@ info:
 
 http:
   method: GET
-  url: http://localhost:8091/parametrizacion/autorizacion/cuota-moderadora?anio=2026&version=
+  url: http://localhost:8091/parametrizacion/autorizacion/cuota-moderadora?anio=2025&version=1
   params:
     - name: anio
-      value: "2026"
+      value: "2025"
       type: query
     - name: version
-      value: ""
+      value: "1"
       type: query
   auth:
     type: bearer
