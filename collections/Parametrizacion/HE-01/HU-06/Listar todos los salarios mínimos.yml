@@ -36,21 +36,21 @@ docs: |+
         "valorMensual": 8000000.00,
         "anio": 2024,
         "decreto": "Decreto 456",
-        "fechaActualizacion": "2026-09-04T16:50:30.422"
+        "fechaActualizacion": "30-09-2026"
       },
       {
         "id": 3,
         "valorMensual": 9000000.00,
         "anio": 2023,
         "decreto": "Decreto 000",
-        "fechaActualizacion": "2026-09-04T16:50:27.422"
+        "fechaActualizacion": "30-09-2026"
       },
       {
         "id": 1,
         "valorMensual": 1750905.00,
         "anio": 2024,
         "decreto": "Decreto 1234",
-        "fechaActualizacion": "2026-09-04T16:32:30.422508"
+        "fechaActualizacion":"30-09-2026"
       }
     ]
   }

@@ -1,0 +1,56 @@
+info:
+  name: Salario mínimo legal vigente
+  type: http
+  seq: 5
+
+http:
+  method: GET
+  url: http://localhost:8091/parametrizacion/afiliacion/salario-minimo-vigente/ultimo
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  ### Último Salario Mínimo Vigente
+  Retorna el último Salario Mínimo Vigente registrado en parametrización
+
+  **Método:** GET
+  **Path:** parametrizacion/afiliacion/salario-minimo-vigente/ultimo
+  **Headers:**
+  - Authorization: Bearer <token>
+
+  **Ejemplo de Response:**
+  ```json
+  {
+    "estado": "OK",
+    "mensaje": "Último salario mínimo vigente obtenido correctamente",
+    "datos": {
+      "id": 2,
+      "valorMensual": 8000000.00,
+      "anio": 2024,
+      "decreto": "Decreto 456",
+      "fechaActualizacion": "30-09-2027"
+    }
+  }
+
+  **Resultado vacío**
+
+  {
+    "codigo": "C_0001",
+    "codigoHttp": 404,
+    "estado": "NOT_FOUND",
+    "mensaje": "No existe un Salario Mínimo Legal Vigente registrado",
+    "marcaTiempo": "2026-09-30",
+    "url": "http://localhost:8091/parametrizacion/afiliacion/salario-minimo-vigente/ultimo",
+    "metodo": "GET"
+  }
+  ```
+  **Errores comunes:**
+  - 401 Unauthorized → Token inválido o ausente.
+  - 404 Not Found → No existe ningún Salario Mínimo Vigente registrado.
