@@ -5,10 +5,10 @@ info:
 
 http:
   method: DELETE
-  url: http://localhost:8091/parametrizacion/afiliacion/salario-minimo-vigente?idParametro=5
+  url: http://localhost:8091/parametrizacion/afiliacion/salario-minimo-vigente?idParametro=1
   params:
     - name: idParametro
-      value: "5"
+      value: "1"
       type: query
   auth:
     type: bearer
@@ -47,3 +47,4 @@ docs: |
   **Errores comunes:**
   - 401 Unauthorized → Token inválido o ausente.
   - 404 not found -> "Salario Mínimo Legal Vigente con id <idParametro> no encontrado"
+  - 400 BAD_REQUEST ->  "No se puede actualizar o eliminar un registro de salario mínimo vigente de un año anterior al actual"

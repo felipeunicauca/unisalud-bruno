@@ -10,7 +10,7 @@ http:
     type: json
     data: |-
       {
-        "id": 99,
+        "id": 2,
         "valorMensual": 3550000.00,
         "anio": 2026,
         "decreto": "Nuevo decreto 2026 2"
@@ -25,7 +25,7 @@ settings:
   followRedirects: true
   maxRedirects: 5
 
-docs: |-
+docs: |
   ### Actualizar parámetro Salario Minimo Legal Vigente
   Actualizar parámetro Salario Minimo Legal Vigente
 
@@ -72,3 +72,4 @@ docs: |-
   - 400 BAD_REQUEST (Código: E-40) -> "El año debe tener como máximo 4 dígitos y no puede tener decimales"
   - 400 BAD_REQUEST (Código: E-40) -> "El decreto debe tener entre 1 y 50 caracteres"
   - 400 BAD_REQUEST (Código: E-40) -> "Este campo es obligatorio"
+  - 400 BAD_REQUEST ->  "No se puede actualizar o eliminar un registro de salario mínimo vigente de un año anterior al actual"
