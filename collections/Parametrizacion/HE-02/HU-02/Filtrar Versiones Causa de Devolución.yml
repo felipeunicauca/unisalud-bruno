@@ -5,7 +5,7 @@ info:
 
 http:
   method: GET
-  url: http://localhost:8091/parametrizacion/cuenta-medica/causa-devolucion/versionamiento-filtro?pagina=0&registrosPorPagina=10&fechaCarga=2026-09-17
+  url: http://localhost:8091/parametrizacion/cuenta-medica/causa-devolucion/versionamiento-filtro?pagina=0&registrosPorPagina=10&fechaCargaInicial=2026-09-21&fechaCargaFinal=2026-09-20
   params:
     - name: pagina
       value: "0"
@@ -13,8 +13,11 @@ http:
     - name: registrosPorPagina
       value: "10"
       type: query
-    - name: fechaCarga
-      value: 2026-09-17
+    - name: fechaCargaInicial
+      value: 2026-09-21
+      type: query
+    - name: fechaCargaFinal
+      value: 2026-09-20
       type: query
   auth:
     type: bearer
@@ -26,56 +29,62 @@ settings:
   followRedirects: true
   maxRedirects: 5
 
-docs: |+
-  ### Filtrar versiones archivos Causas de Devolución
-  Retorna el listado filtrado de versiones archivos Causas de Devolución
+docs: |
+  ### Filtrar versionamiento de causales de devolución por rango de fecha de carga
+  Retorna, paginado, el historial de cargas de la tabla de causales de devolución (Alerta) filtrado por un rango de fecha de carga. Si solo se envía `fechaCargaInicial`, el rango va hasta la fecha actual; si solo se envía `fechaCargaFinal`, se retornan todas las cargas hasta esa fecha; si no se envía ninguna, se retornan todos los registros.
 
-  **Método:** GET  
+  **Método:** GET
   **Path:** parametrizacion/cuenta-medica/causa-devolucion/versionamiento-filtro
-  **Params**
-  - pagina: Integer
-  - registrosPorPagina: Integer
-  - fechaCarga:<Date> format: yyyy-mm-dd
+  **Headers:**
+  - Authorization: Bearer <token>
 
-  **Headers:**  
-  - Authorization: Bearer <token>  
+  **Param :**
+  - `fechaCargaInicial` (fecha `yyyy-MM-dd`, opcional): Fecha inicial del rango de carga (inclusive)
+  - `fechaCargaFinal` (fecha `yyyy-MM-dd`, opcional): Fecha final del rango de carga (inclusive). Si se omite y se envía `fechaCargaInicial`, se toma la fecha actual
+  - `pagina` (numérico, obligatorio): Número de página, inicia en 0
+  - `registrosPorPagina` (numérico, obligatorio): Cantidad de registros por página
 
+  **Ejemplo de `param`:**
+  ```json
+    fechaCargaInicial=2026-09-01&fechaCargaFinal=2026-09-30&pagina=0&registrosPorPagina=10
+  ```
   **Ejemplo de Response:**
   ```json
   {
     "estado": "OK",
-    "mensaje": "Versionamiento de la tabla de alertas filtrado por fecha de carga obtenido exitosamente",
+    "mensaje": "Versionamiento de la tabla de alertas filtrado por rango de fecha de carga obtenido exitosamente",
+    "datos": {
+
+  **Ejemplo de `param`:**
+  ```json
+    fechaCargaInicial=2026-09-01&fechaCargaFinal=2026-09-30&pagina=0&registrosPorPagina=10
+  ```
+  **Ejemplo de Response:**
+  ```json
+  {
+    "estado": "OK",
+    "mensaje": "Versionamiento de la tabla de alertas filtrado por rango de fecha de carga obtenido exitosamente",
     "datos": {
       "content": [
         {
-          "id": 1,
-          "fechaCarga": "16-09-2026"
+          "id": 5,
+          "tipoTabla": "Alerta",
+          "descripcion": "",
+          "fechaCarga": "30-09-2026"
+        },
+        {
+          "id": 4,
+          "tipoTabla": "Alerta",
+          "descripcion": "",
+          "fechaCarga": "15-09-2026"
         }
       ],
-      "pageable": {
-        "pageNumber": 0,
-        "pageSize": 10,
-        "sort": {
-          "empty": true,
-          "sorted": false,
-          "unsorted": true
-        },
-        "offset": 0,
-        "paged": true,
-        "unpaged": false
-      },
-      "last": true,
-      "totalElements": 1,
+      "totalElements": 2,
       "totalPages": 1,
-      "size": 10,
       "number": 0,
-      "sort": {
-        "empty": true,
-        "sorted": false,
-        "unsorted": true
-      },
+      "size": 10,
       "first": true,
-      "numberOfElements": 1,
+      "last": true,
       "empty": false
     }
   }
@@ -84,37 +93,20 @@ docs: |+
 
   {
     "estado": "OK",
-    "mensaje": "Versionamiento de la tabla de alertas filtrado por fecha de carga obtenido exitosamente",
+    "mensaje": "Versionamiento de la tabla de alertas filtrado por rango de fecha de carga
     "datos": {
       "content": [],
-      "pageable": {
-        "pageNumber": 0,
-        "pageSize": 10,
-        "sort": {
-          "empty": true,
-          "sorted": false,
-          "unsorted": true
-        },
-        "offset": 0,
-        "paged": true,
-        "unpaged": false
-      },
-      "last": true,
       "totalElements": 0,
       "totalPages": 0,
-      "size": 10,
       "number": 0,
-      "sort": {
-        "empty": true,
-        "sorted": false,
-        "unsorted": true
-      },
+      "size": 10,
       "first": true,
-      "numberOfElements": 0,
+      "last": true,
       "empty": true
     }
   }
   ```
   **Errores comunes:**
   - 401 Unauthorized → Token inválido o ausente.
-
+  - 400 BAD_REQUEST (Código propio: P_011) -> "La fecha inicial de carga no puede ser posterior a la fecha final de carga"
+  - 500 INTERNAL_SERVER_ERROR -> Fecha con formato distinto a `yyyy-MM-dd`, o `pagina` / `registrosPorPagina` ausentes o no numéricos

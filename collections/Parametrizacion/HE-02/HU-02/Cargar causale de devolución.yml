@@ -12,7 +12,7 @@ http:
       - name: archivo
         type: file
         value:
-          - C:\Users\vidal\Downloads\plantilla_causales_devolucion.xlsx
+          - C:\Users\vidal\Downloads\causales_devolucion_5.xlsx
   auth:
     type: bearer
     token: "{{token}}"
