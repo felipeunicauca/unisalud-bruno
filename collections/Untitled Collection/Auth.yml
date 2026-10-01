@@ -13,11 +13,11 @@ http:
         "persona": {
           "identificacion": {
             "tipo": "CC",
-            "numero": "796056XX"
+            "numero": "34560472"
           }
         },
-        "clave": "XXXXX",
-        "nit": "5305201XX",
+        "clave": "Unicaucauds2026%",
+        "nit": "891500319",
         "tipoUsuario": "RE"
       }
   auth: inherit

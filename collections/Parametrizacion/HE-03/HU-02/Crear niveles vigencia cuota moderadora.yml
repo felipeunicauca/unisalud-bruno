@@ -1,0 +1,72 @@
+info:
+  name: Crear niveles vigencia cuota moderadora
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: http://localhost:8091/parametrizacion/autorizacion/cuota-moderadora
+  body:
+    type: json
+    data: |-
+      [
+        { "nivel": "4",  "valor": "1000000.00" },
+        { "nivel": "5A", "valor": "2000000.00" },
+        { "nivel": "5B", "valor": "3000000.00" }
+      ]
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  ### Crear vigencia de cuotas moderadoras
+  Registra una nueva vigencia de cuotas moderadoras, con un registro por nivel salarial. Todos los registros quedan con el año actual y la versión correspondiente: inicia en 1 si no hay vigencias para el año y se incrementa con cada nueva vigencia del mismo año.
+
+  **Método:** POST
+
+  **Path:** parametrizacion/autorizacion/cuota-moderadora
+
+  **Headers:**
+  - Authorization: Bearer <token>
+
+  **Body :**
+  ```json
+  [
+    {
+      "nivel": <string>,
+      "valor": <number>
+    }
+  ]
+  ```
+
+  **Ejemplo de `param`:**
+  ```json
+  [
+    { "nivel": "1",  "valor": 1000000.00 },
+    { "nivel": "2A", "valor": 2000000.00 },
+    { "nivel": "3B", "valor": 3000000.00 },
+    { "nivel": "4",  "valor": 4000000.00 }
+  ]
+  ```
+  **Ejemplo de Response:**
+  ```json
+  {
+    "estado": "OK",
+    "mensaje": "Vigencia de cuotas moderadoras creada correctamente",
+    "datos": true
+  }
+  ```
+  **Errores comunes:**
+  - 401 Unauthorized → Token inválido o ausente.
+  - 400 BAD_REQUEST (Código propio: P_013) -> "El nivel salarial se encuentra repetido"
+  - 400 BAD_REQUEST (Código: E-403-001) -> "Debe diligenciar todos los campos obligatorios"
+  - 400 BAD_REQUEST (Código: E-403-001) -> "Ingrese únicamente el identificador del nivel, sin el prefijo Nivel"
+  - 400 BAD_REQUEST (Código: E-403-001) -> "El nivel salarial debe tener como máximo 10 caracteres"
+  - 400 BAD_REQUEST (Código: E-403-001) -> "El valor debe ser un número mayor a cero"
+  - 400 BAD_REQUEST (Código: E-400-005) -> "El cuerpo de la solicitud es inválido o contiene campos no esperados. Verifique la estructura del JSON."
