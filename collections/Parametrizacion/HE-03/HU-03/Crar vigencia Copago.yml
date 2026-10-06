@@ -1,0 +1,127 @@
+info:
+  name: Crar vigencia Copago
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: http://localhost:8091/parametrizacion/autorizacion/copago
+  body:
+    type: json
+    data: |-
+      [
+        {
+          "categoria":1,
+          "valorLimiteInferior":0,
+          "valorLimiteSuperior":0.999999,
+          "porcentajeValorServicio":50.5,
+          "topeEvento":100000,
+          "descripcion":"Mayor o igual a 0 y menor que 1"
+        },
+        {
+          "categoria":2,
+          "valorLimiteInferior":1,
+          "valorLimiteSuperior":2.999999,
+          "porcentajeValorServicio":50.5,
+          "topeEvento":100000,
+          "descripcion":"Mayor o igual a 1 y menor que 2"
+        },
+        {
+          "categoria":4,
+          "valorLimiteInferior":3,
+          "valorLimiteSuperior":9999,
+          "porcentajeValorServicio":50.5,
+          "topeEvento":100000,
+          "descripcion":"Mayor o igual a 2"
+        }
+      ]
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  ### Crear vigencia de copagos
+  Registra una nueva vigencia de copagos con sus tres categorías (1, 2 y 3). Las tres filas se guardan con el año actual y la siguiente versión de ese año (inicia en 1 si no hay vigencias para el año), en una única transacción.
+
+  **Método:** POST
+  **Path:** parametrizacion/autorizacion/copago
+  **Headers:**
+  - Authorization: Bearer <token>
+
+  **Body :**
+  ```json
+  [
+    {
+      "categoria": <number>,
+      "descripcion": <string>,
+      "valorLimiteInferior": <number>,
+      "valorLimiteSuperior": <number>,
+      "porcentajeValorServicio": <number>,
+      "topeEvento": <number>
+    }
+  ]
+  ```
+
+  **Ejemplo de `param`:**
+  ```json
+  [
+    {
+      "categoria":1,
+      "valorLimiteInferior":0,
+      "valorLimiteSuperior":0.999999,
+      "porcentajeValorServicio":50.5,
+      "topeEvento":100000,
+      "descripcion":"Mayor o igual a 0 y menor que 1"
+    },
+    {
+      "categoria":2,
+      "valorLimiteInferior":1,
+      "valorLimiteSuperior":2.999999,
+      "porcentajeValorServicio":50.5,
+      "topeEvento":100000,
+      "descripcion":"Mayor o igual a 1 y menor que 2"
+    },
+    {
+      "categoria":4,
+      "valorLimiteInferior":3,
+      "valorLimiteSuperior":9999,
+      "porcentajeValorServicio":50.5,
+      "topeEvento":100000,
+      "descripcion":"Mayor o igual a 2"
+    }
+  ]
+  ```
+  **Ejemplo de Response:**
+  ```json
+  {
+    "estado": "OK",
+    "mensaje": "Vigencia de copagos creada correctamente",
+    "datos": true
+  }
+  ```
+  **Errores comunes:**
+  - 401 Unauthorized → Token inválido o ausente.
+  - 400 BAD_REQUEST (Código propio: P_014) -> "Hay campos que siguen sin completarse."
+  - 400 BAD_REQUEST (Código propio: P_015) -> "El rango inicial de la categoría 1 debe ser 0"
+  - 400 BAD_REQUEST (Código propio: P_016) -> "El rango final de la categoría 3 debe ser 9999"
+  - 400 BAD_REQUEST (Código propio: P_017) -> "El valor final del rango debe ser mayor que el valor inicial"
+  - 400 BAD_REQUEST (Código propio: P_018) -> "Los rangos deben ser continuos. Verifique que no queden valores sin cubrir entre las categorías."
+  - 400 BAD_REQUEST (Código propio: P_019) -> "Los rangos de las categorías no pueden traslaparse."
+  - 400 BAD_REQUEST (Código: E-400) -> "Este campo es obligatorio"
+  - 400 BAD_REQUEST (Código: E-400) -> "La categoría debe ser 1, 2 o 3"
+  - 400 BAD_REQUEST (Código: E-400) -> "La descripción debe tener como máximo 50 caracteres"
+  - 400 BAD_REQUEST (Código: E-400) -> "El rango inicial no puede ser menor a 0"
+  - 400 BAD_REQUEST (Código: E-400) -> "El rango inicial no puede ser mayor a 9999"
+  - 400 BAD_REQUEST (Código: E-400) -> "El rango final no puede ser menor a 0"
+  - 400 BAD_REQUEST (Código: E-400) -> "El rango final no puede ser mayor a 9999"
+  - 400 BAD_REQUEST (Código: E-400) -> "Ingrese un valor numérico válido con máximo dos decimales"
+  - 400 BAD_REQUEST (Código: E-400) -> "El porcentaje debe estar entre 0 y 100"
+  - 400 BAD_REQUEST (Código: E-400) -> "Ingrese un valor numérico válido con máximo un decimal"
+  - 400 BAD_REQUEST (Código: E-400) -> "El tope por evento debe ser un número válido"
+  - 400 BAD_REQUEST (Código: E-400-005) -> "El cuerpo de la solicitud es inválido o contiene campos no esperados. Verifique la estructura del JSON."

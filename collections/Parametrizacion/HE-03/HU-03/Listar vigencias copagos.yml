@@ -51,21 +51,24 @@ docs: |-
         "valorLimiteInferior": 0.0,
         "valorLimiteSuperior": 2847000.0,
         "porcentajeValorServicio": 11.5,
-        "topeEvento": 410000.0
+        "topeEvento": 410000.0,
+        "descripcion": "Mayor o igual a 0 y menor que 1"
       },
       {
         "categoria": 2,
         "valorLimiteInferior": 2847001.0,
         "valorLimiteSuperior": 7117500.0,
         "porcentajeValorServicio": 17.3,
-        "topeEvento": 1648000.0
+        "topeEvento": 1648000.0,
+        "descripcion": "Mayor o igual a 0 y menor que 1"
       },
       {
         "categoria": 3,
         "valorLimiteInferior": 7117501.0,
         "valorLimiteSuperior": 999999999.0,
         "porcentajeValorServicio": 23.0,
-        "topeEvento": 3296000.0
+        "topeEvento": 3296000.0,
+        "descripcion": "Mayor o igual a 0 y menor que 1"
       }
     ]
   }

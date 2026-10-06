@@ -10,7 +10,7 @@ http:
     type: json
     data: |-
       {
-        "nombre":"nueva dependencia 1"
+        "nombre":"nu"
       }
   auth:
     type: bearer
