@@ -1,0 +1,54 @@
+info:
+  name: Descargar plantilla soat
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: http://localhost:8091/parametrizacion/autorizacion/liquidador-cirugia/soat-plantilla?tipo=TARIFARIO
+  params:
+    - name: tipo
+      value: TARIFARIO
+      type: query
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  ### Descargar plantilla SOAT
+  Descarga la plantilla base en formato `.xlsx` del Homologador SOAT o del Tarifario SOAT, con la estructura, los formatos y las listas desplegables definidas para la carga del liquidador de cirugías.
+
+  **Método:** GET
+  **Path:** parametrizacion/autorizacion/liquidador-cirugia/soat-plantilla
+  **Headers:**
+  - Authorization: Bearer <token>
+
+  **Param :**
+  - `tipo` (string, obligatorio): tipo de plantilla a descargar. Valores permitidos: `HOMOLOGADOR`, `TARIFARIO`.
+    - `HOMOLOGADOR` → `plantilla_homologador_SOAT.xlsx`: una hoja "Homologador CUPS SOAT" con las columnas Código CUPS y Código SOAT.
+    - `TARIFARIO` → `plantilla_tarifario_SOAT.xlsx`: hojas "Tarifario SOAT", "Cirujano", "Anestesiólogo", "Ayudantía", "Derechos de sala" y "Material de sutura".
+
+  **Ejemplo de `param`:**
+  ```json
+  {
+    "tipo": "TARIFARIO"
+  }
+  ```
+  **Ejemplo de Response:**
+  ```json
+  HTTP/1.1 200 OK
+  Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+  Content-Disposition: attachment; filename="plantilla_tarifario_SOAT.xlsx"
+
+  <contenido binario del archivo .xlsx>
+  ```
+  **Errores comunes:**
+  - 401 Unauthorized → Token inválido o ausente.
+  - 500 Internal Server Error → Falta el parámetro `tipo` o su valor no es `HOMOLOGADOR` ni `TARIFARIO`. Responde con el cuerpo genérico `{ "timestamp", "status": 500, "error": "Internal Server Error", "exception": "<mensaje de Spring>" }`.
+  - 500 Internal Server Error → "Error al generar la plantilla Excel del homologador SOAT" / "Error al generar la plantilla Excel del tarifario SOAT" (falla al escribir el archivo).
