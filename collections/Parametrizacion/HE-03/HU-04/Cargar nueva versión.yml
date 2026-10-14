@@ -1,0 +1,83 @@
+info:
+  name: Cargar nueva versión
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: http://localhost:8091/parametrizacion/autorizacion/liquidador-cirugia/soat-cargue
+  body:
+    type: multipart-form
+    data:
+      - name: tipo
+        type: text
+        value: TARIFARIO
+      - name: archivo
+        type: file
+        value:
+          - C:\Users\vidal\Downloads\plantilla_tarifario_SOAT.xlsx
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  ### Cargar Homologador o Tarifario SOAT
+  Carga una nueva versión del Homologador CUPS–SOAT o del Tarifario SOAT desde un archivo Excel (.xlsx, máximo 30MB) basado en la plantilla del liquidador de cirugías. Valida el formato del archivo, la estructura (nombres de hojas y columnas) y los datos de cada fila. Si todo es válido, registra una nueva versión en `versionamiento_tabla` y guarda los registros con ese `id_carga` en una única transacción. No elimina ni modifica los registros existentes: los vigentes son los del último `id_carga`.
+  - Homologador: guarda en `homologador_cups_soat`.
+  - Tarifario: guarda la hoja "Tarifario SOAT" en `tarifario_soat` y las hojas "Cirujano", "Anestesiólogo", "Ayudantía", "Derechos de sala" y "Material de sutura" en `tarifario_grupo_quirurgico`, todas con el mismo `id_carga`.
+
+  **Método:** POST
+
+  **Path:** parametrizacion/autorizacion/liquidador-cirugia/soat-cargue
+
+  **Headers:**
+  - Authorization: Bearer <token>
+  - Content-Type: multipart/form-data
+
+  **Param :**
+  - `tipo` (string, obligatorio): tipo de archivo a cargar. Valores: `HOMOLOGADOR` | `TARIFARIO`.
+  - `archivo` (file, obligatorio): archivo Excel `.xlsx` de máximo 30MB con la estructura de la plantilla correspondiente.
+
+  **Ejemplo de `param`:**
+  ```json
+  {
+    "tipo": "TARIFARIO",
+    "archivo": "plantilla_tarifario_SOAT.xlsx"
+  }
+  ```
+  **Ejemplo de Response:**
+  ```json
+  {
+    "estado": "CREATED",
+    "mensaje": "Tarifario SOAT cargado exitosamente",
+    "datos": true
+  }
+  ```
+  Con `tipo = HOMOLOGADOR` el mensaje es `"Homologador SOAT cargado exitosamente"`.
+
+  **Errores comunes:**
+  - 401 Unauthorized → Token inválido o ausente.
+  - 400 EXCEL_INVALIDO (Código: C_429) -> "El archivo debe estar en formato Excel (.xlsx)" (extensión distinta de .xlsx o archivo que no se puede abrir como Excel)
+  - 400 EXCEL_INVALIDO (Código: C_429) -> "El archivo supera el tamaño máximo permitido (30MB)"
+  - 400 EXCEL_INVALIDO (Código: C_429) -> "La estructura del archivo no corresponde a la esperada. Las columnas y los nombres de las hojas en el documento no son validas" (hojas faltantes o sobrantes, nombres de hoja o columnas distintos a la plantilla, columnas adicionales)
+  - 400 EXCEL_INVALIDO (Código: C_429) -> "El archivo no tiene registros para cargar." (Homologador sin filas u hoja "Tarifario SOAT" sin filas)
+  - 400 EXCEL_INVALIDO (Código: C_429) -> "Hay campos que tienen formato no valido. Hoja '<hoja>', fila <n>, columna '<columna>'." (campo con tipo o rango inválido)
+  - 400 EXCEL_INVALIDO (Código: C_429) -> "Hay campos que tienen formato no valido. Hoja 'Tarifario SOAT', Codigo SOAT '<codigo>', columna '<columna>' no es válida para el tipo de liquidación GRUPO." (con liquidación GRUPO: Grupo Quirurgico = 0 o Tarifa UVB distinta de 0)
+
+  **Reglas de validación de datos:**
+  - Código CUPS (Homologador): alfanumérico (solo letras y dígitos), 1–20 caracteres.
+  - Código SOAT / Codigo SOAT: numérico entero 0–9999999.
+  - Descripción SOAT: texto de 3–200 caracteres.
+  - Tarifa UVB: numérico 0–999999999, máximo 4 decimales, opcional. Con liquidación GRUPO debe ser 0 (vacía se guarda como 0).
+  - Tarifa Pesos: numérico 0–999999999, máximo 2 decimales, opcional.
+  - Tipo de liquidación: `GRUPO` o `NETA`.
+  - Grupo Quirurgico: obligatorio, 2–13 o 20–23. El 0 solo se acepta con liquidación NETA.
+  - Código (hojas de grupo): numérico entero 30000–999999.
+  - Grupo (hojas de grupo): 2–13 o 20–23.
+  - SMLVD / UVT / UVB (hojas de grupo): numérico 0–9999,99, máximo 2 decimales, opcionales.
