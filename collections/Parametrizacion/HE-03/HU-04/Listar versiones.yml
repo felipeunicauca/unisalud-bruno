@@ -1,0 +1,109 @@
+info:
+  name: Listar versiones
+  type: http
+  seq: 3
+
+http:
+  method: GET
+  url: http://localhost:8091/parametrizacion/autorizacion/liquidador-cirugia/soat-versiones?pagina=0&registrosPorPagina=10
+  params:
+    - name: pagina
+      value: "0"
+      type: query
+    - name: registrosPorPagina
+      value: "10"
+      type: query
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  ### Listado de versiones de Homologador y Tarifario SOAT
+  Retorna paginado el historial de cargues del Homologador CUPS SOAT y del Tarifario SOAT, ordenado de forma descendente por Id de carga. Cada cargue de Tarifario se muestra como un solo registro.
+
+  **Método:** GET
+  **Path:** parametrizacion/autorizacion/liquidador-cirugia/soat-versiones
+  **Headers:**
+  - Authorization: Bearer <token>
+
+  **Param :**
+  - `pagina` (numérico, obligatorio): Número de página a consultar (inicia en 0).
+  - `registrosPorPagina` (numérico, obligatorio): Cantidad de registros por página.
+
+  **Ejemplo de `param`:**
+  ```json
+    pagina=0&registrosPorPagina=10
+  ```
+  **Ejemplo de Response:**
+  ```json
+  {
+    "estado": "OK",
+    "mensaje": "Versiones de Homologador y Tarifario SOAT obtenidas exitosamente",
+    "datos": {
+      "content": [
+        {
+          "idCarga": 25,
+          "tipoArchivo": "Tarifario SOAT",
+          "fechaCarga": "15/10/2026"
+        },
+        {
+          "idCarga": 24,
+          "tipoArchivo": "Homologación de CUPS a SOAT",
+          "fechaCarga": "14/10/2026"
+        }
+      ],
+      "pageable": {
+        "pageNumber": 0,
+        "pageSize": 10,
+        "sort": { "empty": true, "sorted": false, "unsorted": true },
+        "offset": 0,
+        "paged": true,
+        "unpaged": false
+      },
+      "last": true,
+      "totalPages": 1,
+      "totalElements": 2,
+      "size": 10,
+      "first": true,
+      "numberOfElements": 2,
+      "empty": false
+    }
+  }
+  ```
+
+  **Resultado vacío**
+  ```json
+  {
+    "estado": "OK",
+    "mensaje": "Versiones de Homologador y Tarifario SOAT obtenidas exitosamente",
+    "datos": {
+      "content": [],
+      "pageable": {
+        "pageNumber": 0,
+        "pageSize": 10,
+        "sort": { "empty": true, "sorted": false, "unsorted": true },
+        "offset": 0,
+        "paged": true,
+        "unpaged": false
+      },
+      "last": true,
+      "totalPages": 0,
+      "totalElements": 0,
+      "size": 10,
+      "number": 0,
+      "sort": { "empty": true, "sorted": false, "unsorted": true },
+      "first": true,
+      "numberOfElements": 0,
+      "empty": true
+    }
+  }
+  ```
+  **Errores comunes:**
+  - 401 Unauthorized → Token inválido o ausente.
+  - 500 INTERNAL_SERVER_ERROR → "Required request parameter 'pagina' for method parameter type Integer is not present" (falta `pagina` o `registrosPorPagina`, o tienen un valor no numérico)
