@@ -1,0 +1,54 @@
+info:
+  name: Ultima version liquidador
+  type: http
+  seq: 5
+
+http:
+  method: GET
+  url: http://localhost:8091/parametrizacion/autorizacion/liquidador-cirugia/soat-ultima-version
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  ### Obtener últimas versiones del Liquidador de Cirugías (Homologador y Tarifario SOAT)
+  Retorna el último cargue registrado de Homologador SOAT y el último de Tarifario SOAT. Sirve para validar si existe una versión cargada en el año actual (comparando el año de `fechaCarga`).
+
+  **Método:** GET
+  **Path:** parametrizacion/autorizacion/liquidador-cirugia/soat-ultima-version
+  **Headers:**
+  - Authorization: Bearer <token>
+
+  **Ejemplo de Response:**
+  ```json
+  {
+    "estado": "OK",
+    "mensaje": "Últimas versiones de Homologador y Tarifario SOAT obtenidas exitosamente",
+    "datos": [
+      {
+        "idCarga": 14,
+        "tipoArchivo": "Homologador",
+        "fechaCarga": "10/10/2026"
+      },
+      {
+      }
+    ]
+  }
+  ```
+
+  **Resultado vacío**
+  ```json
+  {
+    "estado": "OK",
+    "mensaje": "Últimas versiones de Homologador y Tarifario SOAT obtenidas exitosamente",
+    "datos": []
+  }
+  ```
+  **Errores comunes:**
+  - 401 Unauthorized → Token inválido o ausente.
