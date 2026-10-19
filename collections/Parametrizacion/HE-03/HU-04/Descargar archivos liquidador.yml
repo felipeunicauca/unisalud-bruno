@@ -1,0 +1,63 @@
+info:
+  name: Descargar archivos liquidador
+  type: http
+  seq: 6
+
+http:
+  method: GET
+  url: http://localhost:8091/parametrizacion/autorizacion/liquidador-cirugia/soat-descarga?tipo=TARIFARIO&idCarga=5
+  params:
+    - name: tipo
+      value: TARIFARIO
+      type: query
+    - name: idCarga
+      value: "5"
+      type: query
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  ### Descargar versión de Homologador o Tarifario SOAT
+  Descarga el archivo .xlsx de una versión cargada del historial del Homologador CUPS SOAT o del Tarifario SOAT, identificada por su id de carga. El archivo se reconstruye con las hojas, columnas, formatos y listas desplegables de la plantilla. El Homologador trae una hoja ("Homologador CUPS SOAT"). El Tarifario trae seis: "Tarifario SOAT", "Cirujano", "Anestesiólogo", "Ayudantía", "Derechos de sala" y "Material de sutura".
+
+  **Método:** GET
+
+  **Path:** parametrizacion/autorizacion/liquidador-cirugia/soat-descarga
+
+  **Headers:**
+  - Authorization: Bearer <token>
+
+  **Param :**
+  - `tipo` (string, obligatorio): tipo de archivo a descargar. Valores: `HOMOLOGADOR`, `TARIFARIO`.
+  - `idCarga` (number, obligatorio): id de la carga (versión) en el historial, el mismo `idCarga` que devuelven los servicios de versiones SOAT.
+
+  **Ejemplo de `param`:**
+  ```json
+  {
+    "tipo": "TARIFARIO",
+    "idCarga": 25
+  }
+  ```
+  **Ejemplo de Response:**
+  ```json
+  Status: 200 OK
+  Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+  Content-Disposition: attachment; filename="tarifario_SOAT_25.xlsx"
+
+  <archivo binario .xlsx>
+  ```
+  Para `tipo=HOMOLOGADOR` el archivo se llama `homologador_SOAT_<idCarga>.xlsx`.
+
+  **Errores comunes:**
+  - 401 Unauthorized → Token inválido o ausente.
+  - 404 NOT_FOUND (Código: C_0001) -> "No se encontró la carga con ID: 25"
+  - 404 NOT_FOUND (Código: C_0001) -> "No se encontraron registros para la carga con ID: 25"
+  - 400 BAD_REQUEST (Código: C_429) -> "La carga con ID 25 no corresponde a la tabla 'Tarifario SOAT'."
+  - 400 BAD_REQUEST (Código: C_429) -> "La carga con ID 25 no corresponde a la tabla 'Homologador CUPS SOAT'."
