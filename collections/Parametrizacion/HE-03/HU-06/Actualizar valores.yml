@@ -1,0 +1,64 @@
+info:
+  name: Actualizar valores
+  type: http
+  seq: 2
+
+http:
+  method: PUT
+  url: http://localhost:8091/parametrizacion/autorizacion/uvt-uvb
+  body:
+    type: json
+    data: |-
+      {
+        "id":1,
+        "valor": 666666.66
+      }
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  ### Editar valor punto UVT/UVB
+  Actualiza el valor punto (COP) de un registro UVT o UVB. Se edita un registro a la vez, sin historial, y `fechaActualizacion` toma la fecha y hora actuales.
+
+  **Método:** PUT
+  **Path:** parametrizacion/autorizacion/uvt-uvb
+  **Headers:**
+  - Authorization: Bearer <token>
+
+  **Body :**
+  ```json
+  {
+    "id": <number>,
+    "valor": <number>
+  }
+  ```
+
+  **Ejemplo de `param`:**
+  ```json
+  {
+    "id": 1,
+    "valor": 12345.50
+  }
+  ```
+  **Ejemplo de Response:**
+  ```json
+  {
+    "estado": "OK",
+    "mensaje": "Valor punto actualizado correctamente",
+    "datos": true
+  }
+  ```
+  **Errores comunes:**
+  - 401 Unauthorized → Token inválido o ausente.
+  - 404 NOT_FOUND (Código: C_0001) -> "Valor UVT/UVB con id <id> no encontrado"
+  - 400 BAD_REQUEST (Código: E-400) -> "Este campo es obligatorio"
+  - 400 BAD_REQUEST (Código: E-400) -> "El valor debe ser un entero positivo sin decimales"
+  - 400 BAD_REQUEST (Código: E-400) -> "El valor numérico tiene una longitud inválida"
+  - 400 BAD_REQUEST (Código: E-400-005) -> "El cuerpo de la solicitud es inválido o contiene campos no esperados. Verifique la estructura del JSON."
