@@ -1,0 +1,60 @@
+info:
+  name: Mostrar uvt uvb
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: http://localhost:8091/parametrizacion/autorizacion/uvt-uvb
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  ### Listar valores UVT y UVB
+  Lista el valor punto (COP) y la fecha de actualización de la UVT y la UVB, para mostrarlos en el liquidador de cirugías. El registro de UVT va primero y el de UVB después.
+
+  **Método:** GET
+
+  **Path:** parametrizacion/autorizacion/uvt-uvb
+
+  **Headers:**
+  - Authorization: Bearer <token>
+
+  **Ejemplo de Response:**
+  ```json
+  {
+    "estado": "OK",
+    "mensaje": "Valores UVT y UVB obtenidos correctamente",
+    "datos": [
+      {
+        "id": 1,
+        "unidadValor": "UVT",
+        "valor": 49799.00,
+        "fechaActualizacion": "21/10/2026"
+      },
+      {
+        "id": 2,
+        "unidadValor": "UVB",
+        "valor": 1423.00,
+        "fechaActualizacion": "21/10/2026"
+      }
+    ]
+  }
+  ```
+  **Resultado vacío:**
+  ```json
+  {
+    "estado": "OK",
+    "mensaje": "Valores UVT y UVB obtenidos correctamente",
+    "datos": []
+  }
+  ```
+  **Errores comunes:**
+  - 401 Unauthorized → Token inválido o ausente.
