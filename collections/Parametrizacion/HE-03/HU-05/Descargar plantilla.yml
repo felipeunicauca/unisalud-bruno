@@ -1,0 +1,45 @@
+info:
+  name: Descargar plantilla
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: http://localhost:8091/parametrizacion/autorizacion/cups-autorizacion/plantilla
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  ### Descargar plantilla base de CUPS copagos y cuotas moderadoras
+  Descarga la plantilla Excel (`plantilla_CUPS_autorizaciones.xlsx`) para cargar una nueva versión de CUPS con sus copagos y cuotas moderadoras (HU-05, criterio 2).
+
+  **Método:** GET
+
+  **Path:** parametrizacion/autorizacion/cups-autorizacion/plantilla
+
+  **Headers:**
+  - Authorization: Bearer <token>
+
+  **Ejemplo de Response:**
+
+  Respuesta binaria (no es JSON):
+  - `Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet`
+  - `Content-Disposition: attachment; filename="plantilla_CUPS_autorizaciones.xlsx"`
+  - Cuerpo: archivo `.xlsx` con una hoja `CUPS` y las columnas:
+
+  ```json
+  ["Código", "Nombre", "Descripción", "Tipo servicio", "Cuota", "Copago", "Cantidad máxima", "Año"]
+  ```
+
+  Las columnas **Cuota** y **Copago** traen una lista desplegable con los valores `COBRO`, `0` y `NO APLICA` (filas 2 a 1000).
+
+  **Errores comunes:**
+  - 401 Unauthorized → Token inválido o ausente.
+  - 500 INTERNAL_SERVER_ERROR → Error inesperado al generar el archivo Excel.
