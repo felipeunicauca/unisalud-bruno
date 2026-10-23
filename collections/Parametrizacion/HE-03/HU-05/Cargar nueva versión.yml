@@ -1,0 +1,68 @@
+info:
+  name: Cargar nueva versión
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: http://localhost:8091/parametrizacion/autorizacion/cups-autorizacion/cargue
+  body:
+    type: multipart-form
+    data:
+      - name: archivo
+        type: file
+        value:
+          - C:\Users\vidal\Downloads\plantilla_CUPS_autorizaciones.xlsx
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  ### Cargar nueva versión CUPS Autorizaciones
+  Carga un archivo Excel con los CUPS de copagos y cuotas moderadoras. Valida formato, estructura, datos y la regla Cuota/Copago, y registra una nueva versión (`id_carga`) sin modificar las anteriores. Las vigentes son las del último cargue.
+
+  **Método:** POST
+  **Path:** parametrizacion/autorizacion/cups-autorizacion/cargue
+  **Headers:**
+  - Authorization: Bearer <token>
+  - Content-Type: multipart/form-data
+
+  **Param :**
+  - `archivo` (archivo .xlsx, obligatorio): archivo Excel de máximo 30MB con la hoja `CUPS` y las columnas `Código`, `Nombre`, `Descripción`, `Tipo servicio`, `Cuota`, `Copago`, `Cantidad máxima`, `Año` (igual a la plantilla).
+
+  **Reglas de los datos del archivo:**
+  - Código: alfanumérico de 6 caracteres (obligatorio).
+  - Nombre: 3 a 200 caracteres (obligatorio).
+  - Descripción: hasta 200 caracteres (opcional).
+  - Tipo servicio: 1 a 200 caracteres (obligatorio).
+  - Cuota / Copago: `NO APLICA`, `0` o `COBRO`. Exactamente uno de los dos debe ser `NO APLICA`.
+  - Cantidad máxima: entero de 0 a 10 (opcional).
+  - Año: el año actual o el siguiente (obligatorio).
+  - Si el archivo repite un código con el mismo año, se conserva la primera fila.
+
+  **Ejemplo de `param`:**
+  ```json
+  archivo=plantilla_CUPS_autorizaciones.xlsx
+  ```
+  **Ejemplo de Response:**
+  ```json
+  {
+    "estado": "CREATED",
+    "mensaje": "CUPS de copagos y cuotas moderadoras cargado exitosamente",
+    "datos": true
+  }
+  ```
+  **Errores comunes:**
+  - 401 Unauthorized → Token inválido o ausente.
+  - 400 BAD_REQUEST (Código: C_429) -> "El archivo debe estar en formato Excel (.xlsx)"
+  - 400 BAD_REQUEST (Código: C_429) -> "El archivo supera el tamaño máximo permitido (30MB)"
+  - 400 BAD_REQUEST (Código: C_429) -> "La estructura del archivo no corresponde a la esperada. Las columnas y los nombre de la hoja en el documento no son validas"
+  - 400 BAD_REQUEST (Código: C_429) -> "Hay campos que tienen formato no valido. Campo no válido: '<columna>'."
+  - 400 BAD_REQUEST (Código: C_429) -> "Existe una mala digitación en cuota o copago"
+  - 400 BAD_REQUEST (Código: C_429) -> "El archivo no tiene registros para cargar."
