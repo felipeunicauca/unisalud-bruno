@@ -1,0 +1,93 @@
+info:
+  name: Listar versiones
+  type: http
+  seq: 4
+
+http:
+  method: GET
+  url: http://localhost:8091/parametrizacion/autorizacion/cups-autorizaciones-versiones-filtro?fechaCargaInicial=2026-10-24&fechaCargaFinal=2026-10-23&pagina=0&registrosPorPagina=10
+  params:
+    - name: fechaCargaInicial
+      value: 2026-10-24
+      type: query
+    - name: fechaCargaFinal
+      value: 2026-10-23
+      type: query
+    - name: pagina
+      value: "0"
+      type: query
+    - name: registrosPorPagina
+      value: "10"
+      type: query
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  ### "Filtrar versiones de cargue de CUPS Autorizaciones"
+  Lista paginada del historial de cargues de CUPS Autorizaciones, con filtro opcional por rango de fecha de cargue. Se ordena de forma descendente.
+
+  **Método:** GET
+
+  **Path:** parametrizacion/autorizacion/cups-autorizaciones-versiones-filtro
+
+  **Headers:**
+  - Authorization: Bearer <token>
+
+  **Param :**
+  - `fechaCargaInicial` (date `yyyy-MM-dd`, opcional): fecha desde la cual se filtran los cargues. Si se envía sin `fechaCargaFinal`, el rango llega hasta la fecha actual.
+  - `fechaCargaFinal` (date `yyyy-MM-dd`, opcional): fecha hasta la cual se filtran los cargues. Si se envía sola, trae todos los cargues hasta esa fecha.
+  - `pagina` (number, obligatorio): número de página, base 0.
+  - `registrosPorPagina` (number, obligatorio): cantidad de registros por página.
+
+  **Ejemplo de `param`:**
+  ```json
+  {
+    "fechaCargaInicial": "2026-10-01",
+    "fechaCargaFinal": "2026-10-26",
+    "pagina": 0,
+    "registrosPorPagina": 10
+  }
+  ```
+  **Ejemplo de Response:**
+  ```json
+  {
+    "estado": "OK",
+    "mensaje": "Versiones de CUPS Autorizaciones obtenidas exitosamente",
+    "datos": {
+      "content": [
+        {
+          "idCarga": 12,
+          "fechaCarga": "20/10/2026"
+        }
+      ],
+      "totalElements": 1,
+      "totalPages": 1,
+      "number": 0,
+      "size": 10
+    }
+  }
+  ```
+  **Resultado vacío:**
+  ```json
+  {
+    "estado": "OK",
+    "mensaje": "Versiones de CUPS Autorizaciones obtenidas exitosamente",
+    "datos": {
+      "content": [],
+      "totalElements": 0,
+      "totalPages": 0,
+      "number": 0,
+      "size": 10
+    }
+  }
+  ```
+  **Errores comunes:**
+  - 401 Unauthorized → Token inválido o ausente.
+  - 400 BAD_REQUEST (Código propio: P_011) -> "La fecha inicial de carga no puede ser posterior a la fecha final de carga"
