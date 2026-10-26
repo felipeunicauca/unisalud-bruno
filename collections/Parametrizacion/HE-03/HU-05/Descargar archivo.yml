@@ -1,0 +1,67 @@
+info:
+  name: Descargar archivo
+  type: http
+  seq: 6
+
+http:
+  method: GET
+  url: http://localhost:8091/parametrizacion/autorizacion/cups-autorizacion/descarga?idCarga=3
+  params:
+    - name: idCarga
+      value: "3"
+      type: query
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  ### Descargar archivo del historial de CUPS copagos y cuotas moderadoras
+  Reconstruye y descarga el archivo `.xlsx` de una versión cargada (por `idCarga`) con la hoja "CUPS", las mismas cabeceras y anchos de la plantilla, y solo las filas con datos.
+
+  **Método:** GET
+
+  **Path:** parametrizacion/autorizacion/cups-autorizacion/descarga
+
+  **Headers:**
+  - Authorization: Bearer <token>
+
+  **Param :**
+  - `idCarga` (number, obligatorio): ID de la carga (versionamiento) de CUPS autorizaciones a descargar.
+
+  **Ejemplo de `param`:**
+  ```json
+  {
+    "idCarga": 12
+  }
+  ```
+  Ejemplo: `GET parametrizacion/autorizacion/cups-autorizacion/descarga?idCarga=12`
+
+  **Ejemplo de Response:**
+
+  Respuesta binaria (no es JSON), con los headers:
+  ```json
+  {
+    "Content-Type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "Content-Disposition": "attachment; filename=\"cups_autorizaciones_12.xlsx\""
+  }
+  ```
+  Contenido del archivo, hoja `CUPS`:
+  ```json
+  {
+    "cabecera": ["Código", "Nombre", "Descripción", "Tipo servicio", "Cuota", "Copago", "Cantidad máxima", "Año"],
+    "fila": ["890201", "CONSULTA DE PRIMERA VEZ", "Consulta médica general", "CONSULTA", "COBRO", "NO APLICA", 2, 2026]
+  }
+  ```
+  Cuota y Copago se escriben como `NO APLICA` (sin valor), `0` o `COBRO`.
+
+  **Errores comunes:**
+  - 401 Unauthorized → Token inválido o ausente.
+  - 404 NOT_FOUND (Código: C_0001) -> "No se encontró la carga con ID: 12"
+  - 404 NOT_FOUND (Código: C_0001) -> "No se encontraron registros para la carga con ID: 12"
+  - 400 BAD_REQUEST (Código: C_429) -> "La carga con ID 12 no corresponde a la tabla '<descripción de la tabla>'."
