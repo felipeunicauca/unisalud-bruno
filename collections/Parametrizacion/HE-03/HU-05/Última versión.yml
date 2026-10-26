@@ -1,0 +1,49 @@
+info:
+  name: Última versión
+  type: http
+  seq: 5
+
+http:
+  method: GET
+  url: http://localhost:8091/parametrizacion/autorizacion/cups-autorizaciones-ultima-version
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |
+  ### Última versión de CUPS Autorizaciones
+  Retorna el último cargue registrado en `versionamiento_tabla` para la tabla CUPS Autorizaciones (copagos y cuotas moderadoras), con su identificador de carga y fecha de carga.
+
+  **Método:** GET
+  **Path:** parametrizacion/autorizacion/cups-autorizaciones-ultima-version
+  **Headers:**
+  - Authorization: Bearer <token>
+
+  **Ejemplo de Response:**
+  ```json
+  {
+    "estado": "OK",
+    "mensaje": "Última versión de CUPS Autorizaciones obtenida exitosamente",
+    "datos" : {
+      "idCarga": 4,
+      "fechaCarga": "26/10/2026"
+    }
+  }
+  ```
+
+  **Resultado vacío** (aún no se ha cargado ninguna versión)
+  ```json
+  {
+    "estado": "OK",
+    "mensaje": "Última versión de CUPS Autorizaciones obtenida exitosamente",
+    "datos": null
+  }
+  ```
+  **Errores comunes:**
+  - 401 Unauthorized → Token inválido o ausente.
