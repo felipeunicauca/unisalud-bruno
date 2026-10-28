@@ -1,0 +1,65 @@
+info:
+  name: Cargar nueva versión
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: http://localhost:8091/parametrizacion/contratacion/prestadores-parametrizacion/cargue
+  body:
+    type: multipart-form
+    data:
+      - name: archivo
+        type: file
+        value:
+          - C:\Users\vidal\Downloads\plantilla_prestadores.xlsx
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  ### "Cargar nueva versión de prestadores"
+  Carga un archivo Excel (.xlsx) con los prestadores de parametrización. Valida el formato, el tamaño, la estructura (una hoja con las 29 columnas de la plantilla) y los campos obligatorios. Luego crea una nueva versión en `versionamiento_tabla` y guarda los registros asociados a ese `id_carga`. Los cargues anteriores no se modifican.
+
+  **Método:** POST
+
+  **Path:** parametrizacion/contratacion/prestadores-parametrizacion/cargue
+
+  **Headers:**
+  - Authorization: Bearer <token>
+  - Content-Type: multipart/form-data
+
+  **Param :**
+  - `archivo` (file, obligatorio): archivo `.xlsx` de máximo 30MB, con la hoja "Hoja 1" y las 29 columnas de la plantilla. Los únicos campos obligatorios son:
+    - `depa_nombre`: alfanumérico, de 3 a 60 caracteres.
+    - `muni_nombre`: alfanumérico, de 3 a 60 caracteres.
+    - `codigo_habilitacion`: numérico, 10 caracteres.
+    - `nit`: numérico, de 4 a 13 caracteres.
+
+  **Ejemplo de `param`:**
+  ```json
+  {
+    "archivo": "prestadores.xlsx"
+  }
+  ```
+  **Ejemplo de Response:**
+  ```json
+  {
+    "estado": "CREATED",
+    "mensaje": "Prestadores cargados exitosamente",
+    "datos": true
+  }
+  ```
+  **Errores comunes:**
+  - 401 Unauthorized → Token inválido o ausente.
+  - 400 BAD_REQUEST (Código: C_429) -> "El archivo debe estar en formato Excel (.xlsx)."
+  - 400 BAD_REQUEST (Código: C_429) -> "El archivo supera el tamaño máximo permitido (30MB)."
+  - 400 BAD_REQUEST (Código: C_429) -> "La estructura del archivo no corresponde a la esperada. Las columnas y los nombre de la hoja en el documento no son validas"
+  - 400 BAD_REQUEST (Código: C_429) -> "Hay campos que tienen formato no valido. Campo no válido: '<nombre_columna>'."
+  - 400 BAD_REQUEST (Código: C_429) -> "El archivo no tiene registros para cargar."
