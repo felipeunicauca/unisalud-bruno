@@ -15,7 +15,7 @@ http:
       - name: archivo
         type: file
         value:
-          - C:\Users\vidal\Downloads\tarifario_SOAT_2.xlsx
+          - C:\Users\vidal\Downloads\tarifario_SOAT.xlsx
   auth:
     type: bearer
     token: "{{token}}"

@@ -5,13 +5,13 @@ info:
 
 http:
   method: GET
-  url: http://localhost:8091/parametrizacion/autorizacion/liquidador-cirugia/soat-descarga?tipo=TARIFARIO&idCarga=5
+  url: http://localhost:8091/parametrizacion/autorizacion/liquidador-cirugia/soat-descarga?tipo=TARIFARIO&idCarga=2
   params:
     - name: tipo
       value: TARIFARIO
       type: query
     - name: idCarga
-      value: "5"
+      value: "2"
       type: query
   auth:
     type: bearer

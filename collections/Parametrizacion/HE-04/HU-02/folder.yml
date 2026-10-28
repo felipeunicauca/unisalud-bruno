@@ -1,0 +1,7 @@
+info:
+  name: HU-02
+  type: folder
+  seq: 1
+
+request:
+  auth: inherit

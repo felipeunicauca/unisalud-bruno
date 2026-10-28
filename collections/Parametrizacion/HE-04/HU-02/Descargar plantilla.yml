@@ -1,0 +1,49 @@
+info:
+  name: Descargar plantilla
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: http://localhost:8091/parametrizacion/contratacion/prestadores-parametrizacion/plantilla
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  ### "Descargar plantilla de prestadores"
+  Descarga la plantilla Excel (`plantilla_prestadores.xlsx`) para el cargue de prestadores. Contiene la hoja `Hoja 1` con las 29 cabeceras en la fila 1 y sin datos.
+
+  **Método:** GET
+
+  **Path:** parametrizacion/contratacion/prestadores-parametrizacion/plantilla
+
+  **Headers:**
+  - Authorization: Bearer <token>
+
+  **Ejemplo de Response:**
+
+  Respuesta binaria (no JSON) con estado `200 OK`:
+  - `Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet`
+  - `Content-Disposition: attachmtadores.xlsx"`
+
+  Cabeceras de la hoja `Hoja 1` (A1:AC1):
+  ```json
+  [
+    "depa_nombre", "muni_nombre", "codigo_habilitacion", "nombre_prestador", "nit", "razon_social",
+    "clpr_codigo", "clpr_nombre", "ese", "direccion", "telefono", "fax", "email", "gerente", "nivel",
+    "caracter", "habilitado", "fecha_radicacion", "fecha_vencimiento", "fecha_cierre", "dv",
+    "clase_persona", "naju_codigo", "naju_nombre", "numero_sede_principal", "fecha_corte_REPS",
+    "telefono_adicional", "email_adicional", "rep_legal"
+  ]
+  ```
+
+  **Errores comunes:**
+  - 401 Unauthorized → Token inválido o ausente.
+  - 500 INTERNAL_SERVER_ERROR -> Error al generar la plantilla Excel de prestadores (falla de E/S al construir el archivo).
