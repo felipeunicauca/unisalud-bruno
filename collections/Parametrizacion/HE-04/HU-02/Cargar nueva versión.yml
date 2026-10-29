@@ -12,7 +12,7 @@ http:
       - name: archivo
         type: file
         value:
-          - C:\Users\vidal\Downloads\plantilla_prestadores.xlsx
+          - C:\Users\vidal\Downloads\prestadores_parametrizacion_3.xlsx
   auth:
     type: bearer
     token: "{{token}}"

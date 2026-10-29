@@ -1,0 +1,54 @@
+info:
+  name: Descargar archivo
+  type: http
+  seq: 5
+
+http:
+  method: GET
+  url: http://localhost:8091/parametrizacion/contratacion/prestadores-parametrizacion/descarga?idCarga=1
+  params:
+    - name: idCarga
+      value: "1"
+      type: query
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  ### "Descargar archivo del historial de prestadores"
+  Descarga el archivo `.xlsx` de una versión (carga) de prestadores de parametrización, reconstruido con la misma hoja ("Hoja 1"), las 29 columnas, los anchos y el formato de la plantilla, y con los registros cargados en esa versión.
+
+  **Método:** GET
+
+  **Path:** `parametrizacion/contratacion/prestadores-parametrizacion/descarga`
+
+  **Headers:**
+  - Authorization: Bearer <token>
+
+  **Param :**
+  - `idCarga` (number, obligatorio): ID de la carga (versión) de prestadores a descargar.
+
+  **Ejemplo de `param`:**
+  ```json
+  {
+    "idCarga": 12
+  }
+  ```
+  **Ejemplo de Response:**
+  ```json
+  Respuesta binaria (no JSON):
+  Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+  Content-Disposition: attachment; filename="prestadores_parametrizacion_12.xlsx"
+  Body: contenido del archivo .xlsx
+  ```
+  **Errores comunes:**
+  - 401 Unauthorized → Token inválido o ausente.
+  - 404 NOT_FOUND (Código: C_0001) -> "No se encontró la carga con ID: 12"
+  - 404 NOT_FOUND (Código: C_0001) -> "No se encontraron registros para la carga con ID: 12"
+  - 400 BAD_REQUEST (Código: C_429) -> "La carga con ID 12 no corresponde a la tabla '<descripción de la tabla>'." (la carga existe pero es de otra tabla de versionamiento)
