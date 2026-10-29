@@ -1,0 +1,90 @@
+info:
+  name: Filtrar versiones
+  type: http
+  seq: 4
+
+http:
+  method: GET
+  url: http://localhost:8091/parametrizacion/contratacion/prestadores-parametrizacion-versiones-filtro?pagina=0&registrosPorPagina=10&fechaCargaInicial=2026-10-29&fechaCargaFinal=2026-10-29
+  params:
+    - name: pagina
+      value: "0"
+      type: query
+    - name: registrosPorPagina
+      value: "10"
+      type: query
+    - name: fechaCargaInicial
+      value: 2026-10-29
+      type: query
+    - name: fechaCargaFinal
+      value: 2026-10-29
+      type: query
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  ### Filtrar versiones de prestadores de parametrización
+  Retorna, de forma paginada y en orden descendente por id de carga, las versiones cargadas de prestadores de parametrización, filtradas por fecha de cargue. Si solo se envía `fechaCargaInicial` el rango va hasta hoy; si solo se envía `fechaCargaFinal` se listan las versiones hasta esa fecha; si se envían ambas, el rango es inclusivo. Si no se envía ninguna, retorna todas las versiones.
+
+  **Método:** GET
+  **Path:** parametrizacion/contratacion/prestadores-parametrizacion-versiones-filtro
+  **Headers:**
+  - Authorization: Bearer <token>
+
+  **Param :**
+  - `fechaCargaInicial` (date `yyyy-MM-dd`, opcional): fecha de cargue desde la cual se filtra.
+  - `fechaCargaFinal` (date `yyyy-MM-dd`, opcional): fecha de cargue hasta la cual se filtra.
+  - `pagina` (number, obligatorio): número de página.
+  - `registrosPorPagina` (number, obligatorio): cantidad de registros por página.
+
+  **Ejemplo de `param`:**
+  ```json
+  ?fechaCargaInicial=2026-10-01&fechaCargaFinal=2026-10-29&pagina=0&registrosPorPagina=10
+  ```
+  **Ejemplo de Response:**
+  ```json
+  {
+    "estado": "OK",
+    "mensaje": "Versiones de prestadores de parametrización obtenidas exitosamente",
+    "datos": {
+      "content": [
+        {
+          "idCarga": 12,
+          "fechaCarga": "28/10/2026"
+        },
+        {
+          "idCarga": 9,
+          "fechaCarga": "15/10/2026"
+        }
+      ],
+      "totalElements": 2,
+      "totalPages": 1,
+      "number": 0,
+      "size": 10
+    }
+  }
+
+  **Resultado vacío**
+
+  {
+    "estado": "OK",
+    "mensaje": "Versiones de prestadores de parametrización obtenidas exitosamente",
+    "datos": {
+      "content": [],
+      "totalElements": 0,
+      "totalPages": 0,
+      "number": 0,
+      "size": 10
+    }
+  }
+  ```
+  **Errores comunes:**
+  - 401 Unauthorized → Token inválido o ausente.
+  - 400 BAD_REQUEST (Código propio: P_011) -> "La fecha inicial de carga no puede ser posterior a la fecha final de carga"
