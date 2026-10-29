@@ -1,0 +1,99 @@
+info:
+  name: Mostrar versiones
+  type: http
+  seq: 3
+
+http:
+  method: GET
+  url: http://localhost:8091/parametrizacion/contratacion/prestadores-parametrizacion-versiones?pagina=0&registrosPorPagina=10
+  params:
+    - name: pagina
+      value: "0"
+      type: query
+    - name: registrosPorPagina
+      value: "10"
+      type: query
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  ### Listado de versiones de Prestadores de parametrización
+  Retorna, de forma paginada, las versiones cargadas de prestadores de parametrización (id de carga y fecha de carga), ordenadas de forma descendente por id de carga.
+
+  **Método:** GET
+
+  **Path:** parametrizacion/contratacion/prestadores-parametrizacion-versiones
+
+  **Headers:**
+  - Authorization: Bearer <token>
+
+  **Param :**
+  - `pagina` (number, obligatorio): número de página, base 0.
+  - `registrosPorPagina` (number, obligatorio): cantidad de registros por página.
+
+  **Ejemplo de `param`:**
+  ```json
+  {
+    "pagina": 0,
+    "registrosPorPagina": 10
+  }
+  ```
+  Ejemplo de uso: `GET parametrizacion/contratacion/prestadores-parametrizacion-versiones?pagina=0&registrosPorPagina=10`
+
+  **Ejemplo de Response:**
+  ```json
+  {
+    "estado": "OK",
+    "mensaje": "Versiones de prestadores de parametrización obtenidas exitosamente",
+    "datos": {
+      "content": [
+        {
+          "idCarga": 5,
+          "fechaCarga": "29/10/2026"
+        },
+        {
+          "idCarga": 3,
+          "fechaCarga": "15/10/2026"
+        }
+      ],
+      "pageable": {
+        "pageNumber": 0,
+        "pageSize": 10
+      },
+      "totalElements": 2,
+      "totalPages": 1,
+      "last": true,
+      "first": true,
+      "size": 10,
+      "number": 0,
+      "numberOfElements": 2,
+      "empty": false
+    }
+  }
+  ```
+
+  **Resultado vacío**
+  ```json
+  {
+    "estado": "OK",
+    "mensaje": "Versiones de prestadores de parametrización obtenidas exitosamente",
+    "datos": {
+      "content": [],
+      "totalElements": 0,
+      "totalPages": 0,
+      "empty": true
+    }
+  }
+  ```
+
+  **Errores comunes:**
+  - 401 Unauthorized → Token inválido o ausente.
+  - 403 Forbidden (Código: ver `ErrorCodeDetails.ACCESO_DENEGADO`) -> Acceso denegado.
+  - 500 Internal Server Error -> Falta `pagina` o `registrosPorPagina`, no son numéricos, o `registrosPorPagina` es menor que 1 (el handler genérico devuelve `timestamp`, `status`, `error` y `exception`).
