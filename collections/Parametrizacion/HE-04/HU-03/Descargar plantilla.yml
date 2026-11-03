@@ -1,0 +1,47 @@
+info:
+  name: Descargar plantilla
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: http://localhost:8091/parametrizacion/contratacion/servicios-parametrizacion/plantilla
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  ### Descargar plantilla de servicios
+  Descarga la plantilla Excel (.xlsx) para el cargue de servicios de parametrización. Contiene la hoja `Servicios` con las 20 columnas de la plantilla oficial y la cabecera bloqueada contra modificaciones (hoja protegida sin contraseña; las demás filas quedan editables).
+
+  **Método:** GET
+  **Path:** parametrizacion/contratacion/servicios-parametrizacion/plantilla
+  **Headers:**
+  - Authorization: Bearer <token>
+
+  **Ejemplo de Response:**
+
+  La respuesta es un archivo binario, no un JSON (`Respuesta`):
+
+  - Status: `200 OK`
+  - `Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet`
+  - `Content-Disposition
+
+  Columnas de la hoja `Servicios` (fila 1):
+  ```json
+  [
+    "depa_nombre", "muni_nombre", "codigo_habilitacion", "numero_sede", "sede_nombre",
+    "direccion", "telefono", "email", "nit", "dv", "clase_persona", "naju_nombre",
+    "clpr_codigo", "clpr_nombre", "ese", "habilitado", "grse_codigo", "grse_nombre",
+    "serv_codigo", "serv_nombre"
+  ]
+  ```
+
+  **Errores comunes:**
+  - 401 Unauthorized → Token inválido o ausente.
