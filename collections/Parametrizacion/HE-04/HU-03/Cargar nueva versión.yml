@@ -1,0 +1,24 @@
+info:
+  name: Cargar nueva versión
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: http://localhost:8091/parametrizacion/contratacion/servicios-parametrizacion/cargue
+  body:
+    type: multipart-form
+    data:
+      - name: archivo
+        type: file
+        value:
+          - C:\Users\vidal\Downloads\plantilla_servicios.xlsx
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
