@@ -22,3 +22,53 @@ settings:
   timeout: 0
   followRedirects: true
   maxRedirects: 5
+
+docs: |-
+  ### "Mostrar versiones de servicios de parametrización"
+  Lista de forma paginada las versiones cargadas de servicios de parametrización (id de carga y fecha de carga), ordenadas de forma descendente por id de carga.
+
+  **Método:** GET
+
+  **Path:** parametrizacion/contratacion/servicios-parametrizacion-versiones
+
+  **Headers:**
+  - Authorization: Bearer <token>
+
+  **Param :**
+  - `pagina` (number, obligatorio): número de página, base 0.
+  - `registrosPorPagina` (number, obligatorio): cantidad de registros por página.
+
+  **Ejemplo de `param`:**
+  ```json
+    "registrosPorPagina": 10
+  }
+  ```
+  **Ejemplo de Response:**
+  ```json
+  {
+    "estado": "OK",
+    "mensaje": "Versiones de servicios de parametrización obtenidas exitosamente",
+    "datos": {
+      "content": [
+        { "idCarga": 12, "fechaCarga": "04/11/2026" },
+        { "idCarga": 9, "fechaCarga": "28/10/2026" }
+      ],
+  }
+  ```
+  **Resultado vacío:**
+  ```json
+  {
+    "estado": "OK",
+    "mensaje": "Versiones de servicios de parametrización obtenidas exitosamente",
+    "datos": {
+      "content": [],
+      "totalElements": 0,
+      "totalPages": 0,
+      "number": 0,
+      "size": 10
+    }
+  }
+  ```
+  **Errores comunes:**
+  - 401 Unauthorized → Token inválido o ausente.
+  - 500 INTERNAL_SERVER_ERROR → Falta `pagina` o `registrosPorPagina`, o `pagina` es negativo o `registrosPorPagina` es menor que 1. Estos casos no tienen validación propia y caen en el handler genérico.
