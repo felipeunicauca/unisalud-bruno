@@ -1,0 +1,66 @@
+info:
+  name: Cargar nuevo archivo
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: http://localhost:8091/parametrizacion/auditoria/glosas/cargue
+  body:
+    type: multipart-form
+    data:
+      - name: archivo
+        type: file
+        value:
+          - C:\Users\vidal\Downloads\plantilla_glosas.xlsx
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  ### Cargar glosas (versión nueva)
+  Carga un archivo `.xlsx` de glosas y lo registra como una nueva versión en `versionamiento_tabla`. Los registros se guardan en `glosaregistro` con el `id_carga` generado. Cada cargue crea una versión nueva; los anteriores no se modifican.
+
+  **Método:** POST
+  **Path:** parametrizacion/auditoria/glosas/cargue
+  **Headers:**
+  - Authorization: Bearer <token>
+  - Content-Type: multipart/form-data
+
+  **Param :**
+  - `archivo` (file, obligatorio): archivo `.xlsx` con una hoja llamada `Hoja 1` y las columnas `Código` y `Descripción`. Tamaño máximo 30MB.
+
+  **Ejemplo de `param`:**
+  ```text
+  archivo: glosas_2026.xlsx   (multipart/form-data)
+  ```
+
+  **Reglas de validación del archivo:**
+  - `Código`: 6 caracteres alfanuméricouede repetirse dentro del mismoarchivo.
+  - `Descripción`: entre 10 y 500 caracteres. Se permiten caracteres especiales.
+  - Si una fila es inválida, se rechazaguarda nada.
+
+  **Ejemplo de Response:**
+  ```json
+  {
+    "estado": "CREATED",
+    "mensaje": "Glosas cargadas exitosamente",
+    "datos": true
+  }
+  ```
+
+  **Errores comunes:**
+  - 401 Unauthorized → Token inválido o ausente.
+  - 400 BAD_REQUEST (Código: C_429) -> mato Excel (.xlsx)."
+  - 400 BAD_REQUEST (Código: C_429) -> "El archivo supera el tamaño máximo permitido (30MB)."
+  - 400 BAD_REQUEST (Código: C_429) -> "La estructura del archivo no corresponde a la esperada. Las columnas y los nombre de la hoja en e
+  - 400 BAD_REQUEST (Código: C_429) -> "Hay campos que tienen formato no valido. Fila N: campo 'Código' no válido."
+  - 400 BAD_REQUEST (Código: C_429) -> "Hay campos que tienen formato no valido. Fila N: campo 'Descripción' no válido."
+  - 400 BAD_REQUEST (Código: C_429) -> "Hay campos que tienen formato no valido. Fila N: código 'XXXXXX' repetido en el archivo."
+  - 400 BAD_REQUEST (Código: C_429) -> "El archivo no tiene registros para cargar."
