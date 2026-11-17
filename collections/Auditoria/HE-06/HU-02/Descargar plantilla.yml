@@ -1,0 +1,39 @@
+info:
+  name: Descargar plantilla
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: http://localhost:8091/parametrizacion/auditoria/glosas/plantilla
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  ### Descargar plantilla de glosas
+  Descarga la plantilla Excel `plantilla_glosas.xlsx` para cargar glosas. Contiene una hoja (`Hoja 1`) con las columnas `Código` y `Descripción`, sin filas de datos. Solo las columnas de datos son editables; la cabecera y el resto de la hoja están protegidos sin contraseña.
+
+  **Método:** GET
+
+  **Path:** parametrizacion/cuenta-medica/glosas/plantilla
+
+  **Headers:**
+  - Authorization: Bearer <token>
+
+  **Ejemplo de Response:**
+  Archivo binario `.xlsx` con las cabeceras:
+  ```
+  Content-Disposition: attachment; filename="plantilla_glosas.xlsx"
+  Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+  ```
+
+  **Errores comunes:**
+  - 401 Unauthorized → Token inválido o ausente.
+  - 500 Internal Server Error → Error al generar la plantilla Excel de glosas.

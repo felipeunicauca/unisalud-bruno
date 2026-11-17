@@ -10,7 +10,7 @@ http:
     type: json
     data: |-
       {
-          "correo":"vsandres@unicauca.edu.co",
+          "correo":"jorgeivan@unicauca.edu.co",
           "password":"12345678"
       }
   auth: inherit
