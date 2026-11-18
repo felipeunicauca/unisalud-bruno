@@ -5,10 +5,10 @@ info:
 
 http:
   method: GET
-  url: http://localhost:8091/auditoria/registros/glosas-registro-cuenta-medica/filtrar?parametro=&pagina=0&registrosPorPagina=10
+  url: http://localhost:8091/auditoria/registros/glosas-registro-cuenta-medica/filtrar?parametro=El cargo&pagina=0&registrosPorPagina=10
   params:
     - name: parametro
-      value: ""
+      value: El cargo
       type: query
     - name: pagina
       value: "0"

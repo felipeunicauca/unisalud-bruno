@@ -1,0 +1,55 @@
+info:
+  name: Descargar archivo
+  type: http
+  seq: 5
+
+http:
+  method: GET
+  url: http://localhost:8091/parametrizacion/auditoria/glosas/descarga?idCarga=1
+  params:
+    - name: idCarga
+      value: "1"
+      type: query
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  ### Descargar archivo de una versión de glosas
+  Reconstruye y descarga el archivo Excel (.xlsx) de una carga del historial de glosas. Usa la misma hoja, las mismas columnas (Código, Descripción), el mismo formato y las mismas restricciones de la plantilla.
+
+  **Método:** GET
+
+  **Path:** parametrizacion/auditoria/glosas/descarga
+
+  **Headers:**
+  - Authorization: Bearer <token>
+
+  **Param :**
+  - `idCarga` (number, obligatorio): identificador de la carga (versión) de glosas que se quiere descargar.
+
+  **Ejemplo de `param`:**
+  ```json
+  {
+    "idCarga": 12
+  }
+  ```
+  **Ejemplo de Response:**
+  ```json
+  HTTP 200 OK
+  Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+  Content-Disposition: attachment; filename="glosas_12.xlsx"
+
+  <archivo binario .xlsx>
+  ```
+  **Errores comunes:**
+  - 401 Unauthorized → Token inválido o ausente.
+  - 404 NOT_FOUND (Código: C_0001) -> "No se encontró la carga de glosas con ID: 12" (la carga no existe o no pertenece a glosas)
+  - 404 NOT_FOUND (Código: C_0001) -> "No se encontraron registros para la carga de glosas con ID: 12"
+  - 500 INTERNAL_SERVER_ERROR -> "Error al generar el archivo Excel de glosas"
