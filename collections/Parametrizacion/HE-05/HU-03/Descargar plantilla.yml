@@ -1,0 +1,38 @@
+info:
+  name: Descargar plantilla
+  type: http
+  seq: 7
+
+http:
+  method: GET
+  url: http://localhost:8091/parametrizacion/auditoria/respuestas-glosas/plantilla
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  ### Descargar plantilla de respuestas glosas
+  Descarga la plantilla Excel (`plantilla_respuestas_glosas.xlsx`) para cargar respuestas glosas. Tiene una hoja ("Hoja 1") con las columnas Código, Descripción y Estado. La columna Estado tiene una lista desplegable (filas 2 a 1000) con los valores "Glosa - Aceptada", "Glosa - No aceptada" y "Glosa - Aceptada parcialmente". La fila de cabecera está protegida.
+
+  **Método:** GET
+  **Path:** parametrizacion/auditoria/respuestas-glosas/plantilla
+  **Headers:**
+  - Authorization: Bearer <token>
+
+  **Ejemplo de Response:**
+  ```json
+  HTTP 200 OK
+  Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+  Content-Disposition: attachment; filename="plantilla_respuestas_glosas.xlsx"
+
+  <archivo binario .xlsx>
+  ```
+  **Errores comunes:**
+  - 401 Unauthorized → Token inválido o ausente.
+  - 500 INTERNAL_SERVER_ERROR -> "Error al generar la plantilla Excel de respuestas glosas"
