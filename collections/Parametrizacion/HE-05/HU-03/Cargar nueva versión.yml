@@ -12,7 +12,7 @@ http:
       - name: archivo
         type: file
         value:
-          - C:\Users\vidal\Downloads\plantilla_respuestas_glosas.xlsx
+          - C:\Users\vidal\Downloads\respuestas_glosas_7.xlsx
   auth:
     type: bearer
     token: "{{token}}"

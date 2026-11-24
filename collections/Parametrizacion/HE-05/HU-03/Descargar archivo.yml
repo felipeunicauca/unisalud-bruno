@@ -19,3 +19,35 @@ settings:
   timeout: 0
   followRedirects: true
   maxRedirects: 5
+
+docs: |-
+  ### Descargar archivo del historial de respuestas glosas
+  Descarga por id de carga el archivo Excel (.xlsx) de respuestas glosas, con el contenido de esa carga y la estructura, el formato y las restricciones de la plantilla (hoja "Hoja 1", columnas Código, Descripción y Estado, lista desplegable de Estado y cabecera protegida).
+
+  **Método:** GET
+  **Path:** parametrizacion/auditoria/respuestas-glosas/descarga
+  **Headers:**
+  - Authorization: Bearer <token>
+
+  **Param :**
+  - `idCarga` (numérico, obligatorio): Identificador de la carga de respuestas glosas (id de versionamiento_tabla)
+
+  **Ejemplo de `param`:**
+  ```json
+    idCarga=1
+  ```
+  **Ejemplo de Response:**
+  ```json
+  Status: 200 OK
+  Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+  Content-Disposition: attachment; filename="respuestas_glosas_1.xlsx"
+
+  <contenido binario del archivo .xlsx>
+  ```
+  **Errores comunes:**
+  - 401 Unauthorized → Token inválido o ausente.
+  - 404 NOT_FOUND (Código: C_0001) -> "No se encontró la carga de respuestas glosas con ID: <idCarga>"
+  - 404 NOT_FOUND (Código: C_0001) -> "No se encontraron registros para la carga de respuestas glosas con ID: <idCarga>"
+  - 500 INTERNAL_SERVER_ERROR -> "Required request parameter 'idCarga' for method parameter type Long is not present"
+  - 500 INTERNAL_SERVER_ERROR -> Error de conversión cuando `idCarga` no es numérico (el detalle se retorna en el campo `exception`)
+  - 500 INTERNAL_SERVER_ERROR -> "Error al generar el archivo Excel de respuestas glosas"
